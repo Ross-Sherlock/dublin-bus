@@ -2,11 +2,11 @@ import os
 import sys
 
 class Config:
-    def __init__(self, config_file_path='/config/config.txt'):
+    def __init__(self, config_file_path='config.txt'):
         print('sys.path is:', sys.path)
         print('current path of Config:', config_file_path)
         for path in sys.path:
-            if path.endswith('/dublin-bus'):
+            if path.endswith('config/'):
                 self._config_file_path = path + config_file_path
                 print('Final path for config:', self._config_file_path)
 
