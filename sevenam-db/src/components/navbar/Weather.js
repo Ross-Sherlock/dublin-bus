@@ -13,7 +13,7 @@ const Weather = () => {
       </div>
       <div className="weather-text">
         <h1>{temp + "°"}</h1>
-        <p1>{desc}</p1>
+        <p>{desc}</p>
       </div>
     </div>
   );

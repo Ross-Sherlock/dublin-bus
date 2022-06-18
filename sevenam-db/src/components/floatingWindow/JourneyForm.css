@@ -1,0 +1,10 @@
+.window-container {
+    background-color: grey;
+    width: 500px;
+    color:black;
+    font-size: 25px;
+}
+
+.journey-input {
+    padding: 1rem;
+}
