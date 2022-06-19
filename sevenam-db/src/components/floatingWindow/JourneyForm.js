@@ -53,8 +53,8 @@ const JourneyForm = (props) => {
           <label>Date</label>
           <input type="date" onChange={dateChangeHandler} value={enteredDate} />
         </div>
-        <div className="journey__actions">
-          <button type="submit">Search</button>
+        <div className="journey-submit">
+          <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </div>
     </form>
