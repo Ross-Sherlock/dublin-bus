@@ -1,11 +1,12 @@
-import './App.css';
+import './App.css'
 import './components/navbar/Navbar'
-import Navbar from './components/navbar/Navbar';
+import Navbar from './components/navbar/Navbar'
 import React from 'react'
 import JourneyForm from './components/floatingWindow/JourneyForm'
+import Map from './components/map/Map'
 import ReactDOM from 'react-dom'
 
-function App() {
+function App () {
 
   const submitJourneyDataHandler = (enteredJourneyData) => {
     console.log(enteredJourneyData)
@@ -13,11 +14,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <h1>Map goes here</h1>
-      <JourneyForm onSubmitJourneyData={submitJourneyDataHandler}/>
+      <Map />
+      <JourneyForm onSubmitJourneyData={submitJourneyDataHandler} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
