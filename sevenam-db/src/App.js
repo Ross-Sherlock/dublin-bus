@@ -14,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <h1>Map goes here</h1>
       <JourneyForm onSubmitJourneyData={submitJourneyDataHandler}/>
     </div>
   );
