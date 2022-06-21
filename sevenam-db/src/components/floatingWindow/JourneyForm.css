@@ -1,0 +1,39 @@
+.window-container {
+    background-color: rgba(168, 169, 173, 0.6);
+    padding: 1rem;
+    position: relative;
+    float: right;
+    margin-right: 5%;
+    width: 20rem;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.journey-input {
+    padding: 1rem;
+}
+
+.journey-input input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+}
+
+.journey-input :focus {
+    outline: none;
+}
+
+.journey-input label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.journey-submit {
+    text-align: right;
+}

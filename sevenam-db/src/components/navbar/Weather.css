@@ -1,0 +1,21 @@
+.weather-card {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.weather-icon {
+    padding: 0;
+    margin: 0;
+}
+
+.weather-icon img {
+    height: 8rem;
+    width: auto;
+}
+
+.weather-text {
+    padding: 0;
+    margin: 0;
+}
