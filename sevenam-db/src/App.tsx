@@ -1,12 +1,18 @@
 import './App.css'
 import './components/navbar/Navbar'
 import Navbar from './components/navbar/Navbar'
-import React from 'react'
 import JourneyForm from './components/floatingWindow/JourneyForm'
 import Map from './components/map/Map'
-import ReactDOM from 'react-dom'
+import Marker from './components/map/Marker'
 
-function App () {
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Wrapper } from '@googlemaps/react-wrapper'
+
+function App() {
+  const center = { lat: 53.3498, lng: -6.2603 }
+  const zoom = 12
+  const positions = [{ lat: 53.3, lng: -6.2 }, center, { lat: 53.4, lng: -6.2 }]
 
   const submitJourneyDataHandler = (enteredJourneyData) => {
     console.log(enteredJourneyData)
@@ -15,8 +21,16 @@ function App () {
   return (
     <div className="App">
       <Navbar />
+
       <h1>Map goes here</h1>
-      <Map />
+      <Wrapper apiKey={''}>
+        <Map center={center} zoom={zoom}>
+          {positions.map((position) => (
+            <Marker position={position} />
+          ))}
+        </Map>
+      </Wrapper>
+
       <JourneyForm onSubmitJourneyData={submitJourneyDataHandler} />
     </div>
   )
