@@ -36,6 +36,16 @@ const JourneyForm = (props) => {
 
   };
 
+  const map = props.map;
+  const setMap = props.setMap;
+  const centre = props.centre;
+
+  const submitRecentre = () => {
+    map.panTo(centre);
+  }
+
+
+
   return (
     <form onSubmit={submitHandler}>
       <div className="window-container">
@@ -60,7 +70,7 @@ const JourneyForm = (props) => {
           <input type="date" onChange={dateChangeHandler} value={enteredDate} />
         </div>
         <div className="journey-submit">
-        <button className='recentre' onClick={props.onSubmitRecentre}><img src="https://cdn1.iconfinder.com/data/icons/ios-edge-line-6/25/Location-Arrow-Crcle-512.png" width="40" height="auto" alt="submit" /></button>
+        <button className='recentre' onClick={submitRecentre}><img src="https://cdn1.iconfinder.com/data/icons/ios-edge-line-6/25/Location-Arrow-Crcle-512.png" width="40" height="auto" alt="submit" /></button>
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </div>

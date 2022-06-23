@@ -13,17 +13,11 @@ function App() {
 
   const centre = { lat: 53.343, lng: -6.256 };
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-
-  const submitRecentre = () => {
-    map.panTo(centre);
-  }
-
   return (
     <div className="App">
       <Navbar />
       <div className="map-form-container">
-        <Map map={map} setMap={setMap}></Map>
+        <Map/>
       </div>
     </div>
   );

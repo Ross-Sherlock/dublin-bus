@@ -1,15 +1,20 @@
-import { useJsApiLoader, GoogleMap, Marker, Autocomplete } from "@react-google-maps/api";
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  Autocomplete,
+} from "@react-google-maps/api";
 import React, { useState } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 
 const centre = { lat: 53.343, lng: -6.256 };
-const Map = (props) => {
-  const [map, setMap] = [props.map, props.setMap]
+const Map = () => {
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
-    libraries: ['places'],
+    libraries: ["places"],
   });
 
   if (!isLoaded) {
@@ -24,7 +29,7 @@ const Map = (props) => {
         mapContainerStyle={{ width: "100%", height: "100%" }}
         onLoad={(map) => setMap(map)}
       ></GoogleMap>
-      <JourneyForm></JourneyForm>
+      <JourneyForm map={map} setMap={setMap} centre={centre}></JourneyForm>
     </div>
   );
 };
