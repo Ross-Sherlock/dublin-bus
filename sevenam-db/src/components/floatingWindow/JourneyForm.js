@@ -1,6 +1,8 @@
 import "./JourneyForm.css";
 import Card from "../UI/Card";
 import { useState } from "react";
+import { Autocomplete } from "@react-google-maps/api";
+
 
 const JourneyForm = (props) => {
   const [enteredStart, setEnteredStart] = useState("");
@@ -39,21 +41,26 @@ const JourneyForm = (props) => {
       <div className="window-container">
         <div className="journey-input">
           <label>From</label>
+          <Autocomplete>
           <input
             type="text"
             value={enteredStart}
             onChange={startChangeHandler}
           />
+          </Autocomplete>
         </div>
         <div className="journey-input">
           <label>To</label>
+          <Autocomplete>
           <input type="text" value={enteredDest} onChange={destChangeHandler} />
+          </Autocomplete>
         </div>
         <div className="journey-input">
           <label>Date</label>
           <input type="date" onChange={dateChangeHandler} value={enteredDate} />
         </div>
         <div className="journey-submit">
+        <button className='recentre' onClick={props.onSubmitRecentre}><img src="https://cdn1.iconfinder.com/data/icons/ios-edge-line-6/25/Location-Arrow-Crcle-512.png" width="40" height="auto" alt="submit" /></button>
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </div>
