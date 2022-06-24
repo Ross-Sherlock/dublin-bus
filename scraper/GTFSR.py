@@ -1,5 +1,3 @@
-from tkinter import E
-from tracemalloc import stop
 import requests
 import json
 from datetime import datetime
