@@ -1,8 +1,10 @@
 import requests
 import json
 from datetime import datetime
-from config.Config import Config
-from config.DBconnect import DBconnect
+import sys
+sys.path.append(sys.path[0].replace("scraper", "config/"))  #change sys path for importing
+from Config import Config
+from DBconnect import DBconnect
 
 current_weather_api = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -31,7 +33,7 @@ class Weather:
 
         #execute sql
         try:
-            print("creating table...")
+            print("creating table current_weather ...")
             engine.execute(sql1)
         except Exception as e:
             print(e)
@@ -55,7 +57,3 @@ class Weather:
 a = Weather()
 a.create_table()
 a.insert_current_weather(result=a.get_current_weather())
-
-
-
-
