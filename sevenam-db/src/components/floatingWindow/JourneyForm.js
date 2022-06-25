@@ -51,7 +51,9 @@ const JourneyForm = (props) => {
       <div className="window-container">
         <div className="journey-input">
           <label>From</label>
-          <Autocomplete>
+          <Autocomplete options={{
+    componentRestrictions: { country: "ie" },
+  }}>
           <input
             type="text"
             value={enteredStart}
