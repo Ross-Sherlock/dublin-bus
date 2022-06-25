@@ -38,15 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',   # newly added
-    'corsheaders',  # newly added
-    'weather.apps.WeatherConfig' # newly added
+    'rest_framework',   #added for rest_framework 
+    'corsheaders',  #added for corsheader
+    'weather.apps.WeatherConfig', #added for weather app
+    'gtfsr.apps.GtfsrConfig'#added for gtfsr app
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True  # newly added
+CORS_ORIGIN_ALLOW_ALL = True  #added for CORS
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # newly added
+    'corsheaders.middleware.CorsMiddleware', #added for CORS
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
