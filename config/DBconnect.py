@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from config.Config import Config
+from Config import Config
 
 class DBconnect:
     def __init__(self, config=Config()):

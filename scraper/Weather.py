@@ -1,8 +1,10 @@
 import requests
 import json
 from datetime import datetime
-from config.Config import Config
-from config.DBconnect import DBconnect
+import sys
+sys.path.append(sys.path[0].replace("scraper", "config/")) 
+from Config import Config
+from DBconnect import DBconnect
 
 current_weather_api = "https://api.openweathermap.org/data/2.5/weather"
 
