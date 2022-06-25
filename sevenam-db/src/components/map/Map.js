@@ -45,8 +45,6 @@ const Map = () => {
 
   async function clearRoute() {
     setDirectionsResponse(null);
-    setDistance("");
-    setDuration("");
     originRef.current.value = "";
     destinationRef.current.value = "";
   }

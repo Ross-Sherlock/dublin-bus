@@ -1,7 +1,7 @@
 import "./JourneyForm.css";
 import Card from "../UI/Card";
 import { useState, useRef } from "react";
-import { Autocomplete, DirectionsRenderer } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 
 const JourneyForm = (props) => {
   const calcRoute = props.calcRoute;
@@ -67,7 +67,7 @@ const JourneyForm = (props) => {
             Search
           </button>
           <button class="btn btn-secondary" onClick={clearRoute}>
-            Search
+            Cancel
           </button>
         </div>
       </div>
