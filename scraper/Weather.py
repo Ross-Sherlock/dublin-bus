@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 import sys
-sys.path.append(sys.path[0].replace("scraper", "config/")) 
+sys.path.append(sys.path[0].replace("scraper", "config/"))  #change sys path for importing
 from Config import Config
 from DBconnect import DBconnect
 
@@ -33,7 +33,7 @@ class Weather:
 
         #execute sql
         try:
-            print("creating table...")
+            print("creating table current_weather ...")
             engine.execute(sql1)
         except Exception as e:
             print(e)
@@ -57,7 +57,3 @@ class Weather:
 a = Weather()
 a.create_table()
 a.insert_current_weather(result=a.get_current_weather())
-
-
-
-

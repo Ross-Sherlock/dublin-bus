@@ -1,7 +1,9 @@
 openweather_apikey = 
 
+gtfsr_apikey = 
+
 URL = localhost
 PORT = 3306
 DB = dublinbus
 USER = root
-PASSWORD = 
+PASSWORD =

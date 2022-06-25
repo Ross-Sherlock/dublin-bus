@@ -1,4 +1,6 @@
 from sqlalchemy import create_engine
+import sys
+sys.path.append(sys.path[0].replace("scraper", "config/"))  #change sys path for importing
 from Config import Config
 
 class DBconnect:
