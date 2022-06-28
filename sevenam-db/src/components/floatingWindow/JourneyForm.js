@@ -15,7 +15,7 @@ const JourneyForm = (props) => {
   };
 
   const map = props.map;
-  const setMap = props.setMap;
+  // const setMap = props.setMap;
   const centre = props.centre;
 
   const submitRecentre = () => {

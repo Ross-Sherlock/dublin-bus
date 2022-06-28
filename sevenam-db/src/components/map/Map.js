@@ -4,7 +4,7 @@ import {
   Marker,
   Autocomplete,
   DirectionsRenderer,
-  dir
+  dir,
 } from "@react-google-maps/api";
 import React, { useState, useRef } from "react";
 import "./Map.css";
@@ -14,9 +14,10 @@ const centre = { lat: 53.343, lng: -6.256 };
 const Map = () => {
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
 
+  const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
-    libraries: ["places"],
+    libraries,
   });
 
   // Render directions
@@ -45,6 +46,7 @@ const Map = () => {
 
   async function clearRoute() {
     setDirectionsResponse(null);
+    setMap(null);
     originRef.current.value = "";
     destinationRef.current.value = "";
   }
@@ -61,7 +63,9 @@ const Map = () => {
         mapContainerStyle={{ width: "100%", height: "100%" }}
         onLoad={(map) => setMap(map)}
       >
-        {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+        {directionsResponse && (
+          <DirectionsRenderer directions={directionsResponse} />
+        )}
       </GoogleMap>
       <JourneyForm
         map={map}
