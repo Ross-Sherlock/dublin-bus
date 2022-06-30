@@ -40,7 +40,11 @@ const Map = () => {
       origin: originRef.current.value,
       destination: destinationRef.current.value,
       travelMode: window.google.maps.TravelMode.TRANSIT,
+      transitOptions: {
+        modes: ['BUS']
+      },
     });
+    console.log("routes:\n", results.routes)
     setDirectionsResponse(results);
   }
 
