@@ -1,7 +1,17 @@
+import React, { useState } from 'react';
 import "./Navbar.css";
-import Weather from "./Weather"
+import Weather from "./Weather";
+import { Navigate } from "react-router-dom";
+
 
 const Navbar = () => {
+const [accessMobileApp, setaccessMobileApp] = React.useState(false)
+if (accessMobileApp) {
+  return <Navigate to="/MobileApp"/>;
+}
+
+
+
   return (
     <nav className="nav">
       <div className="nav-title">
@@ -10,6 +20,9 @@ const Navbar = () => {
       </a>
       </div>
       <ul>
+        <button onClick={() => {setaccessMobileApp(true)}}>
+          Mobile Option
+        </button>
         <li>
           <a href="/placeholder">All Routes</a>
         </li>
