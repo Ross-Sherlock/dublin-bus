@@ -10,8 +10,8 @@ import JourneyForm from "../floatingWindow/JourneyForm";
 import StopMarkers from "../marker/StopMarkers";
 
 /*=====================start script=====================*/
-
 const centre = { lat: 53.343, lng: -6.256 };
+let positions = [];
 const Map = () => {
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
 
@@ -32,42 +32,39 @@ const Map = () => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
 
-  async function calcRoute() {
-    if (originRef.current.value === "" || destinationRef.current.value === "") {
-      return;
-    }
-    const directionsService = new window.google.maps.DirectionsService();
-    const results = await directionsService.route({
-      origin: originRef.current.value,
-      destination: destinationRef.current.value,
-      travelMode: window.google.maps.TravelMode.TRANSIT,
-      transitOptions: {
-        modes: ['BUS']
-      },
-    });
-     //print routes details from google direction service
-    console.log("routes:\n", results.routes)
-    setDirectionsResponse(results);
+    async function calcRoute() {
+        if (originRef.current.value === "" || destinationRef.current.value === "") {
+        return;
+        }
+        const directionsService = new window.google.maps.DirectionsService();
+        const results = await directionsService.route({
+        origin: originRef.current.value,
+        destination: destinationRef.current.value,
+        travelMode: window.google.maps.TravelMode.TRANSIT,
+        transitOptions: {
+            modes: ['BUS']
+        },
+        });
+        setDirectionsResponse(results);
+        //print routes details from google direction service
+        console.log("FROM calcRoute, results.routes:\n", results.routes)
+        positions = StopMarkers(results.routes)
   }
 
-  async function clearRoute() {
-    setDirectionsResponse(null);
-    setMap(null);
-    originRef.current.value = "";
-    destinationRef.current.value = "";
+    async function clearRoute() {
+        setDirectionsResponse(null);
+        setMap(null);
+        originRef.current.value = "";
+        destinationRef.current.value = "";
   }
+
+  const onLoad = marker => {
+    console.log('marker: ', marker)
+}
 
   if (!isLoaded) {
     return <h1>Loading</h1>;
   }
-
-const positions = [
-    {position: {lat:53.30664370346626, lng:-6.2256166460317575}},
-    {position: {lat:53.30880319311564, lng:-6.199756136341364}}
-]
-const onLoad = marker => {
-    console.log('marker: ', marker)
-}
 
   return (
     <div className="map-container">
@@ -77,16 +74,21 @@ const onLoad = marker => {
                 mapContainerStyle={{ width: "100%", height: "100%" }}
                 onLoad={(map) => setMap(map)}
             >
+
                 {directionsResponse && (
                 <DirectionsRenderer directions={directionsResponse} />
                 )}
-                {positions.map(({position}) => (
+
+                {positions.map(({ stop_sequence, plate_code, position }) => (
                     <Marker
+                        key={stop_sequence}
+                        plate_code={plate_code}
                         onLoad={onLoad}
                         position={position}
                     >
                     </Marker>
-                ))}
+                 ))}
+
             </GoogleMap>
 
         <JourneyForm
