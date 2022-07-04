@@ -1,14 +1,15 @@
 import {
   useJsApiLoader,
   GoogleMap,
-  Marker,
-  Autocomplete,
   DirectionsRenderer,
-  dir,
+  Marker
 } from "@react-google-maps/api";
 import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
+import StopMarkers from "../marker/StopMarkers";
+
+/*=====================start script=====================*/
 
 const centre = { lat: 53.343, lng: -6.256 };
 const Map = () => {
@@ -44,6 +45,7 @@ const Map = () => {
         modes: ['BUS']
       },
     });
+     //print routes details from google direction service
     console.log("routes:\n", results.routes)
     setDirectionsResponse(results);
   }
@@ -59,19 +61,35 @@ const Map = () => {
     return <h1>Loading</h1>;
   }
 
+const positions = [
+    {position: {lat:53.30664370346626, lng:-6.2256166460317575}},
+    {position: {lat:53.30880319311564, lng:-6.199756136341364}}
+]
+const onLoad = marker => {
+    console.log('marker: ', marker)
+}
+
   return (
     <div className="map-container">
-      <GoogleMap
-        center={centre}
-        zoom={15}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
-        onLoad={(map) => setMap(map)}
-      >
-        {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
-        )}
-      </GoogleMap>
-      <JourneyForm
+            <GoogleMap
+                center={centre}
+                zoom={15}
+                mapContainerStyle={{ width: "100%", height: "100%" }}
+                onLoad={(map) => setMap(map)}
+            >
+                {directionsResponse && (
+                <DirectionsRenderer directions={directionsResponse} />
+                )}
+                {positions.map(({position}) => (
+                    <Marker
+                        onLoad={onLoad}
+                        position={position}
+                    >
+                    </Marker>
+                ))}
+            </GoogleMap>
+
+        <JourneyForm
         map={map}
         setMap={setMap}
         centre={centre}
