@@ -61,9 +61,9 @@ const StopMarkers = function (resultsRoutes){
         for (const stop in stops_on_route){
             // console.log(stops_on_route[stop])
             let stop_info = {
-                stop_sequence: stops_on_route[stop].stop_sequence,
+                stop_sequence: parseInt(stops_on_route[stop].stop_sequence),
                 plate_code: parseInt(stops_on_route[stop].plate_code),
-                position: {lat: stops_on_route[stop].latitude, lng: stops_on_route[stop].longitude}
+                position: {lat: parseFloat(stops_on_route[stop].latitude), lng: parseFloat(stops_on_route[stop].longitude)}
             }
             positions_list.push(stop_info)
         }

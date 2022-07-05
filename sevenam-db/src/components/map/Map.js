@@ -11,15 +11,20 @@ import StopMarkers from "../marker/StopMarkers";
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
-let positions = [];
 const Map = () => {
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
     libraries,
   });
+
+  // Render Markers
+  let default_marker = [{plate_code: 0, stop_sequence: 0, position:{lat: 0, lng: 0}}]
+  const [positions, setPositions] = useState(default_marker)
+  const onLoad = marker => {
+    console.log('marker: ', marker)
+}
 
   // Render directions
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -48,7 +53,7 @@ const Map = () => {
         setDirectionsResponse(results);
         //print routes details from google direction service
         console.log("FROM calcRoute, results.routes:\n", results.routes)
-        positions = StopMarkers(results.routes)
+        setPositions(StopMarkers(results.routes))
   }
 
     async function clearRoute() {
@@ -58,9 +63,9 @@ const Map = () => {
         destinationRef.current.value = "";
   }
 
-  const onLoad = marker => {
-    console.log('marker: ', marker)
-}
+
+console.log("from last line of map.js, cheking positions...", positions)
+
 
   if (!isLoaded) {
     return <h1>Loading</h1>;
@@ -68,26 +73,26 @@ const Map = () => {
 
   return (
     <div className="map-container">
-            <GoogleMap
-                center={centre}
-                zoom={15}
-                mapContainerStyle={{ width: "100%", height: "100%" }}
-                onLoad={(map) => setMap(map)}
-            >
+        <GoogleMap
+            center={centre}
+            zoom={15}
+            mapContainerStyle={{ width: "100%", height: "100%" }}
+            onLoad={(map) => setMap(map)}
+        >
 
-                {directionsResponse && (
-                <DirectionsRenderer directions={directionsResponse} />
-                )}
+            {directionsResponse && (
+            <DirectionsRenderer directions={directionsResponse} />
+            )}
 
-                {positions.map(({ stop_sequence, plate_code, position }) => (
-                    <Marker
-                        key={stop_sequence}
-                        plate_code={plate_code}
-                        onLoad={onLoad}
-                        position={position}
-                    >
-                    </Marker>
-                 ))}
+            {positions.map(({ stop_sequence, plate_code, position }) => (
+                <Marker
+                    key={stop_sequence}
+                    plate_code={plate_code}
+                    onLoad={onLoad}
+                    position={position}
+                >
+                </Marker>
+                ))}
 
             </GoogleMap>
 
