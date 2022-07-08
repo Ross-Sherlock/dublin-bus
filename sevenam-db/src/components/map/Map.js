@@ -2,7 +2,7 @@ import {
   useJsApiLoader,
   GoogleMap,
   DirectionsRenderer,
-  Marker
+  Marker,
 } from "@react-google-maps/api";
 import React, { useState, useRef } from "react";
 import "./Map.css";
@@ -20,11 +20,13 @@ const Map = () => {
   });
 
   // Render Markers
-  let default_marker = [{plate_code: 0, stop_sequence: 0, position:{lat: 0, lng: 0}}]
-  const [positions, setPositions] = useState(default_marker)
-  const onLoad = marker => {
-    console.log('marker: ', marker)
-}
+  let default_marker = [
+    { plate_code: 0, stop_sequence: 0, position: { lat: 0, lng: 0 } },
+  ];
+  const [positions, setPositions] = useState(default_marker);
+  const onLoad = (marker) => {
+    console.log("marker: ", marker);
+  };
 
   // Render directions
   const [directionsResponse, setDirectionsResponse] = useState(null);
@@ -37,35 +39,50 @@ const Map = () => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
 
-    async function calcRoute() {
-        if (originRef.current.value === "" || destinationRef.current.value === "") {
-        return;
+  async function calcRoute() {
+    if (originRef.current.value === "" || destinationRef.current.value === "") {
+      return;
+    }
+    const directionsService = new window.google.maps.DirectionsService();
+    const results = await directionsService.route({
+      origin: originRef.current.value,
+      destination: destinationRef.current.value,
+      travelMode: window.google.maps.TravelMode.TRANSIT,
+      provideRouteAlternatives: true,
+      transitOptions: {
+        modes: ["BUS"],
+      },
+    });
+    // Filter routes to only include Dublin Bus
+    results.routes = results.routes.filter(checkRoute);
+    setDirectionsResponse(results);
+    //print routes details from google direction service
+    console.log("FROM calcRoute, results.routes:\n", results.routes);
+
+    function checkRoute(route_results) {
+      for (const element of route_results.legs) {
+        for (const step of element.steps) {
+          if (
+            step.travel_mode == "TRANSIT" &&
+            step.transit.line.agencies[0].name != "Dublin Bus"
+          ) {
+            return false;
+          }
         }
-        const directionsService = new window.google.maps.DirectionsService();
-        const results = await directionsService.route({
-        origin: originRef.current.value,
-        destination: destinationRef.current.value,
-        travelMode: window.google.maps.TravelMode.TRANSIT,
-        transitOptions: {
-            modes: ['BUS']
-        },
-        });
-        setDirectionsResponse(results);
-        //print routes details from google direction service
-        console.log("FROM calcRoute, results.routes:\n", results.routes)
-        setPositions(StopMarkers(results.routes))
+      }
+      return true;
+    }
+    setPositions(StopMarkers(results.routes));
   }
 
-    async function clearRoute() {
-        setDirectionsResponse(null);
-        setMap(null);
-        originRef.current.value = "";
-        destinationRef.current.value = "";
+  async function clearRoute() {
+    setDirectionsResponse(null);
+    setMap(null);
+    originRef.current.value = "";
+    destinationRef.current.value = "";
   }
 
-
-console.log("from last line of map.js, cheking positions...", positions)
-
+  console.log("from last line of map.js, cheking positions...", positions);
 
   if (!isLoaded) {
     return <h1>Loading</h1>;
@@ -73,30 +90,27 @@ console.log("from last line of map.js, cheking positions...", positions)
 
   return (
     <div className="map-container">
-        <GoogleMap
-            center={centre}
-            zoom={15}
-            mapContainerStyle={{ width: "100%", height: "100%" }}
-            onLoad={(map) => setMap(map)}
-        >
+      <GoogleMap
+        center={centre}
+        zoom={15}
+        mapContainerStyle={{ width: "100%", height: "100%" }}
+        onLoad={(map) => setMap(map)}
+      >
+        {directionsResponse && (
+          <DirectionsRenderer directions={directionsResponse} />
+        )}
 
-            {directionsResponse && (
-            <DirectionsRenderer directions={directionsResponse} />
-            )}
+        {positions.map(({ stop_sequence, plate_code, position }) => (
+          <Marker
+            key={stop_sequence}
+            plate_code={plate_code}
+            onLoad={onLoad}
+            position={position}
+          ></Marker>
+        ))}
+      </GoogleMap>
 
-            {positions.map(({ stop_sequence, plate_code, position }) => (
-                <Marker
-                    key={stop_sequence}
-                    plate_code={plate_code}
-                    onLoad={onLoad}
-                    position={position}
-                >
-                </Marker>
-                ))}
-
-            </GoogleMap>
-
-        <JourneyForm
+      <JourneyForm
         map={map}
         setMap={setMap}
         centre={centre}
