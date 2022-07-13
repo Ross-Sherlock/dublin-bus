@@ -24,7 +24,7 @@ if (accessMobileApp) {
           Mobile Option
         </button>
         <li>
-          <a href="/placeholder">All Routes</a>
+          <a href="/AllRoutes">All Routes</a>
         </li>
         <li>
           <a href="/placeholder">News</a>

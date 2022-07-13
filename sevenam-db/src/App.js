@@ -8,6 +8,7 @@ import ReactDOM from "react-dom";
 import Map from "./components/map/Map";
 import MobileApp from "./components/MobileApp";
 import HomePage from "./components/HomePage";
+import AllRoutes from "./components/AllRoutes";
 
 function App() {
  return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element= {<HomePage/>} />
         <Route path ="/MobileApp" element={<MobileApp />}/>
+        <Route path="/AllRoutes" element={<AllRoutes/>}/>
       </Routes>
     </Router>
 

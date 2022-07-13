@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// a function returns all stops with lat&lng with a given google direction service route result
+// a function returns all stops with lat&lng with a given route details
 
-const StopMarkers = function (resultsRoutes){
+const StopMarkers = function (){
     let positions_list = []; //an empty list to store all stops coordinate
 
     /* read the object from google direction service results return */
