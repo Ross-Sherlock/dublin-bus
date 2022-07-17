@@ -2,7 +2,6 @@ import {
   useJsApiLoader,
   GoogleMap,
   DirectionsRenderer,
-  Marker,
 } from "@react-google-maps/api";
 import React, { useState, useRef } from "react";
 import "./Map.css";

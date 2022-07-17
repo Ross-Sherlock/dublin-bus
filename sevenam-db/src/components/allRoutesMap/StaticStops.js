@@ -17,14 +17,26 @@ export class StaticStops{
     }
 
     //method to get different routes under a single route number
-    get_route_description(route_number) {
-        let route_description = []
+    get_route_descriptions(route_number) {
+        let route_descriptions = []
         for (let i = 0; i<this.static_stops.length; i++) {
             if (this.static_stops[i].route_name == route_number) {
-                route_description.push(this.static_stops[i].route_description)
+                route_descriptions.push(this.static_stops[i].route_description)
             }
         }
-        return route_description
+        return route_descriptions
+    }
+
+    //method to get corresponding stops list
+    get_stops_list(route_description) {
+      let stops_list
+      for (let i = 0; i < this.static_stops.length; i++) {
+        if (this.static_stops[i].route_description == route_description) {
+          stops_list = this.static_stops[i].stops
+          break
+        }
+      }
+      return stops_list
     }
 
 }
