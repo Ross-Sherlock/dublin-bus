@@ -3,6 +3,7 @@
     justify-content:flex-start;
     align-items: center;
     padding: 0.5rem;
+    font-size: 70%;
 }
 
 .weather-icon {
@@ -11,12 +12,13 @@
 }
 
 .weather-icon img {
-    height: 8rem;
-    width: auto;
+    height: auto;
+    width: 8vw;
 }
 
 .weather-text {
     padding: 0;
     margin: 0;
+    font-size:80%;
 }
 
