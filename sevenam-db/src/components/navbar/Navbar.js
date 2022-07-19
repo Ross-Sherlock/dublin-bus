@@ -29,13 +29,13 @@ const Navbar = () => {
       <div className={isNavExpanded ? "nav-menu.expanded" : "nav-menu"}>
         <ul>
           <li>
-            <a href="/AllRoutes">All Routes</a>
+            <a href="/Allroutes">All Routes</a>
           </li>
           <li>
-            <a href="/placeholder">News</a>
+            <a href="/News">News</a>
           </li>
           <li>
-            <a href="/about">About Us</a>
+            <a href="/About">About Us</a>
           </li>
           <div className="weather">
           <Weather />

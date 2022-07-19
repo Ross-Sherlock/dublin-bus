@@ -1,14 +1,11 @@
 import "./App.css";
 import "./components/navbar/Navbar";
-import Navbar from "./components/navbar/Navbar";
 import React, { useState } from "react";
-import JourneyForm from "./components/floatingWindow/JourneyForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
-import Map from "./components/map/Map";
 import MobileApp from "./components/MobileApp";
 import HomePage from "./components/HomePage";
 import AllRoutes from "./components/AllRoutes";
+import News from "./components/News";
 
 function App() {
  return (
@@ -18,13 +15,11 @@ function App() {
         <Route path="/" element= {<HomePage/>} />
         <Route path ="/MobileApp" element={<MobileApp />}/>
         <Route path="/AllRoutes" element={<AllRoutes/>}/>
+        <Route path="/News" element={<News/>}/>
       </Routes>
     </Router>
 
     </div>
-
-
-
   );
 }
 
