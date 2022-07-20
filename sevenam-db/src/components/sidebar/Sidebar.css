@@ -1,0 +1,44 @@
+.main-container {
+  display: flex;
+}
+
+.sidebar {
+  background: rgb(0, 35, 102);
+  color: white;
+  height: 100vh;
+}
+
+.routes {
+ color: white;
+}
+
+.top_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+  font-size: 20px;
+}
+
+.link {
+  display: flex;
+  color: white;
+  gap: 10px;
+  font-size: 18px;
+  padding:15px 10px;  
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.link:hover {
+  border-right: 4px solid white;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background: rgb(45, 51, 89);
+}
+
+a {
+  text-decoration: none;
+}
+
+.link_text {
+  white-space: nowrap;
+}
