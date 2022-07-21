@@ -35,7 +35,7 @@ const Weather = () => {
         <img src={icon}/>
       </div>
       <div className="weather-text">
-        <h1>{Math.round(weatherData.temparature)+ "°"}</h1>
+        <h3>{Math.round(weatherData.temparature)+ "℃"}</h3>
         <p>{weatherData.description}</p>
       </div>
     </div>

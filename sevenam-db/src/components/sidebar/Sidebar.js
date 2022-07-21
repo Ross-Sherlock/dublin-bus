@@ -41,7 +41,7 @@ const Sidebar = ({children}) => {
 
   return (
     <div className='main-container'>
-      <motion.div animate={{ width: isOpen ? "200px" : "45px"}} className="sidebar">
+      <motion.div animate={{ width: isOpen ? "175px" : "45px"}} className="sidebar">
         <div className="top_section">
           <div className="bars">
             <FaBars onClick={toggle}/>

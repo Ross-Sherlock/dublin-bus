@@ -1,24 +1,15 @@
 .weather-card {
     display: flex;
     justify-content:flex-start;
-    align-items: center;
-    padding: 0.5rem;
-    font-size: 70%;
-}
-
-.weather-icon {
-    padding: 0;
-    margin: 0;
+    margin-right: 5px;
 }
 
 .weather-icon img {
-    height: auto;
-    width: 8vw;
+  height: 80px;
+  width: 80px;
+  margin-top: -14px;
 }
 
 .weather-text {
-    padding: 0;
-    margin: 0;
-    font-size:80%;
+  line-height: 20%;
 }
-

@@ -6,19 +6,21 @@ import HomePage from "./components/HomePage";
 import AllRoutes from "./components/AllRoutes";
 import News from "./components/News";
 import Sidebar from "./components/sidebar/Sidebar";
+import NavbarNew from "./components/navbar/NavbarNew";
 
 function App() {
  return (
     <div className="App">
      <Router>
-       <Sidebar>
-        <Routes>
-          <Route path="/" element= {<HomePage/>} />
-          <Route path ="/MobileApp" element={<MobileApp />}/>
-          <Route path="/AllRoutes" element={<AllRoutes/>}/>
-          <Route path="/News" element={<News/>}/>
-        </Routes>
-      </Sidebar>
+       <NavbarNew/>
+         <Sidebar>
+           <Routes>
+             <Route path="/" element={<HomePage />} />
+             <Route path="/MobileApp" element={<MobileApp />} />
+             <Route path="/AllRoutes" element={<AllRoutes />} />
+             <Route path="/News" element={<News />} />
+           </Routes>
+         </Sidebar>
     </Router>
 
     </div>
@@ -26,5 +28,3 @@ function App() {
 }
 
 export default App;
-
-
