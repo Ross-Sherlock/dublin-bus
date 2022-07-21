@@ -71,6 +71,7 @@ const JourneyForm = (props) => {
             Cancel
           </button>
         </div>
+        <div id="direction-steps"></div>
       </div>
   );
 };

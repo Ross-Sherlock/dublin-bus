@@ -28,6 +28,8 @@ const Map = () => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
 
+  const stepsRef = useRef();
+
   async function calcRoute() {
     if (originRef.current.value === "" || destinationRef.current.value === "") {
       return;
@@ -46,7 +48,7 @@ const Map = () => {
     results.routes = results.routes.filter(checkRoute);
     setDirectionsResponse(results);
     //print routes details from google direction service
-    console.log("FROM calcRoute, results.routes:\n", results.routes);
+    // console.log("FROM calcRoute, results.routes:\n", results.routes);
 
     function checkRoute(route_results) {
       for (const element of route_results.legs) {
@@ -68,6 +70,7 @@ const Map = () => {
     setMap(null);
     originRef.current.value = "";
     destinationRef.current.value = "";
+    document.getElementById("direction-steps").innerHTML = "";
   }
 
   if (!isLoaded) {
@@ -83,7 +86,7 @@ const Map = () => {
         onLoad={(map) => setMap(map)}
       >
         {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
+          <DirectionsRenderer directions={directionsResponse} panel={ document.getElementById('direction-steps') }/>
         )}
       </GoogleMap>
 
