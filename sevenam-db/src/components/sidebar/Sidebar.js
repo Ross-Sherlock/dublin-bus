@@ -41,7 +41,7 @@ const Sidebar = ({children}) => {
 
   return (
     <div className='main-container'>
-      <motion.div animate={{ width: isOpen ? "175px" : "45px"}} className="sidebar">
+      <motion.div animate={{ width: isOpen ? "172px" : "42px"}} className="sidebar">
         <div className="top_section">
           <div className="bars">
             <FaBars onClick={toggle}/>
@@ -52,7 +52,7 @@ const Sidebar = ({children}) => {
              <NavLink to={route.path} key={route.name} className="link">
                <div className="icon">{route.icon}</div>
                <AnimatePresence>
-                {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
+                {isOpen && <motion.div className="link_text" onClick={toggle}>{route.name}</motion.div>}
                </AnimatePresence>
              </NavLink>
            )))}

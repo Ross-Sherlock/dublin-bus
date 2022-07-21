@@ -6,4 +6,4 @@ URL = localhost
 PORT = 3306
 DB = dublinbus
 USER = root
-PASSWORD =
+PASSWORD = abcde.0358123

@@ -6,6 +6,12 @@ import {
 import React, {useState, useEffect} from "react";
 import {StaticStops} from "./StaticStops";
 import axios from 'axios';
+import "./AllRoutesMap.css";
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import { FormControl, MenuItem } from "@mui/material";
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
   
 /*=====================start script=====================*/
   const AllRoutesMap = () => {
@@ -80,6 +86,10 @@ import axios from 'axios';
       googleMapsApiKey: process.env.REACT_APP_KEY,
       libraries,
     });
+    const mapContainerStyle = {
+      height: "92.5vh",
+      width: "calc(100vw - 342px)",
+    }
 
 /*=====================Return part=====================*/ 
     if (!isLoaded) {
@@ -87,64 +97,70 @@ import axios from 'axios';
     }
   
     return (
-      <div className="map-container">
+      <div className="allroutesmap-container">
+        <div className="side-panel">
+
+          <div className="route_number_input">
+            <Typography variant="h6" gutterBottom component="div">Select a bus number</Typography>
+            <FormControl>
+              <InputLabel id="select-helper-label">Route number</InputLabel>
+              <Select style={{ width: "270px", height: "40px" }} onChange={handleSelectChange1}>
+                {route_numbers.map(route_number => (
+                  <MenuItem key={route_number} value={route_number} divider={true}>
+                    {route_number}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="route_des_input">
+          <Typography variant="h6" gutterBottom component="div">Select a route</Typography>
+            <FormControl>
+              <InputLabel id="select-helper-label">Route description</InputLabel>
+              <Select style={{ width: "270px", height: "40px" }} onChange={handleSelectChange2} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
+                {route_descriptions.map(route_description => (
+                  <MenuItem key={route_description} value={route_description} divider={true}>
+                    {route_description}
+                    {console.log("CORRESPONDING STOPS LIST:", stops_list)}
+                  </MenuItem>
+                ))}
+              </Select>
+          </FormControl>
+          </div>
+
+          <div className="submit-button">
+            <Button variant="contained"  onClick={handleSubmit}>Search</Button>
+          </div>
+
+        </div>
+
         <GoogleMap
           center={centre}
-          zoom={15}
-          mapContainerStyle={{ width: "100%", height: "100%" }}
+          zoom={11}
+          mapContainerStyle={mapContainerStyle}
         >
-        
-        {markers.map(marker => (
-          <Marker
-            key={marker.id}
-            position={marker.position}
-            onLoad={handleSubmit}
-          >
-            {console.log("MARKERS ARE:", markers)}
-          </Marker>
-        ))}
-    
+          {markers.map(marker => (
+            <Marker
+              key={marker.id}
+              position={marker.position}
+              onLoad={handleSubmit}
+            >
+              {console.log("MARKERS ARE:", markers)}
+            </Marker>
+          ))}
         </GoogleMap>
-
-        <div className="window-container">
-          <label>Route numbers</label>
-          <div className="route-input">
-            <select style={{ width: "200px" }} onChange={handleSelectChange1}>
-              {route_numbers.map(route_number => (
-                <option key={route_number} value={route_number}>
-                  {route_number}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <lable>Route descriptions</lable>
-          <div className="route-input">
-            <select style={{ width: "200px" }} onChange={handleSelectChange2}>
-              {route_descriptions.map(route_description => (
-                <option key={route_description} value={route_description}>
-                  {route_description}
-                  {console.log("CORRESPONDING STOPS LIST:", stops_list)}
-                </option>
-              ))}
-            </select>
-          </div>
-          
-        <div className="journey-submit">
-          <button className="submit" onClick={handleSubmit}>
-            <img
-              src="https://cdn1.iconfinder.com/data/icons/ios-edge-line-6/25/Location-Arrow-Crcle-512.png"
-              width="40"
-              height="40"
-              alt="submit"
-            />
-          </button>
-        </div>
-
-        </div>
-
       </div>
     );
   };
   
   export default AllRoutesMap;
+
+
+
+
+
+
+
+
+          

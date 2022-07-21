@@ -3,7 +3,7 @@ import "./NavbarNew.css";
 import Weather from "./Weather";
 
 const NavbarNew = () => {
-  const logo = require("./logo2.png");
+  const logo = require("./logo.png");
 
     return (
       <nav className="nav" id="navbar">

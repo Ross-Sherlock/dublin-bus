@@ -3,9 +3,9 @@
 }
 
 .sidebar {
-  background: rgb(2, 105, 164);
+  background: rgb(0, 120, 170);
   color: white;
-  height: 100vh;
+  height:92.5vh;
 }
 
 .routes {
@@ -17,22 +17,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px 10px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .link {
   display: flex;
   color: white;
   gap: 10px;
-  font-size: 16px;
+  font-size: 15px;
   padding:10px 10px;  
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .link:hover {
-  border-right: 4px solid white;
+  border-right: 4px solid rgb(243, 120, 120);
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  background: rgb(45, 51, 89);
+  background: rgb(234, 246, 246);
 }
 
 a {
