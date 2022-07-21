@@ -17,6 +17,8 @@ const Map = () => {
     libraries,
   });
 
+  const [date, setDate] = useState(new Date());
+
   // Render directions
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
@@ -28,12 +30,14 @@ const Map = () => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
 
-  const stepsRef = useRef();
+   /** @type React.MutableRefObject<HTMLInputElement> */
+  const dateRef = useRef();
 
   async function calcRoute() {
     if (originRef.current.value === "" || destinationRef.current.value === "") {
       return;
     }
+
     const directionsService = new window.google.maps.DirectionsService();
     const results = await directionsService.route({
       origin: originRef.current.value,
@@ -42,10 +46,12 @@ const Map = () => {
       provideRouteAlternatives: true,
       transitOptions: {
         modes: ["BUS"],
+        departureTime: date
       },
     });
     // Filter routes to only include Dublin Bus
     results.routes = results.routes.filter(checkRoute);
+    console.log(results);
     setDirectionsResponse(results);
     //print routes details from google direction service
     // console.log("FROM calcRoute, results.routes:\n", results.routes);
@@ -98,6 +104,8 @@ const Map = () => {
         calcRoute={calcRoute}
         originRef={originRef}
         destinationRef={destinationRef}
+        date={date}
+        setDate={setDate}
       ></JourneyForm>
     </div>
   );

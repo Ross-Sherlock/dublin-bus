@@ -82,3 +82,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  .date-selector {
+    padding-bottom: 1rem;
+  }
