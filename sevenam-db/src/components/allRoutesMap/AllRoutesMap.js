@@ -87,8 +87,8 @@ import InputLabel from '@mui/material/InputLabel';
       libraries,
     });
     const mapContainerStyle = {
-      height: "92.5vh",
-      width: "calc(100vw - 342px)",
+      height: "calc(100vh - 1.8cm)",
+      width: "calc(100vw - 345px)",
     }
 
 /*=====================Return part=====================*/ 
@@ -154,13 +154,4 @@ import InputLabel from '@mui/material/InputLabel';
     );
   };
   
-  export default AllRoutesMap;
-
-
-
-
-
-
-
-
-          
+  export default AllRoutesMap; 

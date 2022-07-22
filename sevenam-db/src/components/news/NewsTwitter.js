@@ -1,19 +1,16 @@
 import React from "react";
+import "./NewsTwitter.css";
 
 const NewsTwitter = () => {
 
 //Directly return fetch results from taggbox service
   const src="https://widget.taggbox.com/102061";
-  const iframe_style = {
-    width: "100vh",
-    height: "100vh",
-    overflow: "auto",
-    border: "none"
-  }
   const title="Dublin Bus Twitter"
 
   return (
-    <iframe src={src} style={iframe_style} title={title}></iframe>
+    <div className="news-container">
+      <iframe src={src} title={title} className="news-tweets"></iframe>
+    </div>
   )
 }
 

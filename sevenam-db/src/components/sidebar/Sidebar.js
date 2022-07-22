@@ -49,10 +49,10 @@ const Sidebar = ({children}) => {
         </div>
          <section className="routes">
            {routes.map((route => (
-             <NavLink to={route.path} key={route.name} className="link">
+             <NavLink to={route.path} key={route.name} className="link" onClick={toggle}>
                <div className="icon">{route.icon}</div>
                <AnimatePresence>
-                {isOpen && <motion.div className="link_text" onClick={toggle}>{route.name}</motion.div>}
+                {isOpen && <motion.div className="link_text">{route.name}</motion.div>}
                </AnimatePresence>
              </NavLink>
            )))}

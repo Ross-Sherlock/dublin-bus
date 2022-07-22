@@ -1,4 +1,4 @@
-.window-container {
+/* .window-container {
     background-color: rgba(168, 169, 173, 0.9);
     padding: 1rem;
     position: absolute;
@@ -85,4 +85,93 @@
 
   .date-selector {
     padding: 1rem;
-  }
+  } */
+
+.window-container {
+  margin-top: 0;
+}
+
+.window-container > div {
+  margin-top:10px;
+}
+
+.journey-input {
+  margin-left: 10px;
+}
+
+.date-selector {
+  margin-left: 10px;
+}
+
+.origin-input {
+  width: 270px;
+  height: 3em;
+  /* transition: 0.3s all; */
+  border-color: rgb(197,197,197);
+  border-radius: 5px;
+  border-style:solid;
+  border-width: 1px;
+}
+
+.origin-input:hover{
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.des-input {
+  width: 270px;
+  height: 3em;
+  /* transition: 0.3s all; */
+  border-color: rgb(197,197,197);
+  border-radius: 5px;
+  border-style:solid;
+  border-width: 1px;
+}
+
+.des-input:hover{
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.journey-submit {
+  width: 280px;
+  display: flex;
+  justify-content:space-around;
+  margin-left: 4px;
+}
+
+.journey-submit > button {
+  width:fit-content;
+  height: 2.5em;
+}
+
+.MuiFormControl-root {
+  width: 270px;
+}
+
+/* .direction-steps {
+  overflow: scroll;
+  max-height: calc(92vh-326px);
+} */
+
+#direction-steps {
+  overflow:scroll;
+  height: calc(100vh - 325px - 1.6cm);
+  width: 290px;
+}
+
+#direction-steps > div{
+  display: none;
+}
+
+#direction-steps > div:first-child{
+  display:block;
+}
+
+#direction-steps > div:first-child {
+  display:block;
+}
+
+#direction-steps > div:nth-child(2) {
+  display: block;
+}

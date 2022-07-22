@@ -1,0 +1,10 @@
+.news-container {
+  display: flex;
+  justify-content: center;
+}
+
+.news-tweets {
+  width: calc(100vw - 50px);
+  height: calc(100vh - 1.64cm);
+  border: none;
+}

@@ -5,7 +5,7 @@
 .sidebar {
   background: rgb(0, 120, 170);
   color: white;
-  height:92.5vh;
+  height: calc(100vh - 1.6cm);
 }
 
 .routes {
