@@ -47,3 +47,4 @@ arrive_multiplier = 0.82
 prediction = (arrive_multiplier - depart_multiplier)*total
 
 # Send prediction to front end
+print(prediction)
