@@ -11,7 +11,7 @@ Will need to use static stops table as Maps does not always supply stop number
 """
 print(os.listdir())
 route = "145_1"
-filename = f"./backend/backend/prediction/{route} (1).pkl"
+filename = f"./backend/backend/prediction/{route}.pkl"
 rfr = pickle.load(open(filename, 'rb'))
 df_dict = {'DAY_Friday' : [0], 'DAY_Monday' : [0], 'DAY_Saturday' : [0],
        'DAY_Sunday' : [0], 'DAY_Thursday':[0], 'DAY_Tuesday':[0], 'DAY_Wednesday':[0],
