@@ -18,10 +18,12 @@ from django.urls import path
 from weather import views as weather_views
 from gtfsr import views as gtfsr_views
 from static_stops import views as static_stops_views
+from prediction_test import views as test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('weather/', weather_views.current_weather_api),
     path('gtfsr/', gtfsr_views.gtfsr_api),
-    path('static_stops/', static_stops_views.static_stops_api)
+    path('static_stops/', static_stops_views.static_stops_api),
+    path('test/', test.test)
 ]
