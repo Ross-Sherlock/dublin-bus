@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./JourneyForm.css";
 import { Autocomplete } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Favourite from "./Favourite";
 
 const JourneyForm = (props) => {
   const calcRoute = props.calcRoute;
@@ -23,15 +24,79 @@ const JourneyForm = (props) => {
   // const setMap = props.setMap;
   const centre = props.centre;
 
+  // const favRoute = props.favRoute;
+
+  const response = props.response;
+
   const submitRecentre = () => {
     map.panTo(centre);
   };
 
+  let favouritesObj = [];
+  if (localStorage.getItem("favourites") != null) {
+    favouritesObj = JSON.parse(localStorage.getItem("favourites"));
+  }
+  const [fav, setFav] = useState(favouritesObj);
+
+  function setSearch(org, dst) {
+    originRef.current.value = org;
+    destinationRef.current.value = dst;
+  }
+
+  function favRoute() {
+    let dest = response.request.destination.query;
+    let origin = response.request.origin.query;
+    let insert = { origin: origin, dest: dest };
+    if (duplicateCheck(insert)) {
+      favouritesObj.push(insert);
+      localStorage.setItem("favourites", JSON.stringify(favouritesObj));
+      setFav(favouritesObj);
+    } else {
+      console.log("DUPLICATE FOUND");
+    }
+    console.log(localStorage.getItem("favourites"));
+  }
+
+  function duplicateCheck(insert) {
+    for (const element of favouritesObj) {
+      if (JSON.stringify(insert) == JSON.stringify(element)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function dynamicFavourites() {
+    const arr = [];
+    if (favouritesObj.length > 0) {
+      for (const [index,element] of favouritesObj.entries()) {
+        arr.push(
+          <Favourite
+            key={element.origin + element.dest}
+            index = {index}
+            origin={element.origin}
+            dest={element.dest}
+            setFav={setFav}
+            // originRef={originRef}
+            // destRef={destinationRef}
+            setSearch={setSearch}
+          ></Favourite>
+        );
+      }
+      return arr;
+    }
+  }
+
+  let jsxFavourites = dynamicFavourites();
+
   return (
     <div className="window-container">
       <div className="journey-input">
-      <Typography variant="h6" gutterBottom component="div">From</Typography>
+        <Typography variant="h6" gutterBottom component="div">
+          From
+        </Typography>
         <Autocomplete
+          onPlaceChanged={() => console.log()}
           options={{
             componentRestrictions: { country: "ie" },
           }}
@@ -41,8 +106,11 @@ const JourneyForm = (props) => {
       </div>
 
       <div className="journey-input">
-        <Typography variant="h6" gutterBottom component="div">To</Typography>
+        <Typography variant="h6" gutterBottom component="div">
+          To
+        </Typography>
         <Autocomplete
+        label="Departure Time"
           options={{
             componentRestrictions: { country: "ie" },
           }}
@@ -50,17 +118,19 @@ const JourneyForm = (props) => {
           <input className="des-input" type="text" ref={destinationRef} />
         </Autocomplete>
       </div>
-        {/* <label>Date</label> */}
-        {/* <input type="datetime-local" value={new Date().getDate()} /> */}
+      {/* <label>Date</label> */}
+      {/* <input type="datetime-local" value={new Date().getDate()} /> */}
       <div className="date-selector">
-        <Typography variant="h6" gutterBottom component="div">Time</Typography>
+        <Typography variant="h6" gutterBottom component="div">
+          Time
+        </Typography>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DateTimePicker
             label="Departure Time"
             value={date}
             onChange={(newDate) => {
               setDate(newDate);
-              console.log(date)
+              console.log(date);
             }}
             renderInput={(params) => <TextField {...params} />}
           />
@@ -68,10 +138,33 @@ const JourneyForm = (props) => {
       </div>
 
       <div className="journey-submit">
-        <Button className="journey-search" variant="contained" color="secondary" onClick={calcRoute}>Search</Button>
-        <Button className="Journey-cancel" variant="contained" color="error" onClick={clearRoute}>Clear</Button>
-        <Button className="Journey-save" variant="contained" color="success">Favourite</Button>
+        <Button
+          className="journey-search"
+          variant="contained"
+          color="secondary"
+          onClick={calcRoute}
+        >
+          Search
+        </Button>
+        <Button
+          className="Journey-cancel"
+          variant="contained"
+          color="error"
+          onClick={clearRoute}
+        >
+          Clear
+        </Button>
+        <Button
+          className="Journey-save"
+          variant="contained"
+          color="success"
+          onClick={favRoute}
+        >
+          Favourite
+        </Button>
       </div>
+      <div>{jsxFavourites}</div>
+      {/* <Favourite origin="ucd" dest="trinity"></Favourite> */}
       <div id="direction-steps"></div>
     </div>
   );

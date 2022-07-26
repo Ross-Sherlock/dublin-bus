@@ -25,8 +25,6 @@ const Map = () => {
 
   // Render directions
   const [directionsResponse, setDirectionsResponse] = useState(null);
-  const [distance, setDistance] = useState("");
-  const [duration, setDuration] = useState("");
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -34,8 +32,9 @@ const Map = () => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
 
-   /** @type React.MutableRefObject<HTMLInputElement> */
-  const dateRef = useRef();
+  let resultCheck = false;
+
+  const [responseJSON, setResponseJSON] = useState({});
 
   async function calcRoute() {
     if (originRef.current.value === "" || destinationRef.current.value === "") {
@@ -44,7 +43,7 @@ const Map = () => {
 
     const directionsService = new window.google.maps.DirectionsService();
 
-    const results = await directionsService.route({
+      const results = await directionsService.route({
       origin: originRef.current.value,
       destination: destinationRef.current.value,
       travelMode: window.google.maps.TravelMode.TRANSIT,
@@ -56,7 +55,9 @@ const Map = () => {
     });
     // Filter routes to only include Dublin Bus
     results.routes = results.routes.filter(checkRoute);
+    // testingRef.current.value = results;
     console.log(results);
+    setResponseJSON(results)
     setDirectionsResponse(results);
 
     function checkRoute(route_results) {
@@ -74,7 +75,7 @@ const Map = () => {
     }
   }
 
-  async function clearRoute() {
+function clearRoute() {
     function reloadPage() {
       window.location.reload(false);
     }
@@ -91,6 +92,12 @@ const Map = () => {
     return <h1>Loading</h1>;
   }
 
+  async function favRoute() {
+    if(directionsResponse) {
+      localStorage.setItem("fav", JSON.stringify(responseJSON))
+    }
+  }
+
   return (
     <div className="map-container">
       <div className="side-panel">
@@ -104,6 +111,8 @@ const Map = () => {
           destinationRef={destinationRef}
           date={date}
           setDate={setDate}
+          favRoute={favRoute}
+          response = {responseJSON}
         ></JourneyForm>
       </div>
 
@@ -113,9 +122,7 @@ const Map = () => {
         mapContainerStyle={mapContainerStyle}
         onLoad={(map) => setMap(map)}
       >
-        {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} panel={ document.getElementById('direction-steps') }/>
-        )}
+        {directionsResponse && <DirectionsRenderer directions={directionsResponse} panel={ document.getElementById('direction-steps') }/>}
       </GoogleMap>
     </div>
   );

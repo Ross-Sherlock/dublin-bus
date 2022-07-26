@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.favourite-card {
+    box-shadow: 0 0 3px #000;
+    border-width: 0.5px;
+    border-color: black;
+    margin: 10px;
+    /* border-style: solid; */
+    border-radius: 3px;
+    padding: 5px;
+    /* font-size: 20px; */
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fav-icon {
+    font-size: 40px;
+}
+
+.locations {
+    padding: 10px;
+}
+
+.direct-icon {
+    font-size: 30px;
+}

@@ -160,6 +160,10 @@
   width: 290px;
 }
 
+#direction-steps:empty {
+  display: none;
+}
+
 #direction-steps > div{
   display: none;
 }
