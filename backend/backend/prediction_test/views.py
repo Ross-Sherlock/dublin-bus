@@ -7,8 +7,7 @@ from prediction_test.logic_test import Predict
 def test(request):
   """
     This function read the query string from frontend
-    Then get corresponding stop code
-    Finally get proportion
+    And return prediction value to the frontend
   """
   if request.method == 'GET':
     start_lat = float(request.GET.get('start_lat'))
