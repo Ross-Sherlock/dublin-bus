@@ -1,5 +1,6 @@
 import React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import DeleteIcon from '@mui/icons-material/Delete';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./Favourite.css";
 import Typography from "@mui/material/Typography";
@@ -39,14 +40,13 @@ const Favourite = (props) => {
         <p>{origin}</p>
         <p>{dest}</p>
       </div>
-      <div className="fav-icon">
-      <FavoriteIcon
+      <div className="remove-icon">
+      <DeleteIcon
         onClick={unfavourite}
-        style={{ color: "#fe616f" }}
+        style={{ color: "gray" }}
         fontSize="inherit"
-      ></FavoriteIcon>
+      ></DeleteIcon>
       </div>
-      {/* <button onClick={set}>TEST</button> */}
     </div>
   );
 };
