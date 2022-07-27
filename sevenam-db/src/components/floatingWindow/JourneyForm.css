@@ -179,3 +179,7 @@
 #direction-steps > div:nth-child(2) {
   display: block;
 }
+
+.favourites {
+  padding: 10px;
+}
