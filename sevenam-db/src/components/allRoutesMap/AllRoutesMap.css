@@ -3,6 +3,7 @@
 }
 
 .side-panel {
+
   width: 300px;
   height: calc(100vh - 2cm);
   display:flex;
@@ -10,6 +11,12 @@
   align-items: center;
   border-right: groove;
 }
+
+
+/* #side {
+  display:none;
+  }
+*/
 
 .route_number_input{
   margin-top: 15px;

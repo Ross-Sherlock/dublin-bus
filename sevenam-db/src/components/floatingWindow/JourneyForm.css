@@ -89,10 +89,14 @@
 
 .window-container {
   margin-top: 0;
+  border-style: solid;
 }
+
+
 
 .window-container > div {
   margin-top:10px;
+ 
 }
 
 .journey-input {

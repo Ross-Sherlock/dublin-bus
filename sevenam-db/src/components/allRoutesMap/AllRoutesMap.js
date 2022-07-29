@@ -58,13 +58,18 @@ import InputLabel from '@mui/material/InputLabel';
       setStops_list(()=>{
         let temp_stops_list = staticstops.get_stops_list(selected_route_description)
         return temp_stops_list
+
+
       })
     }
 
 /*=====================Markers part=====================*/ 
     let [markers, setMarkers] = useState([]);
-  
+
     function handleSubmit() {
+      const element = document.getElementById("side");
+      element.style.display = "none";
+
       console.log("button clicked...")
       let temp_markers = []
       for (const stop in stops_list) {
@@ -90,6 +95,9 @@ import InputLabel from '@mui/material/InputLabel';
       height: "calc(100vh - 1.8cm)",
       width: "calc(100vw - 345px)",
     }
+/*=====================Sidebar=====================*/ 
+
+
 
 /*=====================Return part=====================*/ 
     if (!isLoaded) {
@@ -98,8 +106,8 @@ import InputLabel from '@mui/material/InputLabel';
   
     return (
       <div className="allroutesmap-container">
-        <div className="side-panel">
-
+       <div id="side">
+        <div className="side-panel"> 
           <div className="route_number_input">
             <Typography variant="h6" gutterBottom component="div">Select a bus number</Typography>
             <FormControl>
@@ -134,7 +142,7 @@ import InputLabel from '@mui/material/InputLabel';
           </div>
 
         </div>
-
+</div>
         <GoogleMap
           center={centre}
           zoom={11}
@@ -153,5 +161,7 @@ import InputLabel from '@mui/material/InputLabel';
       </div>
     );
   };
+
+ 
   
   export default AllRoutesMap; 

@@ -71,6 +71,17 @@ const JourneyForm = (props) => {
     return true;
   }
 
+
+/* hide the side bar once search is completed   - only hides side pannel not whole side bar 
+  function hideElement() {
+    const element = document.getElementById("window");
+    element.style.display = "none";
+  }
+
+*/
+
+
+
   function dynamicFavourites() {
     const arr = [];
     if (favouritesObj.length > 0) {
@@ -95,7 +106,7 @@ const JourneyForm = (props) => {
   let jsxFavourites = dynamicFavourites();
 
   return (
-    <div className="window-container">
+    <div className="window-container" id="window">
       <div className="journey-input">
         <Typography variant="h6" gutterBottom component="div">
           From
@@ -148,6 +159,7 @@ const JourneyForm = (props) => {
           variant="contained"
           color="secondary"
           onClick={calcRoute}
+          //onClick={hideElement}
         >
           Search
         </Button>
