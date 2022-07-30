@@ -15,11 +15,10 @@ def test(request):
     end_lat = float(request.GET.get('end_lat'))
     end_lng = float(request.GET.get('end_lng'))
     route_number = request.GET.get('route_number')
-    month = request.GET.get('month')
+    month = request.GET.get('month') #start with upper case
     day = request.GET.get('day')
     hour = request.GET.get('hour')
 
-    message = "Hello I am testing start cord: {}, end cord: {}, number: {}!".format((start_lat, start_lng), (end_lat, end_lng), route_number)
 
     def get_stop_code(lat, lng):
       """
@@ -57,7 +56,8 @@ def test(request):
       SELECT * FROM dublinbus.proportions
       where STOPPOINTID={stop_code} AND LINEID LIKE '%%{route_number}%%';	
       """.format(stop_code=stop_code, route_number=route_number)
-      for result in Proportions.objects.raw(query):
+#eval() to let it know it is object, need to usr 12 proportions table and convert month to lowercase
+      for result in Proportions.objects.raw(query):   
         temp_dict = {}
         temp_dict["route"] = result.lineid
         temp_dict["proportion"] = result.proportion
@@ -85,10 +85,12 @@ def test(request):
         for item in end:
           if item["route"] == start[0]["route"]:
             correct_end.append(item)
+            final_result["route"] = start[0]["route"]
+            final_result["depart_prop"] = start[0]["proportion"]
+            final_result["arrival_prop"] = correct_end[0]["proportion"]
             break
-        final_result["route"] = start[0]["route"]
-        final_result["depart_prop"] = start[0]["proportion"]
-        final_result["arrival_prop"] = correct_end[0]["proportion"]
+          else:
+            final_result = "Cannot match any data!"
         print("final result:\n", final_result)
 
       elif (len(start) > 1 and len(end)==1):
@@ -96,26 +98,28 @@ def test(request):
         for item in start:
           if item["route"] == end[0]["route"]:
             correct_start.append(item)
+            final_result["route"] = end[0]["route"]
+            final_result["depart_prop"] = correct_start[0]["proportion"]
+            final_result["arrival_prop"] = end[0]["proportion"]
             break
-        final_result["route"] = end[0]["route"]
-        final_result["depart_prop"] = correct_start[0]["proportion"]
-        final_result["arrival_prop"] = end[0]["proportion"]
+          else:
+            final_result = "Cannot match any data!"
         print("final result:\n", final_result)
 
       else:
-        final_result = "Cannot match any data!\n -both start and end stop have multiple directions\n -or cannot find any stops on this route"
+        final_result = "Cannot match any data!"
         print(final_result)
       return final_result
 
     def predict():
-      predict_result = "Cannot match any data!\n -both start and end stop have multiple directions\n -or cannot find any stops on this route"
+      predict_result = "Cannot match any data!"
       params = final_check()
       if isinstance(params, dict):
         route = params["route"]
         depart_prop = params["depart_prop"]
         arrival_prop = params["arrival_prop"]
-        predict_model = Predict(month, day, hour, route, depart_prop, arrival_prop)
-        predict_result = predict_model.get_prediction()
+        predict = Predict(month, day, hour, route, depart_prop, arrival_prop)
+        predict_result = predict.get_prediction()
       return predict_result
     
     message = "Prediction for trip: from ({}, {}) to ({}, {}), bus number:{},  month:{}, day:{}, hour:{}, is:{} sec".format(start_lat, start_lng, end_lat, end_lng, route_number, month, day, hour, predict()[0])

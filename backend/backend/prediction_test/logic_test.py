@@ -1,6 +1,5 @@
 import pandas as pd
 import pickle
-import os
 import sys
 
 class Predict:
