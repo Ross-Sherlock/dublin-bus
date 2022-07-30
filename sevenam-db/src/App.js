@@ -7,6 +7,7 @@ import AllRoutes from "./components/AllRoutes";
 import News from "./components/News";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
+import About from "./components/About";
 
 function App() {
  return (
@@ -19,6 +20,7 @@ function App() {
              <Route path="/JourneyPlanner" element={<JourneyPlanner />} />
              <Route path="/AllRoutes" element={<AllRoutes />} />
              <Route path="/News" element={<News />} />
+             <Route path="/About" element={<About />} />
            </Routes>
          </Sidebar>
     </Router>

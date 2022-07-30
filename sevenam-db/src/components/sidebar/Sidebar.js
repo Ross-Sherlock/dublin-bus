@@ -5,9 +5,9 @@ import { GiNewspaper } from "react-icons/gi";
 import { FaRoute, FaHeart, FaInfo, FaBars, FaBus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-const routes = [
+const routes = [ 
   {
-    path: "/",
+    path: "/JourneyPlanner",
     name: "Journey Planner",
     icon: <FaBus />,
   },
