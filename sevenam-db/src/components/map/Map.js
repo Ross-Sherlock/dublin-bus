@@ -76,17 +76,13 @@ const Map = () => {
   }
 
 function clearRoute() {
-    function reloadPage() {
-      window.location.reload(false);
-    }
-    // setDirectionsResponse(null);
-    // setMap(null);
-    reloadPage();
+    setDirectionsResponse(null);
+    setMap(null);
     originRef.current.value = "";
     destinationRef.current.value = "";
     document.getElementById("direction-steps").innerHTML = "";
   }
-
+ 
 
   if (!isLoaded) {
     return <h1>Loading</h1>;
