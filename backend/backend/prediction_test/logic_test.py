@@ -28,6 +28,7 @@ class Predict:
         final_path = path + "/prediction_test/pickles/"
     print("final path is:", final_path, "\n==========")
     filename = f"{final_path}{self.route}.pkl"
+    print("found pickle file:", filename, "\n==========")
     rfr = pickle.load(open(filename, 'rb'))
     
     print("len of dict:", len(self.df_dict), "\ndict by default:", self.df_dict)
