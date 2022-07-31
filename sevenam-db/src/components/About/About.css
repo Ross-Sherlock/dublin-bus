@@ -1,0 +1,28 @@
+
+.personalInfo {
+  display: flex;
+  flex-wrap: wrap-reverse ;
+  padding: 30px;
+  margin: 10px;
+}
+
+
+.image{
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+ul {
+  border-style: solid;
+  list-style: none;
+  padding: 10px;
+}
+
+h1 {
+  position: relative;
+  padding: 10px;
+  text-align: center;
+
+}

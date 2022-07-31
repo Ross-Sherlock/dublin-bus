@@ -1,7 +1,6 @@
 import {
   useJsApiLoader,
   GoogleMap,
-  DirectionsRenderer,
 } from "@react-google-maps/api";
 import React, { useState} from "react";
 

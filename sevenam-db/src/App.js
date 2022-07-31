@@ -7,7 +7,7 @@ import AllRoutes from "./components/AllRoutes";
 import News from "./components/News";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
-import About from "./components/About";
+import About from "./components/About/About";
 
 function App() {
  return (
