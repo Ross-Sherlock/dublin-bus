@@ -92,8 +92,6 @@ const AllRoutesMap = () => {
     setStops_list(() => {
       let temp_stops_list = staticstops.get_stops_list(selected_route_description)
       return temp_stops_list
-
-
     })
   }
 
@@ -101,9 +99,6 @@ const AllRoutesMap = () => {
   let [markers, setMarkers] = useState([]);
 
   function handleSubmit() {
-    const element = document.getElementById("side");
-    element.style.display = "none";
-
     console.log("button clicked...")
     let temp_markers = []
     for (const stop in stops_list) {
