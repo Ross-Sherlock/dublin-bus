@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./Sidebar.css";
 import { GiNewspaper } from "react-icons/gi";
 import { FaRoute, FaHeart, FaInfo, FaBars, FaBus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-const routes = [ 
+const routes = [
   {
     path: "/JourneyPlanner",
     name: "Journey Planner",
@@ -35,7 +35,33 @@ const routes = [
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const [isExtended, setIsExtended] = useState(false);
+
+  function setExtend() {
+    setIsExtended(!isExtended)
+  }
+
+  function getStyle() {
+    let css;
+    if (isExtended) {
+      css = `
+  .side-panel {
+    display:block !important;
+  }
+  `;
+    } else {
+      css = `
+  .side-panel {
+    display:none !important;
+  }
+  `;
+    }
+    return css;
+  }
 
   return (
     <div className="main-container">
@@ -43,6 +69,7 @@ const Sidebar = ({ children }) => {
         animate={{ width: isOpen ? "172px" : "42px" }}
         className="sidebar"
       >
+        <style>{getStyle()}</style>
         <div className="top_section">
           <div className="bars">
             <FaBars onClick={toggle} />
@@ -50,12 +77,7 @@ const Sidebar = ({ children }) => {
         </div>
         <section className="routes">
           {routes.map((route) => (
-            <NavLink
-              to={route.path}
-              key={route.name}
-              className="link"
-              onClick={toggle}
-            >
+            <NavLink to={route.path} key={route.name} className="link" onClick={setExtend}>
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (
@@ -66,7 +88,7 @@ const Sidebar = ({ children }) => {
           ))}
         </section>
       </motion.div>
-      <main>{children}</main>
+      <main className="main">{children}</main>
     </div>
   );
 };

@@ -1,11 +1,19 @@
 .main-container {
   display: flex;
+  height:100%;
+  width:100%;
+}
+
+.main {
+  height:100%;
+  width:100%;
 }
 
 .sidebar {
   background: rgb(0, 120, 170);
   color: white;
-  height: calc(100vh - 1.6cm);
+  /* height: calc(100vh - 1.6cm); */
+  height:100%;
 }
 
 .routes {

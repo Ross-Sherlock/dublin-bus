@@ -89,7 +89,6 @@
 
 .window-container {
   margin-top: 0;
-  border-style: solid;
 }
 
 
@@ -108,7 +107,7 @@
 }
 
 .origin-input {
-  width: 270px;
+  width:95%;
   height: 3em;
   /* transition: 0.3s all; */
   border-color: rgb(197,197,197);
@@ -123,7 +122,7 @@
 }
 
 .des-input {
-  width: 270px;
+  width: 95%;
   height: 3em;
   /* transition: 0.3s all; */
   border-color: rgb(197,197,197);
@@ -138,7 +137,7 @@
 }
 
 .journey-submit {
-  width: 280px;
+  width: 98%;
   display: flex;
   justify-content:space-around;
   margin-left: 4px;
@@ -150,7 +149,7 @@
 }
 
 .MuiFormControl-root {
-  width: 270px;
+  width:95%;
 }
 
 /* .direction-steps {
@@ -161,7 +160,12 @@
 #direction-steps {
   overflow:scroll;
   height: calc(100vh - 325px - 1.6cm);
-  width: 290px;
+  /* width: 290px; */
+  width:95%;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+  /* text-align: center; */
 }
 
 #direction-steps:empty {

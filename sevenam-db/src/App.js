@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import JourneyPlanner from "./components/JourneyPlanner";
 import HomePage from "./components/HomePage";
@@ -10,21 +10,20 @@ import NavbarNew from "./components/navbar/NavbarNew";
 import About from "./components/About";
 
 function App() {
- return (
+  return (
     <div className="App">
-     <Router>
-       <NavbarNew/>
-         <Sidebar>
-           <Routes>
-             <Route path="/" element={<HomePage />} />
-             <Route path="/JourneyPlanner" element={<JourneyPlanner />} />
-             <Route path="/AllRoutes" element={<AllRoutes />} />
-             <Route path="/News" element={<News />} />
-             <Route path="/About" element={<About />} />
-           </Routes>
-         </Sidebar>
-    </Router>
-
+      <Router>
+        <NavbarNew />
+        <Sidebar>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/JourneyPlanner" element={<JourneyPlanner />} />
+            <Route path="/AllRoutes" element={<AllRoutes />} />
+            <Route path="/News" element={<News />} />
+            <Route path="/About" element={<About />} />
+          </Routes>
+        </Sidebar>
+      </Router>
     </div>
   );
 }

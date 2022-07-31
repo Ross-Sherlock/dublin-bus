@@ -35,8 +35,6 @@ const HomePage = () => {
 
 
   return (
-    <div className="map-container">
-
       <GoogleMap
         center={centre}
         zoom={11}
@@ -45,7 +43,6 @@ const HomePage = () => {
       >
 
       </GoogleMap>
-    </div>
   );
 };
 

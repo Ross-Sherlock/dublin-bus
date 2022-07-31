@@ -1,14 +1,21 @@
-.map-container {
+.content-container {
   display: flex;
+  height:100%;
+  width:100%;
 }
 
 .side-panel {
-  width: 300px;
+  width: 30%;
+  overflow:visible;
   height: calc(100vh - 2cm);
   display:flex;
   flex-direction: column;
   align-items: center;
   border-right: groove;
+}
+
+.map-container {
+  
 }
 
 
