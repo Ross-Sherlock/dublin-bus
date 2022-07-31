@@ -39,29 +39,29 @@ const Sidebar = ({ children }) => {
     setIsOpen(!isOpen);
   };
 
-  const [isExtended, setIsExtended] = useState(false);
+  // const [isExtended, setIsExtended] = useState(false);
 
-  function setExtend() {
-    setIsExtended(!isExtended)
-  }
+  // function setExtend() {
+  //   setIsExtended(!isExtended)
+  // }
 
-  function getStyle() {
-    let css;
-    if (isExtended) {
-      css = `
-  .side-panel {
-    display:block !important;
-  }
-  `;
-    } else {
-      css = `
-  .side-panel {
-    display:none !important;
-  }
-  `;
-    }
-    return css;
-  }
+  // function getStyle() {
+  //   let css;
+  //   if (isExtended) {
+  //     css = `
+  // .side-panel {
+  //   display:block !important;
+  // }
+  // `;
+  //   } else {
+  //     css = `
+  // .side-panel {
+  //   display:none !important;
+  // }
+  // `;
+  //   }
+  //   return css;
+  // }
 
   return (
     <div className="main-container">
@@ -69,7 +69,7 @@ const Sidebar = ({ children }) => {
         animate={{ width: isOpen ? "172px" : "42px" }}
         className="sidebar"
       >
-        <style>{getStyle()}</style>
+        {/* <style>{getStyle()}</style> */}
         <div className="top_section">
           <div className="bars">
             <FaBars onClick={toggle} />
@@ -77,7 +77,7 @@ const Sidebar = ({ children }) => {
         </div>
         <section className="routes">
           {routes.map((route) => (
-            <NavLink to={route.path} key={route.name} className="link" onClick={setExtend}>
+            <NavLink to={route.path} key={route.name} className="link">
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (

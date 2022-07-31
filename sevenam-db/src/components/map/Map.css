@@ -10,13 +10,39 @@
   height: calc(100vh - 2cm);
   display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items:flex-start;
   border-right: groove;
 }
 
-.map-container {
-  
+/*side-panel toggle */
+.side-panel-toggle{
+  width:30px;
+  height:50px;
+  flex-shrink:0;
+  text-align: center;
+  color:black;
+  background: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  place-self:center;
+  z-index: 10;
+  position: absolute;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 2px 2px lightgrey;
 }
 
+.side-panel-toggle  > span {
+  margin-left: -4px;
+  margin-top: 3px;
+}
 
+button:hover, button:focus {
+  outline: none;
+}
 
+/* hover on the toggle */
+.side-panel-toggle:hover{
+  background-color: cornflowerblue;
+}

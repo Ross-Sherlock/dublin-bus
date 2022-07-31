@@ -1,9 +1,10 @@
 .allroutesmap-container {
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .side-panel {
-
   width: 300px;
   height: calc(100vh - 2cm);
   display:flex;
@@ -11,7 +12,6 @@
   align-items: center;
   border-right: groove;
 }
-
 
 
 .route_number_input{
@@ -29,3 +29,4 @@
 .MuiList-root{
   max-height: 5cm;
 }
+
