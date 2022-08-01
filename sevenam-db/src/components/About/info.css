@@ -81,9 +81,7 @@ button {
         }
      
       button {
-          background-color: #2879aa;
-          color:aliceblue;
-          border-style: none;
+          display: none;
          
       }
 
