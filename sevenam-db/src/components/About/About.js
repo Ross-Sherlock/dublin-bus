@@ -4,13 +4,15 @@ import estelle from "../About/estelle.png";
 import ross from "../About/ross.png";
 import yuan from "../About/yuan.png";
 import zeyu from "../About/zeyu.png";
+import Info from "../About/Info";
+
 
 const  generalInfo = [ 
     {name: "Estelle", 
         github: "https://github.com/Estellerl",
         email: "estelle.reeveslong@ucdconnect.ie",
         linkin: "https://ie.linkedin.com/",
-        role: "Coordinator",
+        role: "Coordinator Lead",
         img: estelle,
     }
 
@@ -25,7 +27,7 @@ const  generalInfo = [
     }
 ,
     {name: "Yuan", 
-    github: "https://github.com/",
+    github: "https://github.com/21201607",
     email: "yuan.cheng@ucdconnect.ie",
     linkin: "https://ie.linkedin.com/in/yuan-cheng-496358230",
     role: "Maintenance Lead",
@@ -33,14 +35,12 @@ const  generalInfo = [
     }
 ,
     {name: "Zeyu", 
-    github: "https://github.com/",
-    email: "zeyu.bai",
+    github: "https://github.com/ClarenceWhite",
+    email: "zeyu.bai@ucdconnect.ie",
     linkin: "https://ie.linkedin.com/in/zeyu-bai-966bb1175?trk=public_profile_browsemap",
     role: "Customer Lead",
     img: zeyu,
     }
-
-
 
 
     ]
@@ -48,91 +48,46 @@ const  generalInfo = [
 
 
   
-  const About = () => {
 
-const PersonInfo = generalInfo.map (info => 
-    (
-
-  <div>      
-<div className="image">
-<img src={info.img} alt={info.name} width={"100px"} height={"100px"} />
-<span>{info.name}</span>
-</div>
-        <ul>
-        <li>
-           <b>Role:</b>  {info.role}
-        </li>
-        <li> <b>Email:</b> {info.email} </li>
-        <li>
-            <a href={info.github} target={"blank"}> GitHub </a>
-        </li>
-        <li>
-            <a href={info.linkin} target={"blank"}> Linked In </a> 
-        </li>
-
-    </ul>     
-    </div>
-    ))
-
+const About = () => {        
   
-   /*
-    const [showInfo, setShowinfo] = useState(false);
+    const PersonInfo = generalInfo.map (info => 
+        (
     
-    const handleShowOn = () => {
-        setShowinfo(true);
-      };
-    
-      const handleShowOff = () => {
-        setShowinfo(false);
-      };
-
-{showInfo && (
-          <ul>
-              <li>
-                 <b>Role:</b>  Coordinator 
-              </li>
-              <li> <b>Email:</b> estelle.reeveslong@ucdconnect.ie</li>
-              <li>
-                  <a href="https://github.com/Estellerl" target={"blank"}> GitHub </a>
-              </li>
-              <li>
-                  <a href="https://ie.linkedin.com/" target={"blank"}> Linked In </a> 
-              </li>
-
-          </ul>
-        )}
+      <div className="info">    
+    < Info name={info.name}  title={info.role} email={info.email} link={info.linkin} github={info.github} photo={info.img}/>    
+        </div>
+        ))   
 
 
-    */
-        
-    
-    return (
-      <div className="mainAbout">
+
+
+
+
+return (
+<div className="mainAbout">
 
 <div className="intoduction">
-<h1> Hello World </h1>
-<p>
-    Meet 7am 
-    </p> 
+<h1> Meet 7am </h1>
+ <p> description? </p>
 </div>
-
-<img source={''}/>
-
-<div className="personalInfo"> 
+<div className="info"> 
 {PersonInfo}
 </div>
-
-
-
-
 </div>
-) 
+
+
+) ;
 
 
 
-
-
-  };
+  }
+ 
   
   export default About;
+
+
+
+
+
 
