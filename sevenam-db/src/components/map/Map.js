@@ -56,7 +56,7 @@ const Map = (props) => {
   const [route_numner, setRoute_number] = useState(null);
   const [start_stopid, setStart_stopid] = useState(null);
   const [end_stopid, setEnd_stopid] = useState(null);
-  const [route_index, setRoute_index] = useState(0);
+  const [route_index, setRoute_index] = useState(0); //when click on another optional route, set this index to switch to another route info
 /*=====================google map=====================*/
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [libraries] = useState(["places"]);
@@ -215,37 +215,38 @@ const Map = (props) => {
   }
   return (
     <div className="content-container">
-      <style>{getStyle()}</style>
-      <div className="side-panel">
-        <JourneyForm
-          map={map}
-          setMap={setMap}
-          centre={centre}
-          clearRoute={clearRoute}
-          calcRoute={calcRoute}
-          originRef={originRef}
-          destinationRef={destinationRef}
-          date={date}
-          setDate={setDate}
-          favRoute={favRoute}
-          response={responseJSON}
-          month={month}
-          day={day}
-          hour={hour}
-          start_lat={start_lat}
-          start_lng={start_lng}
-          end_lat={end_lat}
-          end_lng={end_lng}
-          route_number={route_numner}
-          start_stopid={start_stopid}
-          end_stopid={end_stopid}
-        ></JourneyForm>
-      </div>
+      {/* <style>{getStyle()}</style> */}
+      <ToggleVisability content="side-panel">
+        <div className="side-panel">
+          <JourneyForm
+            map={map}
+            setMap={setMap}
+            centre={centre}
+            clearRoute={clearRoute}
+            calcRoute={calcRoute}
+            originRef={originRef}
+            destinationRef={destinationRef}
+            date={date}
+            setDate={setDate}
+            favRoute={favRoute}
+            response={responseJSON}
+            month={month}
+            day={day}
+            hour={hour}
+            start_lat={start_lat}
+            start_lng={start_lng}
+            end_lat={end_lat}
+            end_lng={end_lng}
+            route_number={route_numner}
+            start_stopid={start_stopid}
+            end_stopid={end_stopid}
+          ></JourneyForm>
+        </div>
 
-      <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
+        {/* <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
         <span className={changeArrow()[0]}>{changeArrow()[1]}</span>
-      </button>
-
+      </button> */}
+      </ToggleVisability>
       <GoogleMap
         center={centre}
         zoom={11}
