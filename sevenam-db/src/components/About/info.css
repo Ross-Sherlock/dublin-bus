@@ -3,10 +3,13 @@ ul {
     text-align: center;
     padding: 10px;
     color:aliceblue;
+    line-height: 10px;
   }
 
 
-
+.mobileApp{
+    display: none;
+}
 .mainContainer {
    
     border-radius: 30%;
@@ -19,7 +22,7 @@ ul {
     align-items: center;
     flex-direction: column;
     width: 260px;
-    height: 340px;
+    height: 400px;
     background-color: #2879aa;
     border-radius: 7%;
 
@@ -29,6 +32,10 @@ ul .text {
     position: relative;
 
 
+}
+
+li{
+    line-height: 40px;
 }
 
 .name {
@@ -48,8 +55,44 @@ button {
       cursor: pointer;
       font-size: 16px;
       font-weight: 600;
-     
+      padding: 10px 20px;
+     border-radius: 20%;
 
     }
     
    
+
+
+    @media only screen and (max-width: 800px) {
+        
+
+        .mainInfo {
+          
+            width: 260px;
+            height: 240px;       
+        
+        }
+
+        .personalImage{
+          display: none;
+        }
+        .mobileApp {
+            display: flex;
+        }
+     
+      button {
+          background-color: #2879aa;
+          color:aliceblue;
+          border-style: none;
+         
+      }
+
+      .hiddenforMobile{
+display: none;
+
+      }
+
+      .name {
+          font-size: 20px;
+      }
+    }
