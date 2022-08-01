@@ -30,3 +30,21 @@
   max-height: 5cm;
 }
 
+.side-panel-toggle {
+  position:relative;
+  margin-left: 100%;
+}
+
+.side-panel-toggle.hide {
+  top:10%;
+}
+
+.side-panel-toggle.show {
+  position: relative;
+  bottom:50%;
+}
+
+.side-panel-hide {
+  width: 0px;
+  margin-top: 30%;
+}

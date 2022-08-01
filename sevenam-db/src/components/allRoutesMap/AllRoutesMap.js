@@ -12,6 +12,7 @@ import Select from '@mui/material/Select';
 import { FormControl, MenuItem } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
+import ToggleVisibility from "../UI/ToggleVisibility";
 
 /*=====================start script=====================*/
 const AllRoutesMap = () => {
@@ -128,7 +129,8 @@ const AllRoutesMap = () => {
 
   return (
     <div className="allroutesmap-container">
-      <style>{getStyle()}</style>
+      {/* <style>{getStyle()}</style> */}
+      <ToggleVisibility content="side-panel">
       <div id="side">
         <div className="side-panel">
           <div className="route_number_input">
@@ -163,10 +165,11 @@ const AllRoutesMap = () => {
           </div>
         </div>
       </div>
+      </ToggleVisibility>
 
-      <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
+      {/* <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
         <span className={changeArrow()[0]}>{changeArrow()[1]}</span>
-      </button>
+      </button> */}
 
       <GoogleMap
         center={centre}

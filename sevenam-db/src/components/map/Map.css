@@ -46,3 +46,22 @@ button:hover, button:focus {
 .side-panel-toggle:hover{
   background-color: cornflowerblue;
 }
+
+.side-panel-toggle {
+  position:relative;
+  /* margin-left: 100%; */
+}
+
+.side-panel-toggle.show {
+  /* position: absolute; */
+  /* left:0; */
+  /* left:0; */
+  position:relative;
+  z-index: 99;
+  bottom: 50%;
+}
+
+.side-panel-hide {
+  width: 0px;
+  margin-top: 30%;
+}

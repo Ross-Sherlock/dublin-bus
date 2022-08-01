@@ -6,6 +6,7 @@ import {
 import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
+import ToggleVisability from "../UI/ToggleVisibility"
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
@@ -125,7 +126,7 @@ const Map = (props) => {
 
   return (
     <div className="content-container">
-      <style>{getStyle()}</style>
+      <ToggleVisability content="side-panel">
       <div className="side-panel">
         <JourneyForm
           map={map}
@@ -141,10 +142,7 @@ const Map = (props) => {
           response={responseJSON}
         ></JourneyForm>
       </div>
-
-      <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
-        <span className={changeArrow()[0]}>{changeArrow()[1]}</span>
-      </button>
+      </ToggleVisability>
 
       <GoogleMap
         center={centre}
