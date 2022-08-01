@@ -4,9 +4,19 @@
   height: 100%;
 }
 
-.side-panel {
-  width: 300px;
+/* .side-panel {
+  width: 30%;
   height: calc(100vh - 2cm);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: groove;
+} */
+
+.side-panel {
+  width: 30%;
+  overflow:visible;
+  height: 100%;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +34,8 @@
 
 .submit-button{
   margin-top: 15px;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .MuiList-root{

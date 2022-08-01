@@ -9,10 +9,6 @@ import React, { useState} from "react";
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
 const HomePage = () => {
-  const mapContainerStyle = {
-    height: "calc(100vh - 1.5cm)",
-    width: "calc(100vw - 40px)",
-  }
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
@@ -37,7 +33,7 @@ const HomePage = () => {
       <GoogleMap
         center={centre}
         zoom={11}
-        mapContainerStyle={mapContainerStyle}
+        mapContainerStyle={{height: "100%", width: "100%"}}
         onLoad={(map) => setMap(map)}
       >
 

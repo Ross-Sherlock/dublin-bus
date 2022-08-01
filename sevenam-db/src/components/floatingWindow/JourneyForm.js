@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import "./JourneyForm.css";
 import { Autocomplete } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
@@ -10,7 +11,6 @@ import Button from "@mui/material/Button";
 import Favourite from "./Favourite";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
@@ -21,21 +21,51 @@ const JourneyForm = (props) => {
   const destinationRef = props.destinationRef;
   const date = props.date;
   const setDate = props.setDate;
-
+  const month = props.month;
+  const day = props.day;
+  const hour = props.hour;
+  const start_lat = props.start_lat;
+  const start_lng = props.start_lng;
+  const end_lat = props.end_lat;
+  const end_lng = props.end_lng;
+  const route_number = props.route_number;
+  const start_stopid = props.start_stopid;
+  const end_stopid = props.end_stopid;
+  let url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}`;
+  if (start_stopid !== null) {
+    url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}`
+  };
+  if (end_stopid !== null) {
+    url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}`
+  };
+  console.log("url:", url);
+  const [prediction, setPrediction] = useState([]);
+  async function getPrediction() {
+    try {
+      const response = await axios.get(url);
+      setPrediction(response.data);
+      console.log(response.data);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  getPrediction()
+  console.log("PREDICTION IS:", prediction);
   // const dateChangeHandler = (event) => {
   //   setEnteredDate(event.target.value);
   // };
-  const map = props.map;
+  // const map = props.map;
   // const setMap = props.setMap;
-  const centre = props.centre;
+  // const centre = props.centre;
 
   // const favRoute = props.favRoute;
 
   const response = props.response;
 
-  const submitRecentre = () => {
-    map.panTo(centre);
-  };
+  // const submitRecentre = () => {
+  //   map.panTo(centre);
+  // };
 
   let favouritesObj = [];
   if (localStorage.getItem("favourites") != null) {
@@ -74,11 +104,11 @@ const JourneyForm = (props) => {
   function dynamicFavourites() {
     const arr = [];
     if (favouritesObj.length > 0) {
-      for (const [index,element] of favouritesObj.entries()) {
+      for (const [index, element] of favouritesObj.entries()) {
         arr.push(
           <Favourite
             key={element.origin + element.dest}
-            index = {index}
+            index={index}
             origin={element.origin}
             dest={element.dest}
             setFav={setFav}
@@ -115,7 +145,7 @@ const JourneyForm = (props) => {
           To
         </Typography>
         <Autocomplete
-        label="Departure Time"
+          label="Departure Time"
           options={{
             componentRestrictions: { country: "ie" },
           }}
@@ -148,7 +178,6 @@ const JourneyForm = (props) => {
           variant="contained"
           color="secondary"
           onClick={calcRoute}
-          //onClick={hideElement}
         >
           Search
         </Button>
@@ -170,15 +199,16 @@ const JourneyForm = (props) => {
         </Button>
       </div>
       <div className="favourites">
-      <Accordion>
-        <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-        ><Typography>Favourites</Typography></AccordionSummary>
-      <div>{jsxFavourites}</div>
-      </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          ><Typography>Favourites</Typography></AccordionSummary>
+          <div>{jsxFavourites}</div>
+        </Accordion>
       </div>
+      <div id="prediction">{prediction}</div>
       <div id="direction-steps"></div>
     </div>
   );
