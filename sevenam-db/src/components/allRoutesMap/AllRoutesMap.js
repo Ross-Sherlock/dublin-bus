@@ -16,7 +16,7 @@ import ToggleVisibility from "../UI/ToggleVisibility";
 
 /*=====================start script=====================*/
 const AllRoutesMap = () => {
-  /*=====================toggel extend fucntion=====================*/
+/*=====================toggel extend fucntion=====================*/
   const [isExtended, setIsExtended] = useState(true);
   const setExtend = () => {
     setIsExtended(!isExtended);
@@ -29,7 +29,7 @@ const AllRoutesMap = () => {
     display:flex !important;
   }
   .side-panel-toggle{
-    margin-left: 22%;
+    margin-left:21%;
   }
   `;
     } else {
@@ -50,7 +50,7 @@ const AllRoutesMap = () => {
     }
     return arrow
   }
-  /*=====================Get marker list part=====================*/
+/*=====================Get marker list part=====================*/
   //get all data through API call
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -96,7 +96,7 @@ const AllRoutesMap = () => {
     })
   }
 
-  /*=====================Markers part=====================*/
+/*=====================Markers part=====================*/
   let [markers, setMarkers] = useState([]);
 
   function handleSubmit() {
@@ -114,7 +114,7 @@ const AllRoutesMap = () => {
     console.log("TEMP_MARKERS", temp_markers)
     setMarkers(temp_markers)
   }
-  /*=====================Google Map part=====================*/
+/*=====================Google Map part=====================*/
   const centre = { lat: 53.343, lng: -6.256 };
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
@@ -122,7 +122,7 @@ const AllRoutesMap = () => {
     libraries,
   });
 
-  /*=====================Return part=====================*/
+/*=====================Return part=====================*/
   if (!isLoaded) {
     return <h1>Website is under construction...</h1>;
   }

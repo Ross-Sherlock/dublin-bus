@@ -6,12 +6,11 @@ import {
 import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
-import ToggleVisability from "../UI/ToggleVisibility";
+import ToggleVisability from "../UI/ToggleVisibility"
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
 const Map = (props) => {
-/*=====================side-panel toggle=====================*/
   const [isExtended, setIsExtended] = useState(true);
   const setExtend = () => {
     setIsExtended(!isExtended);
@@ -21,10 +20,10 @@ const Map = (props) => {
     if (isExtended) {
       css = `
   .side-panel{
-    display:flex !important;
+    display:block !important;
   }
   .side-panel-toggle{
-    margin-left: 22%;
+    margin-left:19.4%;
   }
   `;
     } else {
@@ -39,13 +38,13 @@ const Map = (props) => {
   function changeArrow() {
     let arrow;
     if (isExtended) {
-      arrow = ["material-symbols-outlined", "arrow_left"] 
-    } else{
-      arrow = ["material-symbols-outlined", "arrow_right"] 
+      arrow = ["material-symbols-outlined", "arrow_left"]
+    } else {
+      arrow = ["material-symbols-outlined", "arrow_right"]
     }
     return arrow
   }
-/*=====================prediction parameters=====================*/
+  /*=====================prediction parameters=====================*/
   const [month, setMonth] = useState(null);
   const [day, setDay] = useState(null);
   const [hour, setHour] = useState(null);
@@ -56,9 +55,9 @@ const Map = (props) => {
   const [route_numner, setRoute_number] = useState(null);
   const [start_stopid, setStart_stopid] = useState(null);
   const [end_stopid, setEnd_stopid] = useState(null);
-  const [route_index, setRoute_index] = useState(0); //when click on another optional route, set this index to switch to another route info
-/*=====================google map=====================*/
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [route_index, setRoute_index] = useState(0);
+
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
@@ -80,7 +79,6 @@ const Map = (props) => {
 
   const [responseJSON, setResponseJSON] = useState({});
 
-/*=====================calculate route=====================*/
   async function calcRoute() {
     if (originRef.current.value === "" || destinationRef.current.value === "") {
       return;
@@ -100,8 +98,8 @@ const Map = (props) => {
     });
     // Filter routes to only include Dublin Bus
     results.routes = results.routes.filter(checkRoute);
-    console.log("RESULTS:", results);
-    console.log("RESULTS.ROUTES:", results.routes);
+    // testingRef.current.value = results;
+    console.log(results);
     setResponseJSON(results);
     setDirectionsResponse(results);
 
@@ -120,12 +118,12 @@ const Map = (props) => {
     }
 
     function getMDH(departure_time) {
-      const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       let month = months[departure_time.getMonth()];
       console.log("MONTH:", month)
       setMonth(month);
 
-      const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       let day = days[departure_time.getDay()];
       console.log("DAY", day)
       setDay(day);
@@ -137,13 +135,13 @@ const Map = (props) => {
     let departure_time = results.request.transitOptions.departureTime;
     getMDH(departure_time); //get month day hour
 
-    function getDynamicParams(steps){
+    function getDynamicParams(steps) {
       let transit = steps.transit;
       let arrival_stop = transit.arrival_stop;
       let departure_stop = transit.departure_stop;
       let line = transit.line;
       let start_lat = departure_stop.location.lat;
-      console.log("START_LAT:",start_lat());
+      console.log("START_LAT:", start_lat());
       setStart_lat(start_lat());
       let start_lng = departure_stop.location.lng;
       console.log("START_LNG:", start_lng());
@@ -161,11 +159,11 @@ const Map = (props) => {
       function check_stop_code(name) {
         if (name.includes(", stop ")) {
           let loc_index = name.indexOf(", stop ");
-          loc_index = loc_index+7;
+          loc_index = loc_index + 7;
           let code = name.slice(loc_index, name.length);
           console.log("FOUND STOP CODE PROVIDED:", code)
           return parseInt(code)
-        } else{
+        } else {
           return null;
         }
       }
@@ -192,10 +190,8 @@ const Map = (props) => {
     let all_steps = results.routes[route_index].legs[0].steps;
     console.log("ALL STEPS IN A ROUTE:", all_steps);
     getDynamicParams(get_steps_list(all_steps)[0]);
-
   }
 
-/*=====================clear route=====================*/
   function clearRoute() {
     setDirectionsResponse(null);
     setMap(null);
@@ -203,19 +199,19 @@ const Map = (props) => {
     destinationRef.current.value = "";
     document.getElementById("direction-steps").innerHTML = "";
   }
-/*=====================fav function=====================*/
+
+  if (!isLoaded) {
+    return <h1>Loading</h1>;
+  }
+
   async function favRoute() {
     if (directionsResponse) {
       localStorage.setItem("fav", JSON.stringify(responseJSON));
     }
   }
-/*=====================return=====================*/
-  if (!isLoaded) {
-    return <h1>Loading</h1>;
-  }
+
   return (
     <div className="content-container">
-      {/* <style>{getStyle()}</style> */}
       <ToggleVisability content="side-panel">
         <div className="side-panel">
           <JourneyForm
@@ -242,11 +238,8 @@ const Map = (props) => {
             end_stopid={end_stopid}
           ></JourneyForm>
         </div>
-
-        {/* <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
-        <span className={changeArrow()[0]}>{changeArrow()[1]}</span>
-      </button> */}
       </ToggleVisability>
+
       <GoogleMap
         center={centre}
         zoom={11}
