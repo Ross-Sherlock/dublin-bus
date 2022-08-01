@@ -6,15 +6,45 @@ import {
 import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
-import ToggleVisability from "../UI/ToggleVisibility";
+import ToggleVisability from "../UI/ToggleVisibility"
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
 const Map = (props) => {
-  // const mapContainerStyle = {
-  //   height: "calc(100vh - 1.8cm)",
-  //   width: "calc(100vw - 345px)",
-  // }
+  const [isExtended, setIsExtended] = useState(true);
+  const setExtend = () => {
+    setIsExtended(!isExtended);
+  }
+  function getStyle() {
+    let css;
+    if (isExtended) {
+      css = `
+  .side-panel{
+    display:block !important;
+  }
+  .side-panel-toggle{
+    margin-left:19.4%;
+  }
+  `;
+    } else {
+      css = `
+  .side-panel{
+    display:none !important;
+  }
+  `;
+    }
+    return css;
+  }
+  function changeArrow() {
+    let arrow;
+    if (isExtended) {
+      arrow = ["material-symbols-outlined", "arrow_left"] 
+    } else{
+      arrow = ["material-symbols-outlined", "arrow_right"] 
+    }
+    return arrow
+  }
+
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
@@ -96,22 +126,24 @@ const Map = (props) => {
 
   return (
     <div className="content-container">
-        <div className="side-panel">
-          <JourneyForm
-            map={map}
-            setMap={setMap}
-            centre={centre}
-            clearRoute={clearRoute}
-            calcRoute={calcRoute}
-            originRef={originRef}
-            destinationRef={destinationRef}
-            date={date}
-            setDate={setDate}
-            favRoute={favRoute}
-            response={responseJSON}
-          ></JourneyForm>
-        </div>
-      <div className="map-container"></div>
+      <ToggleVisability content="side-panel">
+      <div className="side-panel">
+        <JourneyForm
+          map={map}
+          setMap={setMap}
+          centre={centre}
+          clearRoute={clearRoute}
+          calcRoute={calcRoute}
+          originRef={originRef}
+          destinationRef={destinationRef}
+          date={date}
+          setDate={setDate}
+          favRoute={favRoute}
+          response={responseJSON}
+        ></JourneyForm>
+      </div>
+      </ToggleVisability>
+
       <GoogleMap
         center={centre}
         zoom={11}

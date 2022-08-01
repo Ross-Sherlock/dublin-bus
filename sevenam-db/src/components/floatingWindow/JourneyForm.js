@@ -71,17 +71,6 @@ const JourneyForm = (props) => {
     return true;
   }
 
-
-/* hide the side bar once search is completed   - only hides side pannel not whole side bar 
-  function hideElement() {
-    const element = document.getElementById("window");
-    element.style.display = "none";
-  }
-
-*/
-
-
-
   function dynamicFavourites() {
     const arr = [];
     if (favouritesObj.length > 0) {
