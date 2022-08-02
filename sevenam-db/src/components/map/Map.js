@@ -55,6 +55,7 @@ const Map = (props) => {
   const [route_numner, setRoute_number] = useState(null);
   const [start_stopid, setStart_stopid] = useState(null);
   const [end_stopid, setEnd_stopid] = useState(null);
+  const [n_stops, setN_stops] = useState(null);
   const [route_index, setRoute_index] = useState(0);
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
@@ -141,6 +142,7 @@ const Map = (props) => {
       let departure_stop = transit.departure_stop;
       let line = transit.line;
       let start_lat = departure_stop.location.lat;
+      let n_stops = transit.num_stops;
       console.log("START_LAT:", start_lat());
       setStart_lat(start_lat());
       let start_lng = departure_stop.location.lng;
@@ -155,6 +157,8 @@ const Map = (props) => {
       let route_number = line.short_name;
       console.log("ROUTE NUMBER:", route_number);
       setRoute_number(route_number);
+      console.log("NUMBER OF STOPS", n_stops)
+      setN_stops(n_stops)
 
       function check_stop_code(name) {
         if (name.includes(", stop ")) {
@@ -236,6 +240,7 @@ const Map = (props) => {
             route_number={route_numner}
             start_stopid={start_stopid}
             end_stopid={end_stopid}
+            n_stops={n_stops}
           ></JourneyForm>
         </div>
       </ToggleVisability>

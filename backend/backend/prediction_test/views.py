@@ -1,5 +1,7 @@
+from typing import final
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
+from numpy import number
 from prediction_test.models import *
 from prediction_test.logic_test import Predict
 
@@ -21,6 +23,7 @@ def test(request):
     hour = request.GET.get('hour')
     start_stopid = request.GET.get('start_stopid')
     end_stopid = request.GET.get('end_stopid')
+    n_stops = request.GET.get('n_stops')
     print("START STOPID:", start_stopid, "\nEND STOPID:", end_stopid)
 
 
@@ -67,7 +70,7 @@ def test(request):
       results = []
       query = """
       SELECT * FROM dublinbus.proportions_{month}
-      where STOPPOINTID={stop_code} AND LINEID LIKE '%%{route_number}%%';	
+      where STOPPOINTID={stop_code} AND LINEID LIKE '{route_number}\_%%';	
       """.format(month=month.lower(), stop_code=stop_code, route_number=route_number)
       proportions = "Proportions" + month
       print("FOUND PROP TABLE:", proportions)
@@ -78,6 +81,30 @@ def test(request):
         results.append(temp_dict)
       print("FROM get_route_and_prop METOHD:\n", results, "\n============")
       return results
+    
+    def get_nth_proportion(known_route_num, month, prop, number_of_stops, asc=True):
+      if asc:
+        order = "ASC"
+        sign = ">"
+      else:
+        order="DESC"
+        sign="<"
+      print("ROUTE NUM", known_route_num)
+      print("month", month)
+      print("prop", prop)
+      print("number_of_stops", number_of_stops)
+      results = []
+      query = """SELECT * FROM dublinbus.proportions_{month} where LINEID='{known_route_num}' and PROPORTION{sign}={prop} ORDER BY PROPORTION {order} LIMIT {number_of_stops},1;""".format(month=month.lower(), known_route_num=known_route_num, prop=prop, number_of_stops=number_of_stops, order=order, sign=sign)
+      proportions = "Proportions" + month
+      print("FOUND PROP TABLE:", proportions)
+      for result in eval(proportions).objects.raw(query):   
+        temp_dict = {}
+        temp_dict["route"] = result.lineid
+        temp_dict["proportion"] = result.proportion
+        results.append(temp_dict)
+      print("FROM get_route_and_prop METOHD:\n", results, "\n============")
+      return results
+
 
     def final_check():
       """
@@ -93,12 +120,30 @@ def test(request):
         final_result["depart_prop"] = start[0]["proportion"]
         final_result["arrival_prop"] = end[0]["proportion"]
         print("final result:\n", final_result)
+      
+      elif len(start) == 1 and len(end) == 0:
+        known_route=start[0]["route"]
+        prop = start[0]["proportion"]
+        end = get_nth_proportion(known_route, month, prop, n_stops, True)
+        final_result["route"] = start[0]["route"]
+        final_result["depart_prop"] = start[0]["proportion"]
+        final_result["arrival_prop"] = end[0]["proportion"]
+      
+      elif len(start) == 0 and len(end) == 1:
+        known_route=start[0]["route"]
+        prop = end[0]["proportion"]
+        start = get_nth_proportion(known_route, month, prop, n_stops, False)
+        final_result["route"] = start[0]["route"]
+        final_result["depart_prop"] = start[0]["proportion"]
+        final_result["arrival_prop"] = end[0]["proportion"]
 
       elif (len(start)==1 and len(end) > 1):
+
         correct_end = []
         for item in end:
           if item["route"] == start[0]["route"]:
             correct_end.append(item)
+            final_result = {}
             final_result["route"] = start[0]["route"]
             final_result["depart_prop"] = start[0]["proportion"]
             final_result["arrival_prop"] = correct_end[0]["proportion"]
@@ -112,6 +157,7 @@ def test(request):
         for item in start:
           if item["route"] == end[0]["route"]:
             correct_start.append(item)
+            final_result = {}
             final_result["route"] = end[0]["route"]
             final_result["depart_prop"] = correct_start[0]["proportion"]
             final_result["arrival_prop"] = end[0]["proportion"]
@@ -134,11 +180,15 @@ def test(request):
         arrival_prop = params["arrival_prop"]
         predict = Predict(month, day, hour, route, depart_prop, arrival_prop)
         predict_result = predict.get_prediction()
+        predict_result=int(predict_result)
       return predict_result
-    
+     
     if isinstance(predict(), str):
-      message = "Prediction result is: {}".format(predict())
+      message = f"{predict()}"
+
+    elif isinstance(predict(), int):
+        message = f"We predict your bus journey time to be: {predict()/60} minutes"
     else:
-      message = "Prediction result is: {}".format(predict()[0])
+      message = f"We predict your bus journey time to be {round(predict()[0]/60,1)} minutes"
 
     return JsonResponse(message, safe=False)
