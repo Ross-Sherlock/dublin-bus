@@ -1,4 +1,3 @@
-import string
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from prediction_test.models import *
