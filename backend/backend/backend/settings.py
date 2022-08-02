@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',   #added for rest_framework 
     'corsheaders',  #added for corsheader
     'weather.apps.WeatherConfig',   #added for weather app
-    'gtfsr.apps.GtfsrConfig',     #added for gtfsr app
     'static_stops.apps.StaticStopsConfig',  #added for static_stops app
     'prediction_test.apps.PredictionTestConfig', #added for prediction_test app
 ]
