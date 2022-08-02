@@ -7,6 +7,8 @@ import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 import ToggleVisability from "../UI/ToggleVisibility"
+import RouteSummary from "../UI/RouteSummary"
+import RouteContainer from "../UI/RouteContainer";
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
@@ -242,6 +244,7 @@ const Map = (props) => {
             end_stopid={end_stopid}
             n_stops={n_stops}
           ></JourneyForm>
+        <RouteContainer response={directionsResponse}></RouteContainer>
         </div>
       </ToggleVisability>
 
@@ -254,7 +257,7 @@ const Map = (props) => {
         {directionsResponse && (
           <DirectionsRenderer
             directions={directionsResponse}
-            panel={document.getElementById("direction-steps")}
+            
           />
         )}
       </GoogleMap>
