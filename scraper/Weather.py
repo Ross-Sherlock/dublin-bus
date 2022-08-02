@@ -54,6 +54,6 @@ class Weather:
         )
 
 
-a = Weather()
-a.create_table()
-a.insert_current_weather(result=a.get_current_weather())
+# a = Weather()
+# a.create_table()
+# a.insert_current_weather(result=a.get_current_weather())
