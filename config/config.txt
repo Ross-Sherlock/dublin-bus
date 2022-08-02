@@ -1,9 +1,7 @@
 openweather_apikey = 
 
-gtfsr_apikey = 
-
-URL = localhost
+URL = dublinbus.crvrpxe5erne.us-east-1.rds.amazonaws.com
 PORT = 3306
 DB = dublinbus
-USER = root
-PASSWORD = abcde.0358123
+USER = admin
+PASSWORD = 
