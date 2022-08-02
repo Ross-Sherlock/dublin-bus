@@ -4,7 +4,7 @@ import estelle from "../About/estelle.png";
 import ross from "../About/ross.png";
 import yuan from "../About/yuan.png";
 import zeyu from "../About/zeyu.png";
-import Info from "../About/Info";
+import Info from "./info";
 
 
 const  generalInfo = [ 

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import "./info.css"
-import link from "../About/link.png"
-import github from "../About/github.png"
-import MediaQuery from 'react-responsive'
-
+import "./info.css";
+import link from "../About/link.png";
+import github from "../About/github.png";
 
 
 const Info = (props) => {
