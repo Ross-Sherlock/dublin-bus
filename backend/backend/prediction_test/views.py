@@ -1,3 +1,4 @@
+import string
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from prediction_test.models import *
@@ -10,10 +11,11 @@ def test(request):
     And return prediction value to the frontend
   """
   if request.method == 'GET':
-    start_lat = float(request.GET.get('start_lat'))
-    start_lng = float(request.GET.get('start_lng'))
-    end_lat = float(request.GET.get('end_lat'))
-    end_lng = float(request.GET.get('end_lng'))
+    start_lat = request.GET.get('start_lat')
+    print("debug:", start_lat)
+    start_lng = request.GET.get('start_lng')
+    end_lat = request.GET.get('end_lat')
+    end_lng = request.GET.get('end_lng')
     route_number = request.GET.get('route_number')
     month = request.GET.get('month') #start with upper case
     day = request.GET.get('day')
@@ -135,6 +137,9 @@ def test(request):
         predict_result = predict.get_prediction()
       return predict_result
     
-    message = "Prediction for trip: from ({}, {}) to ({}, {}), bus number:{},  month:{}, day:{}, hour:{}, is:{} sec".format(start_lat, start_lng, end_lat, end_lng, route_number, month, day, hour, predict()[0])
+    if isinstance(predict(), str):
+      message = "Prediction result is: {}".format(predict())
+    else:
+      message = "Prediction result is: {}".format(predict()[0])
 
     return JsonResponse(message, safe=False)

@@ -38,14 +38,26 @@ const Map = (props) => {
   function changeArrow() {
     let arrow;
     if (isExtended) {
-      arrow = ["material-symbols-outlined", "arrow_left"] 
-    } else{
-      arrow = ["material-symbols-outlined", "arrow_right"] 
+      arrow = ["material-symbols-outlined", "arrow_left"]
+    } else {
+      arrow = ["material-symbols-outlined", "arrow_right"]
     }
     return arrow
   }
+  /*=====================prediction parameters=====================*/
+  const [month, setMonth] = useState(null);
+  const [day, setDay] = useState(null);
+  const [hour, setHour] = useState(null);
+  const [start_lat, setStart_lat] = useState(null);
+  const [start_lng, setStart_lng] = useState(null);
+  const [end_lat, setEnd_lat] = useState(null);
+  const [end_lng, setEnd_lng] = useState(null);
+  const [route_numner, setRoute_number] = useState(null);
+  const [start_stopid, setStart_stopid] = useState(null);
+  const [end_stopid, setEnd_stopid] = useState(null);
+  const [route_index, setRoute_index] = useState(0);
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
@@ -104,6 +116,80 @@ const Map = (props) => {
       }
       return true;
     }
+
+    function getMDH(departure_time) {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let month = months[departure_time.getMonth()];
+      console.log("MONTH:", month)
+      setMonth(month);
+
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let day = days[departure_time.getDay()];
+      console.log("DAY", day)
+      setDay(day);
+
+      let hour = departure_time.getHours();
+      console.log("HOUR:", hour)
+      setHour(hour);
+    }
+    let departure_time = results.request.transitOptions.departureTime;
+    getMDH(departure_time); //get month day hour
+
+    function getDynamicParams(steps) {
+      let transit = steps.transit;
+      let arrival_stop = transit.arrival_stop;
+      let departure_stop = transit.departure_stop;
+      let line = transit.line;
+      let start_lat = departure_stop.location.lat;
+      console.log("START_LAT:", start_lat());
+      setStart_lat(start_lat());
+      let start_lng = departure_stop.location.lng;
+      console.log("START_LNG:", start_lng());
+      setStart_lng(start_lng());
+      let end_lat = arrival_stop.location.lat;
+      console.log("END_LAT:", end_lat());
+      setEnd_lat(end_lat());
+      let end_lng = arrival_stop.location.lng;
+      console.log("END_LNG:", end_lng());
+      setEnd_lng(end_lng());
+      let route_number = line.short_name;
+      console.log("ROUTE NUMBER:", route_number);
+      setRoute_number(route_number);
+
+      function check_stop_code(name) {
+        if (name.includes(", stop ")) {
+          let loc_index = name.indexOf(", stop ");
+          loc_index = loc_index + 7;
+          let code = name.slice(loc_index, name.length);
+          console.log("FOUND STOP CODE PROVIDED:", code)
+          return parseInt(code)
+        } else {
+          return null;
+        }
+      }
+      let start_stopid = check_stop_code(departure_stop.name);
+      setStart_stopid(start_stopid);
+      let end_stopid = check_stop_code(arrival_stop.name);
+      setEnd_stopid(end_stopid);
+    }
+
+    function get_steps_list(all_steps) {
+      let steps_list = [];
+      for (const step in all_steps) {
+        if (all_steps[step].travel_mode == "TRANSIT") {
+          steps_list.push(all_steps[step]);
+        } else {
+          continue;
+        }
+      }
+      console.log("STEPS LIST:", steps_list);
+      return steps_list;
+    }
+
+    console.log("ROUTE INDEX:", route_index);
+    let all_steps = results.routes[route_index].legs[0].steps;
+    console.log("ALL STEPS IN A ROUTE:", all_steps);
+    getDynamicParams(get_steps_list(all_steps)[0]);
   }
 
   function clearRoute() {
@@ -127,21 +213,31 @@ const Map = (props) => {
   return (
     <div className="content-container">
       <ToggleVisability content="side-panel">
-      <div className="side-panel">
-        <JourneyForm
-          map={map}
-          setMap={setMap}
-          centre={centre}
-          clearRoute={clearRoute}
-          calcRoute={calcRoute}
-          originRef={originRef}
-          destinationRef={destinationRef}
-          date={date}
-          setDate={setDate}
-          favRoute={favRoute}
-          response={responseJSON}
-        ></JourneyForm>
-      </div>
+        <div className="side-panel">
+          <JourneyForm
+            map={map}
+            setMap={setMap}
+            centre={centre}
+            clearRoute={clearRoute}
+            calcRoute={calcRoute}
+            originRef={originRef}
+            destinationRef={destinationRef}
+            date={date}
+            setDate={setDate}
+            favRoute={favRoute}
+            response={responseJSON}
+            month={month}
+            day={day}
+            hour={hour}
+            start_lat={start_lat}
+            start_lng={start_lng}
+            end_lat={end_lat}
+            end_lng={end_lng}
+            route_number={route_numner}
+            start_stopid={start_stopid}
+            end_stopid={end_stopid}
+          ></JourneyForm>
+        </div>
       </ToggleVisability>
 
       <GoogleMap

@@ -16,7 +16,7 @@
 }
 
 .origin-input {
-  width:95%;
+  width:98%;
   height: 3em;
   /* transition: 0.3s all; */
   border-color: rgb(197,197,197);
@@ -31,7 +31,7 @@
 }
 
 .des-input {
-  width: 95%;
+  width: 98%;
   height: 3em;
   /* transition: 0.3s all; */
   border-color: rgb(197,197,197);
@@ -48,8 +48,7 @@
 .journey-submit {
   width: 98%;
   display: flex;
-  justify-content:space-around;
-  margin-left: 4px;
+  justify-content:space-evenly;
 }
 
 .journey-submit > button {
