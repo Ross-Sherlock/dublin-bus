@@ -187,7 +187,7 @@ def test(request):
       message = f"{predict()}"
 
     elif isinstance(predict(), int):
-        message = f"We predict your bus journey time to be: {predict()/60} minutes"
+        message = f"We predict your bus journey time to be: {round(predict()/60,1)} minutes"
     else:
       message = f"We predict your bus journey time to be {round(predict()[0]/60,1)} minutes"
 
