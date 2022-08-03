@@ -43,6 +43,7 @@ button {
     /* justify-content: center; */
     padding: 10px;
     align-items: center;
+    background-color: rgb(244, 244, 245);
 }
 
 .step-icon {
