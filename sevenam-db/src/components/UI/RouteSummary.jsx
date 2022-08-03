@@ -11,6 +11,11 @@ import { arrayIncludes } from "@mui/x-date-pickers/internals/utils/utils";
 const RouteSummary = (props) => {
   const route = props.route;
   const steps = route.legs[0].steps;
+  const index = props.index;
+  const setRouteIndex = props.setRouteIndex;
+  const expanded = props.expanded;
+  const setExpanded = props.setExpanded;
+  
 
   const icons = steps.map(function (item, index, array) {
     let arrow = (
@@ -41,10 +46,29 @@ const RouteSummary = (props) => {
 
   const time = route.legs[0].duration.text;
 
+  const setRoute = () => {
+    setRouteIndex(index)
+    if(expanded === index) {
+        setExpanded(null)
+    }
+    else{
+    setExpanded(index)
+    }
+  }
+
+  const expandedBool = () => {
+    if(expanded == index) {
+        return true
+    }
+    else {
+        return false
+    }
+  }
+
 
 
   return (
-    <Accordion disableGutters={true}>
+    <Accordion expanded={expandedBool()} disableGutters={true} onClick={setRoute}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -62,6 +86,9 @@ const RouteSummary = (props) => {
           </span>
         )}
       </AccordionSummary>
+      <AccordionDetails>
+        hello
+      </AccordionDetails>
     </Accordion>
   );
 };

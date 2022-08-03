@@ -58,7 +58,7 @@ const Map = (props) => {
   const [start_stopid, setStart_stopid] = useState(null);
   const [end_stopid, setEnd_stopid] = useState(null);
   const [n_stops, setN_stops] = useState(null);
-  const [route_index, setRoute_index] = useState(0);
+  const [routeIndex, setRouteIndex] = useState(0);
 
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [libraries] = useState(["places"]);
@@ -192,8 +192,8 @@ const Map = (props) => {
       return steps_list;
     }
 
-    console.log("ROUTE INDEX:", route_index);
-    let all_steps = results.routes[route_index].legs[0].steps;
+    console.log("ROUTE INDEX:", routeIndex);
+    let all_steps = results.routes[routeIndex].legs[0].steps;
     console.log("ALL STEPS IN A ROUTE:", all_steps);
     getDynamicParams(get_steps_list(all_steps)[0]);
   }
@@ -244,7 +244,7 @@ const Map = (props) => {
             end_stopid={end_stopid}
             n_stops={n_stops}
           ></JourneyForm>
-        <RouteContainer response={directionsResponse}></RouteContainer>
+        <RouteContainer response={directionsResponse} setRouteIndex={setRouteIndex}></RouteContainer>
         </div>
       </ToggleVisability>
 
@@ -257,6 +257,7 @@ const Map = (props) => {
         {directionsResponse && (
           <DirectionsRenderer
             directions={directionsResponse}
+            routeIndex={routeIndex}
             
           />
         )}
