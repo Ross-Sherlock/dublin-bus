@@ -15,7 +15,6 @@ const RouteSummary = (props) => {
   const setRouteIndex = props.setRouteIndex;
   const expanded = props.expanded;
   const setExpanded = props.setExpanded;
-  
 
   const icons = steps.map(function (item, index, array) {
     let arrow = (
@@ -47,28 +46,48 @@ const RouteSummary = (props) => {
   const time = route.legs[0].duration.text;
 
   const setRoute = () => {
-    setRouteIndex(index)
-    if(expanded === index) {
-        setExpanded(null)
+    setRouteIndex(index);
+    if (expanded === index) {
+      setExpanded(null);
+    } else {
+      setExpanded(index);
     }
-    else{
-    setExpanded(index)
-    }
-  }
+  };
 
   const expandedBool = () => {
-    if(expanded == index) {
-        return true
+    if (expanded == index) {
+      return true;
+    } else {
+      return false;
     }
-    else {
-        return false
+  };
+
+  const iconSelect = (step) => {
+    if (step.travel_mode == "WALKING") return <FaWalking />;
+    else if(step.travel_mode == "TRANSIT") {
+      return (
+        <span>
+          <FaBus />
+          <span className="bus-number-box">{step.transit.line.short_name}</span>
+        </span>
+      );
     }
-  }
+  };
 
-
+  let stepsMap = steps.map((step) => [
+    <div className="step-container">
+      <span className="step-icon">{iconSelect(step)}</span>
+      <span className="step-instruct">{step.instructions}</span>
+      <span className="step-dur">{step.duration.text}</span>
+    </div>,
+  ]);
 
   return (
-    <Accordion expanded={expandedBool()} disableGutters={true} onClick={setRoute}>
+    <Accordion
+      expanded={expandedBool()}
+      disableGutters={true}
+      onClick={setRoute}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -87,7 +106,7 @@ const RouteSummary = (props) => {
         )}
       </AccordionSummary>
       <AccordionDetails>
-        hello
+        <span>{stepsMap}</span>
       </AccordionDetails>
     </Accordion>
   );

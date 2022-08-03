@@ -36,3 +36,25 @@ button {
     align-items: center;
     text-align: center;
 }
+
+.step-container {
+    display: flex;
+    width: 100%;
+    /* justify-content: center; */
+    padding: 10px;
+    align-items: center;
+}
+
+.step-icon {
+    flex:2;
+}
+
+.step-instruct {
+    flex:4;
+}
+
+.step-dur {
+    flex:1;
+    align-self: right;
+    justify-self: right;
+}
