@@ -191,11 +191,11 @@ const RouteSummary = (props) => {
         <span className="step-instruct">{step.instructions}</span>
         <span className="step-dur">{step.duration.text}</span>
       </div>,
-      time+=Math.round(step.duration.value/60)
     ]);
-    // for(const step of stepsMap) {
-    //     time+=parseFloat(step.duration.text);
-    // }
+    
+    for(const step of steps) {
+        time+=Math.round(step.duration.value/60)
+    }
   }
 
   return (
