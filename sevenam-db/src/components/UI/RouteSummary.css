@@ -57,3 +57,9 @@ button {
 .step-dur {
     flex:1;
 }
+
+.busTime-div {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 1%;
+}

@@ -173,10 +173,12 @@ const RouteSummary = (props) => {
     }
     if (step.travel_mode == "WALKING") return <FaWalking />;
     else if (step.travel_mode == "TRANSIT") {
+        let busTime = step.transit.departure_time.text;
       return (
         <span>
           <FaBus />
           <span className="bus-number-box">{step.transit.line.short_name}</span>
+          <div className="busTime-div">{busTime}</div>
         </span>
       );
     }
@@ -185,13 +187,14 @@ const RouteSummary = (props) => {
   let stepsMap;
 
   if (steps !== undefined) {
-    stepsMap = steps.map((step) => [
+    stepsMap = steps.map(function(step) { 
+        return [
       <div className="step-container">
         <span className="step-icon">{iconSelect(step)}</span>
         <span className="step-instruct">{step.instructions}</span>
         <span className="step-dur">{step.duration.text}</span>
       </div>,
-    ]);
+    ]});
     
     for(const step of steps) {
         time+=Math.round(step.duration.value/60)
