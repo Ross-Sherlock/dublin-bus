@@ -33,36 +33,6 @@ const JourneyForm = (props) => {
   const start_stopid = props.start_stopid;
   const end_stopid = props.end_stopid;
   const n_stops = props.n_stops;
-  let url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
-  if (start_stopid !== null) {
-    url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`
-  };
-  if (end_stopid !== null) {
-    url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`
-  };
-  console.log("url:", url);
-  const [prediction, setPrediction] = useState([]);
-  async function getPrediction() {
-    try {
-      const response = await axios.get(url);
-      setPrediction(response.data);
-      console.log(response.data);
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-  getPrediction()
-  console.log("PREDICTION IS:", prediction);
-  // const dateChangeHandler = (event) => {
-  //   setEnteredDate(event.target.value);
-  // };
-  // const map = props.map;
-  // const setMap = props.setMap;
-  // const centre = props.centre;
-
-  // const favRoute = props.favRoute;
-
   const response = props.response;
 
   // const submitRecentre = () => {
@@ -210,7 +180,6 @@ const JourneyForm = (props) => {
           <div>{jsxFavourites}</div>
         </Accordion>
       </div>
-      <div id="prediction">{prediction}</div>
       <div id="direction-steps"></div>
     </div>
   );

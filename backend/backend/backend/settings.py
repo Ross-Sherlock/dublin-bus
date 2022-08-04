@@ -92,17 +92,17 @@ import pymysql
 pymysql.install_as_MySQLdb()
 import sys
 sys.path.append(sys.path[0].replace("backend/backend", "config/"))  #change sys path for importing
-from Config import Config  #now path is config, from Config.py import Config
-database_config = Config()  #new a Class instance
+# from Config import Config  #now path is config, from Config.py import Config
+# database_config = Config()  #new a Class instance
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': database_config.load()['DB'],
-        'USER': database_config.load()['USER'],
-        'PASSWORD': database_config.load()['PASSWORD'],
-        'HOST': database_config.load()['URL'],
-        'PORT': database_config.load()['PORT']
+        'NAME': "dublinbus",
+        'USER': "admin",
+        'PASSWORD': "TeamSevenDB22?",
+        'HOST': "dublinbus.crvrpxe5erne.us-east-1.rds.amazonaws.com",
+        'PORT': "3306"
     }
 }
 

@@ -184,11 +184,11 @@ def test(request):
       return predict_result
      
     if isinstance(predict(), str):
-      message = f"{predict()}"
+      message = "ERR"
 
     elif isinstance(predict(), int):
-        message = f"We predict your bus journey time to be: {round(predict()/60,1)} minutes"
+        message = f"{round(predict()/60,1)} mins"
     else:
-      message = f"We predict your bus journey time to be {round(predict()[0]/60,1)} minutes"
+      message = f"{round(predict()[0]/60,1)} mins"
 
     return JsonResponse(message, safe=False)
