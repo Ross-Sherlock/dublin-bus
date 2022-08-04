@@ -7,7 +7,6 @@ import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 import ToggleVisability from "../UI/ToggleVisibility"
-import RouteSummary from "../UI/RouteSummary"
 import RouteContainer from "../UI/RouteContainer";
 
 /*=====================start script=====================*/

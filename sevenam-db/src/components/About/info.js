@@ -30,7 +30,7 @@ return (
     <li className="title">
     {props.title}
     </li>
-<button onMouseOver={handleShowOn} onClick={handleShowOff}>
+<button className="contact-btn" onMouseOver={handleShowOn} onClick={handleShowOff}>
     Contact Information
 </button>
 

@@ -47,7 +47,7 @@ li{
 }
 
 
-button {
+.contact-btn {
     
       border: 1px solid #0000001a;
       box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -80,7 +80,7 @@ button {
             display: flex;
         }
      
-      button {
+      .contact-btn {
           display: none;
          
       }
