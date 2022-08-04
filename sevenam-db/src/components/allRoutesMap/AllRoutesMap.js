@@ -52,9 +52,10 @@ const AllRoutesMap = () => {
   }
 /*=====================Get marker list part=====================*/
   //get all data through API call
+  const api_url = process.env.REACT_APP_DJANGO_API;
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/static_stops/")
+    axios.get(api_url + "/static_stops/")
       .then(response => setData(response.data))
       .catch(err => console.log(err));
   }, [])

@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Card from "../UI/Card";
 import "./Weather.css";
 import Axios from "axios";
 
@@ -41,7 +40,8 @@ const Weather = () => {
     </div>
   );
   } else {
-    let apiUrl = "http://127.0.0.1:8000/weather/"
+    const url = process.env.REACT_APP_DJANGO_API;
+    let apiUrl = url+"/weather/";
     Axios.get(apiUrl).then(handleResponse);
 
     return "Loading..."

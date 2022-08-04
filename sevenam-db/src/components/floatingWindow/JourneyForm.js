@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 const JourneyForm = (props) => {
+  const api_url = process.env.REACT_APP_DJANGO_API;
   const calcRoute = props.calcRoute;
   const clearRoute = props.clearRoute;
   const originRef = props.originRef;
@@ -32,12 +33,12 @@ const JourneyForm = (props) => {
   const start_stopid = props.start_stopid;
   const end_stopid = props.end_stopid;
   const n_stops = props.n_stops;
-  let url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
+  let url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
   if (start_stopid !== null) {
-    url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`
+    url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`
   };
   if (end_stopid !== null) {
-    url = `http://127.0.0.1:8000/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`
+    url = `${api_url}/test/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`
   };
   console.log("url:", url);
   const [prediction, setPrediction] = useState([]);
