@@ -5,13 +5,18 @@
 }
 
 .side-panel {
-  width: 30%;
-  overflow:visible;
-  height: calc(100vh - 2cm);
+  width: 100%;
+  overflow-x:visible;
+  overflow-y: scroll;
+  height:100%;
   display:flex;
   flex-direction: column;
   align-items:flex-start;
   border-right: groove;
+}
+
+.side-panel::-webkit-scrollbar {
+  display:none;
 }
 
 /*side-panel toggle */

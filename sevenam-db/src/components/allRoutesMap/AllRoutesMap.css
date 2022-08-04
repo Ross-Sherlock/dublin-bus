@@ -4,14 +4,14 @@
   height: 100%;
 }
 
-.side-panel {
+/* .side-panel {
   width: 300px;
   height: calc(100vh - 2cm);
   display:flex;
   flex-direction: column;
   align-items: center;
   border-right: groove;
-}
+} */
 
 
 .route_number_input{

@@ -11,7 +11,7 @@
 
 .nav {
   background-color: var(--bg);
-  height: var(--navheight);
+  height: 5%;
   width: 100%;
   position: relative;
   color: black;
