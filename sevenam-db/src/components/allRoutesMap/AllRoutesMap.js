@@ -21,35 +21,6 @@ const AllRoutesMap = () => {
   const setExtend = () => {
     setIsExtended(!isExtended);
   }
-  function getStyle() {
-    let css;
-    if (isExtended) {
-      css = `
-  .side-panel{
-    display:flex !important;
-  }
-  .side-panel-toggle{
-    margin-left:21%;
-  }
-  `;
-    } else {
-      css = `
-  .side-panel{
-    display:none !important;
-  }
-  `;
-    }
-    return css;
-  }
-  function changeArrow() {
-    let arrow;
-    if (isExtended) {
-      arrow = ["material-symbols-outlined", "arrow_left"]
-    } else {
-      arrow = ["material-symbols-outlined", "arrow_right"]
-    }
-    return arrow
-  }
 /*=====================Get marker list part=====================*/
   //get all data through API call
   const api_url = process.env.REACT_APP_DJANGO_API;

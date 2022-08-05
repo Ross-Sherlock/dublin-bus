@@ -187,6 +187,10 @@ const RouteSummary = (props) => {
   let stepsMap;
 
   if (steps !== undefined) {
+    // Update total trip duration
+    for(const step of steps) {
+      time+=Math.round(step.duration.value/60)
+  }
     stepsMap = steps.map(function(step) { 
         return [
       <div className="step-container">
@@ -196,9 +200,6 @@ const RouteSummary = (props) => {
       </div>,
     ]});
     
-    for(const step of steps) {
-        time+=Math.round(step.duration.value/60)
-    }
   }
 
   return (
