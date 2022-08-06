@@ -187,8 +187,8 @@ def test(request):
       message = "ERR"
 
     elif isinstance(predict(), int):
-        message = f"{round(predict()/60,1)} mins"
+        message = f"{round(predict()/60,1)}"
     else:
-      message = f"{round(predict()[0]/60,1)} mins"
+      message = f"{round(predict()[0]/60,1)}"
 
     return JsonResponse(message, safe=False)

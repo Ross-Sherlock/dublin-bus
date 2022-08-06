@@ -97,7 +97,8 @@ const RouteSummary = (props) => {
         console.log(url);
         // If new route, just return googles estimate
         if (response.data !== "ERR") {
-          step.duration.text = response.data;
+          step.duration.value = response.data*60;
+          step.duration.text = response.data + " mins"
         }
       });
     } catch (error) {
