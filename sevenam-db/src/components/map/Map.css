@@ -13,6 +13,7 @@
   flex-direction: column;
   align-items:flex-start;
   border-right: groove;
+  padding:10px;
 }
 
 .side-panel::-webkit-scrollbar {
@@ -54,7 +55,7 @@ button:hover, button:focus {
 
 .side-panel-toggle {
   position:relative;
-  /* margin-left: 100%; */
+  margin-left: 100%;
 }
 
 .side-panel-toggle.show {
@@ -63,10 +64,15 @@ button:hover, button:focus {
   /* left:0; */
   position:relative;
   z-index: 99;
-  bottom: 50%;
+  bottom: 70%;
 }
 
 .side-panel-hide {
   width: 0px;
-  margin-top: 30%;
+  margin-top: 32%;
+}
+
+.side-panel-show {
+width:25%;
+min-width: 300px;
 }

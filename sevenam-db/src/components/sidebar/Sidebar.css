@@ -50,3 +50,22 @@ a {
 .link_text {
   white-space: nowrap;
 }
+
+.icon button {
+  background-color: transparent !important;
+}
+
+.allroute-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  align-items: center;
+  text-align: center;
+  padding:10px;
+}
+
+.allroute-btn:hover {
+  border-right: 4px solid rgb(243, 120, 120);
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background: rgb(234, 246, 246);
+}

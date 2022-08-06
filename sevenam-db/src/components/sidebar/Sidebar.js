@@ -12,7 +12,7 @@ const routes = [
     icon: <FaBus />,
   },
   {
-    path: "/AllRoutes",
+    path: "/JourneyPlanner",
     name: "All Routes",
     icon: <FaRoute />,
   },
@@ -33,10 +33,26 @@ const routes = [
   },
 ];
 
-const Sidebar = ({ children }) => {
+const Sidebar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const setJourneyPlan = props.setJourneyPlan;
+  const setMap = props.setMap;
+  const setDirectionsResponse = props.setDirectionsResponse;
+  const setMarkers = props.setMarkers;
+
+  const setAllRoutes = () => {
+    setJourneyPlan(false);
+    setMap(null);
+    setDirectionsResponse(null);
+  };
+
+  const setJPlan = () => {
+    setJourneyPlan(true);
+    setMarkers([])
   };
 
   // const [isExtended, setIsExtended] = useState(false);
@@ -63,32 +79,99 @@ const Sidebar = ({ children }) => {
   //   return css;
   // }
 
+  const allRoutesBtn = (
+    <NavLink
+      to={"/JourneyPlanner"}
+      key={"AllRoutes"}
+      onClick={setAllRoutes}
+      className="link"
+    >
+      <div className="icon">
+        <FaRoute />
+      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div className="link_text">{"TEST ALL ROUTES"}</motion.div>
+        )}
+      </AnimatePresence>
+    </NavLink>
+  );
+
+  //  const routePathBtns = (
+  //   routes.map((route) => (
+  //     <NavLink to={route.path} key={route.name} className="link">
+  //       <div className="icon">{route.icon}</div>
+  //       <AnimatePresence>
+  //         {isOpen && (
+  //           <motion.div className="link_text">{route.name}</motion.div>
+  //         )}
+  //       </AnimatePresence>
+  //     </NavLink>
+  //   ))
+  //  )
+
+  const routePathBtns = routes.map(function (route) {
+    let navlink;
+    if (route.name === "All Routes") {
+      return (
+        <NavLink
+          to={"/JourneyPlanner"}
+          key={"AllRoutes"}
+          onClick={setAllRoutes}
+          className="link"
+        >
+          <div className="icon">{route.icon}</div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div className="link_text">{"TEST ALL ROUTES"}</motion.div>
+            )}
+          </AnimatePresence>
+        </NavLink>
+      );
+    } else if (route.name === "Journey Planner") {
+      return (
+        <NavLink
+          to={"/JourneyPlanner"}
+          key={"JourneyPlanner"}
+          onClick={setJPlan}
+          className="link"
+        >
+          <div className="icon">{route.icon}</div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div className="link_text">{"TEST ALL ROUTES"}</motion.div>
+            )}
+          </AnimatePresence>
+        </NavLink>
+      );
+    } else {
+      return (
+        <NavLink to={route.path} key={route.name} className="link">
+          <div className="icon">{route.icon}</div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div className="link_text">{route.name}</motion.div>
+            )}
+          </AnimatePresence>
+        </NavLink>
+      );
+    }
+  });
+
   return (
     <div className="main-container">
       <motion.div
         animate={{ width: isOpen ? "172px" : "42px" }}
         className="sidebar"
       >
-        {/* <style>{getStyle()}</style> */}
         <div className="top_section">
           <div className="bars">
             <FaBars onClick={toggle} />
           </div>
         </div>
-        <section className="routes">
-          {routes.map((route) => (
-            <NavLink to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div className="link_text">{route.name}</motion.div>
-                )}
-              </AnimatePresence>
-            </NavLink>
-          ))}
-        </section>
+        <section className="routes">{routePathBtns}</section>
       </motion.div>
-      <main className="main">{children}</main>
+      <main className="main">{props.children}</main>
     </div>
   );
 };

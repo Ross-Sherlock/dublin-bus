@@ -2,12 +2,22 @@ import {
   useJsApiLoader,
   GoogleMap,
   DirectionsRenderer,
+  Marker
 } from "@react-google-maps/api";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 import ToggleVisability from "../UI/ToggleVisibility"
 import RouteContainer from "../UI/RouteContainer";
+import axios from "axios";
+import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import { FormControl, MenuItem } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import InputLabel from "@mui/material/InputLabel";
+import { StaticStops } from "../map/StaticStops";
+import AllRoutes from "../floatingWindow/AllRoutes";
+
 
 /*=====================start script=====================*/
 const centre = { lat: 53.343, lng: -6.256 };
@@ -15,35 +25,6 @@ const Map = (props) => {
   const [isExtended, setIsExtended] = useState(true);
   const setExtend = () => {
     setIsExtended(!isExtended);
-  }
-  function getStyle() {
-    let css;
-    if (isExtended) {
-      css = `
-  .side-panel{
-    display:block !important;
-  }
-  .side-panel-toggle{
-    margin-left:19.4%;
-  }
-  `;
-    } else {
-      css = `
-  .side-panel{
-    display:none !important;
-  }
-  `;
-    }
-    return css;
-  }
-  function changeArrow() {
-    let arrow;
-    if (isExtended) {
-      arrow = ["material-symbols-outlined", "arrow_left"]
-    } else {
-      arrow = ["material-symbols-outlined", "arrow_right"]
-    }
-    return arrow
   }
   /*=====================prediction parameters=====================*/
   const [month, setMonth] = useState(null);
@@ -58,8 +39,14 @@ const Map = (props) => {
   const [end_stopid, setEnd_stopid] = useState(null);
   const [n_stops, setN_stops] = useState(null);
   const [routeIndex, setRouteIndex] = useState(0);
-
-  const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  // const [journeyPlan, setJourneyPlan] = useState(true)
+const journeyPlan = props.journeyPlan;
+  // const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  const map = props.map;
+  const setMap = props.setMap;
+  // const [markers, setMarkers] = useState([]);
+  const markers = props.markers;
+  const setMarkers = props.setMarkers;
   const [libraries] = useState(["places"]);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_KEY,
@@ -69,7 +56,9 @@ const Map = (props) => {
   const [date, setDate] = useState(new Date());
 
   // Render directions
-  const [directionsResponse, setDirectionsResponse] = useState(null);
+  // const [directionsResponse, setDirectionsResponse] = useState(null);
+  const directionsResponse = props.directionsResponse;
+  const setDirectionsResponse = props.setDirectionsResponse;
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -199,14 +188,10 @@ const Map = (props) => {
 
   function clearRoute() {
     setDirectionsResponse(null);
-    setMap(null);
+    // setMap(null);
     originRef.current.value = "";
     destinationRef.current.value = "";
     document.getElementById("direction-steps").innerHTML = "";
-  }
-
-  if (!isLoaded) {
-    return <h1>Loading</h1>;
   }
 
   async function favRoute() {
@@ -215,36 +200,63 @@ const Map = (props) => {
     }
   }
 
+
+
+
+
+
+
+
+  
+
+/*=====================Markers part=====================*/
+
+
+  if (!isLoaded) {
+    return <h1>Loading</h1>;
+  }
+
+  let currentDisplay;
+
+  if(!journeyPlan)  {
+  currentDisplay = <AllRoutes setMarkers={setMarkers}></AllRoutes>
+  }
+
+
+else {
+ currentDisplay = (<div className="side-panel">
+<JourneyForm
+  map={map}
+  setMap={setMap}
+  centre={centre}
+  clearRoute={clearRoute}
+  calcRoute={calcRoute}
+  originRef={originRef}
+  destinationRef={destinationRef}
+  date={date}
+  setDate={setDate}
+  favRoute={favRoute}
+  response={responseJSON}
+  month={month}
+  day={day}
+  hour={hour}
+  start_lat={start_lat}
+  start_lng={start_lng}
+  end_lat={end_lat}
+  end_lng={end_lng}
+  route_number={route_numner}
+  start_stopid={start_stopid}
+  end_stopid={end_stopid}
+  n_stops={n_stops}
+></JourneyForm>
+<RouteContainer response={directionsResponse} setRouteIndex={setRouteIndex}></RouteContainer>
+</div>)
+}
+
   return (
     <div className="content-container">
       <ToggleVisability content="side-panel">
-        <div className="side-panel">
-          <JourneyForm
-            map={map}
-            setMap={setMap}
-            centre={centre}
-            clearRoute={clearRoute}
-            calcRoute={calcRoute}
-            originRef={originRef}
-            destinationRef={destinationRef}
-            date={date}
-            setDate={setDate}
-            favRoute={favRoute}
-            response={responseJSON}
-            month={month}
-            day={day}
-            hour={hour}
-            start_lat={start_lat}
-            start_lng={start_lng}
-            end_lat={end_lat}
-            end_lng={end_lng}
-            route_number={route_numner}
-            start_stopid={start_stopid}
-            end_stopid={end_stopid}
-            n_stops={n_stops}
-          ></JourneyForm>
-        <RouteContainer response={directionsResponse} setRouteIndex={setRouteIndex}></RouteContainer>
-        </div>
+        {currentDisplay}
       </ToggleVisability>
 
       <GoogleMap
@@ -260,6 +272,15 @@ const Map = (props) => {
             
           />
         )}
+        {markers.map((marker) => (
+          <Marker
+            key={marker.id}
+            position={marker.position}
+            // onLoad={handleSubmit}
+          >
+            {console.log("MARKERS ARE:", markers)}
+          </Marker>
+        ))}
       </GoogleMap>
     </div>
   );
