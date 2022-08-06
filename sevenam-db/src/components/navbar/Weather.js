@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import Axios from "axios";
+import { WiDaySunny, WiDayCloudy, WiCloudy, WiCloud , WiHail, WiDayRainMix, WiDayStormShowers, WiDaySnowWind, WiFog} from "react-icons/wi";
 
 
 const Weather = () => {
@@ -23,25 +24,45 @@ const Weather = () => {
       }
 
 
- 
-  
-  let icon = `http://openweathermap.org/img/wn/${weatherData.icon}.png`;
+      const [showWeather, setShowweather] = useState(false);
     
-  if (ready) {
+      const handleOn = () => {
+        setShowweather(true);
+       
+        setTimeout(() => {
+          setShowweather(false);
+        }, 20000); 
+        };
+      
+  
+        const handleOff = () => {
+          setShowweather(false);
+        };     
+
+      
+
+let icon = `http://openweathermap.org/img/wn/${weatherData.icon}.png`; 
+
+if (ready) {
   return (
     <div className="weather-card">
       <div className="weather-icon"> 
-        <img src={icon}/>
+      <img src={icon} onClick={handleOn} />
       </div>
-      <div className="weather-text">
+     
+
+      {showWeather && (
+      <div className="weather-text" /*onClick={handleOff} */>
         <h3>{Math.round(weatherData.temparature)+ "℃"}</h3>
         <p>{weatherData.description}</p>
-      </div>
+       
+      </div> 
+ )}
     </div>
   );
   } else {
-    const url = process.env.REACT_APP_DJANGO_API;
-    let apiUrl = url+"/weather/";
+
+    let apiUrl = "http://127.0.0.1:8000/weather/"
     Axios.get(apiUrl).then(handleResponse);
 
     return "Loading..."

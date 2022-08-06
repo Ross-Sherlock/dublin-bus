@@ -10,8 +10,8 @@
 }
 
 .sidebar {
-  background: rgb(0, 120, 170);
-  color: white;
+  background: #FFE882;
+  color: #271033;
   /* height: calc(100vh - 1.6cm); */
   height:100%;
 }
@@ -30,7 +30,7 @@
 
 .link {
   display: flex;
-  color: white;
+  color: #271033;
   gap: 10px;
   font-size: 15px;
   padding:10px 10px;  

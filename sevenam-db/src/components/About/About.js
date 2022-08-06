@@ -68,8 +68,10 @@ return (
 <div className="mainAbout">
 
 <div className="intoduction">
-<h1> Meet 7am </h1>
- <p> description? </p>
+<h1> Meet SevenAM </h1>
+ <p className="description"> We are a group of <a href="https://hub.ucd.ie/usis/!W_HU_MENU.P_PUBLISH?p_tag=PROG&MAJR=T195" target="_blank">UCD Computer Science Masters Students </a> 
+ who have created a Dublin Bus web application. This application allows users 
+ to plan and organise a journey at any time and date and will give the user an approximate time estimation of the journey </p>
 </div>
 <div className="info"> 
 {PersonInfo}

@@ -1,16 +1,15 @@
 import React from "react";
 import "./NavbarNew.css";
 import Weather from "./Weather";
+import Icon from "./icon";
 
 const NavbarNew = () => {
   const logo = require("./logo.png");
 
     return (
       <nav className="nav" id="navbar">
-        <div className="nav_logo">
-          <a href="/">
-            <img src={logo} alt="SevenAM" height={"55"}/>
-          </a>
+       <div className= "sevenAm"> 
+        <h1> SevenAm </h1>
         </div>
         <div className="weather">
           <Weather/>

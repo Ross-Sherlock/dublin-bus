@@ -12,6 +12,7 @@ import Favourite from "./Favourite";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { IoHeartSharp } from "react-icons/io5";
 
 
 const JourneyForm = (props) => {
@@ -150,6 +151,7 @@ const JourneyForm = (props) => {
           variant="contained"
           color="secondary"
           onClick={calcRoute}
+          style={{backgroundColor:"#388697"}}
         >
           Search
         </Button>
@@ -158,6 +160,9 @@ const JourneyForm = (props) => {
           variant="contained"
           color="error"
           onClick={clearRoute}
+          style={{backgroundColor:"#FA8334"}}
+          
+          
         >
           Clear
         </Button>
@@ -166,8 +171,12 @@ const JourneyForm = (props) => {
           variant="contained"
           color="success"
           onClick={favRoute}
+          style={{backgroundColor:"#FFE882"}}
+
+          
         >
-          Favourite
+  <IoHeartSharp />
+
         </Button>
       </div>
       <div className="favourites">

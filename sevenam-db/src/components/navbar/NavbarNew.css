@@ -4,5 +4,17 @@ nav {
   display: flex;
   justify-content: space-between;
   align-content: space-between;
-  background-color: rgb(255, 248, 10);
+  background-color: #FFE882;
+  border-bottom-color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.weather {
+  display: flex;
+}
+
+.sevenAm h1 {
+  color: #271033;
+  padding: 2%;
 }

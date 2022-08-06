@@ -1,14 +1,8 @@
-h1 {
-  padding: 10px;
+.intoduction h1 {
+  padding: 30px 10px 10px 10px;
   text-align: center;
 }
 
-
-p {
-  text-align: center;
-  font-size: 12px;
-
-}
 
 
 
@@ -16,6 +10,8 @@ p {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: white;
+  padding-bottom: 100%;
 }
 
 @media only screen and (max-width: 800px) {
@@ -33,4 +29,13 @@ display: flex;
 margin: 5px;
 
 }
+.description {
+  text-align: center;
+  padding: 1% 18%;
+  font-size: 15px;
 
+}
+
+.description a {
+  color: black;
+}

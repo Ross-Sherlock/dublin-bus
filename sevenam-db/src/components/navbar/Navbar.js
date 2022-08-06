@@ -3,6 +3,8 @@ import "./Navbar.css";
 import Weather from "./Weather";
 import { Navigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Icon } from "@mui/material";
+
 
 const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -39,6 +41,7 @@ const Navbar = () => {
           </li>
           <div className="weather">
           <Weather />
+        
           </div>
         </ul>
       </div>
