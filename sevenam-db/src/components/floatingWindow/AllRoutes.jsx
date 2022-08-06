@@ -88,54 +88,60 @@ const AllRoutes = (props) => {
 
   return (
     <div className="side-panel">
-      <div className="route_number_input">
-        <Typography variant="h6" gutterBottom component="div">
-          Select a bus number
-        </Typography>
-        <FormControl>
-          <InputLabel id="select-helper-label">Route number</InputLabel>
-          <Select
-            defaultValue=""
-            style={{ width: "270px", height: "40px" }}
-            onChange={handleSelectChange1}
-          >
-            {route_numbers.map((route_number) => (
-              <MenuItem key={route_number} value={route_number} divider={true}>
-                {route_number}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-      <div className="route_des_input">
-        <Typography variant="h6" gutterBottom component="div">
-          Select a route
-        </Typography>
-        <FormControl>
-          <InputLabel id="select-helper-label">Route description</InputLabel>
-          <Select
-            style={{ width: "270px", height: "40px" }}
-            onChange={handleSelectChange2}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-          >
-            {route_descriptions.map((route_description) => (
-              <MenuItem
-                key={route_description}
-                value={route_description}
-                divider={true}
-              >
-                {route_description}
-                {console.log("CORRESPONDING STOPS LIST:", stops_list)}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-      <div className="submit-button">
-        <Button variant="contained" onClick={handleSubmit}>
-          Search
-        </Button>
+      <div className="window-container" id="window">
+        <div className="route_number_input">
+          <Typography variant="h6" gutterBottom component="div">
+            Select a bus number
+          </Typography>
+          <FormControl>
+            <InputLabel id="select-helper-label">Route number</InputLabel>
+            <Select
+              defaultValue=""
+              style={{ width: "270px", height: "40px" }}
+              onChange={handleSelectChange1}
+            >
+              {route_numbers.map((route_number) => (
+                <MenuItem
+                  key={route_number}
+                  value={route_number}
+                  divider={true}
+                >
+                  {route_number}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="route_des_input">
+          <Typography variant="h6" gutterBottom component="div">
+            Select a route
+          </Typography>
+          <FormControl>
+            <InputLabel id="select-helper-label">Route description</InputLabel>
+            <Select
+              style={{ width: "270px", height: "40px" }}
+              onChange={handleSelectChange2}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+            >
+              {route_descriptions.map((route_description) => (
+                <MenuItem
+                  key={route_description}
+                  value={route_description}
+                  divider={true}
+                >
+                  {route_description}
+                  {console.log("CORRESPONDING STOPS LIST:", stops_list)}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="submit-button">
+          <Button variant="contained" onClick={handleSubmit}>
+            Search
+          </Button>
+        </div>
       </div>
     </div>
   );
