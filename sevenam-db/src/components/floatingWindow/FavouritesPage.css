@@ -1,0 +1,20 @@
+.favourites-body {
+    padding: 10%;
+    padding-top: 5%;
+    text-align: center;
+}
+
+.exampleBtnDiv {
+    text-align: center;
+    padding:10px;
+}
+
+.exampleFavBtn {
+    visibility: visible;
+    width:40px;
+}
+
+.notFoundContainer {
+
+    overflow:visible;
+}

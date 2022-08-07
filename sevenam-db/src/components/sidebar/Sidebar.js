@@ -22,7 +22,7 @@ const routes = [
     icon: <GiNewspaper />,
   },
   {
-    path: "/Favourite",
+    path: "/Favourites",
     name: "Favourite",
     icon: <FaHeart />,
   },

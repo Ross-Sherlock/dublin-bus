@@ -9,6 +9,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
 import About from "./components/About/About";
 import Map from "./components/map/Map";
+import FavouritesPage from "./components/floatingWindow/FavouritesPage";
 
 function App() {
   const [journeyPlan, setJourneyPlan] = useState(true);
@@ -44,6 +45,7 @@ function App() {
             />
             <Route path="/AllRoutes" element={<AllRoutes />} />
             <Route path="/News" element={<News />} />
+            <Route path="/Favourites" element={<FavouritesPage/>} />
             <Route path="/About" element={<About />} />
           </Routes>
         </Sidebar>
