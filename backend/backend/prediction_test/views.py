@@ -83,6 +83,11 @@ def test(request):
       return results
     
     def get_nth_proportion(known_route_num, month, prop, number_of_stops, asc=True):
+      """
+      Used when only a start or end stop individually can be identified.
+      This function will take the known stop and return the proportion of the stop n stops away.
+      Number of stops n is provided by Google in the API response
+      """
       if asc:
         order = "ASC"
         sign = ">"
