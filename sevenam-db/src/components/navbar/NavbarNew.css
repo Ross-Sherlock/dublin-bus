@@ -1,9 +1,10 @@
 nav {
   margin-bottom: 2px;
-  height: 5%;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-content: space-between;
+  align-items: center;
   background-color: #FFE882;
   border-bottom-color: white;
   border-bottom-style: solid;
@@ -12,6 +13,8 @@ nav {
 
 .weather {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sevenAm h1 {

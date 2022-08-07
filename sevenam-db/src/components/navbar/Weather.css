@@ -1,15 +1,30 @@
 .weather-card {
     display: flex;
-    justify-content:flex-start;
+    justify-content: center;
     margin-right: 5px;
+    align-items: center;
+    text-align: center;
+    height:100%;
+}
+
+.weather-icon {
+  height:100%;
+  margin-top: auto;
 }
 
 .weather-icon img {
   height: 80px;
-  width: 80px;
-  margin-top: -14px;
+  width: auto;
 }
 
-.weather-text {
-  line-height: 20%;
+.temperature-container {
+  font-size: 20px;
+  margin:0;
+  padding:0;
+}
+
+.weather-desc {
+  font-size:12px;
+  margin:0;
+  padding:0;
 }

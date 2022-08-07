@@ -21,23 +21,7 @@ const Weather = () => {
           icon: response.data[0].icon,
           description: response.data[0].description
         })
-      }
-
-
-      const [showWeather, setShowweather] = useState(false);
-    
-      const handleOn = () => {
-        setShowweather(true);
-       
-        setTimeout(() => {
-          setShowweather(false);
-        }, 20000); 
-        };
-      
-  
-        const handleOff = () => {
-          setShowweather(false);
-        };     
+      } 
 
       
 
@@ -47,17 +31,12 @@ if (ready) {
   return (
     <div className="weather-card">
       <div className="weather-icon"> 
-      <img src={icon} onClick={handleOn} />
+      <img src={icon}/>
       </div>
-     
-
-      {showWeather && (
-      <div className="weather-text" /*onClick={handleOff} */>
-        <h3>{Math.round(weatherData.temparature)+ "℃"}</h3>
-        <p>{weatherData.description}</p>
-       
+      <div className="weather-text">
+        <div className="temperature-container">{Math.round(weatherData.temparature)+ "°C"}</div>
+        <div className="weather-desc">{weatherData.description}</div>
       </div> 
- )}
     </div>
   );
   } else {
