@@ -1,3 +1,4 @@
+
 ul {
     list-style: none;
     text-align: center;
@@ -6,10 +7,11 @@ ul {
     line-height: 10px;
   }
 
+.personalImage  {
+    padding: 10px;
 
-.mobileApp{
-    display: none;
 }
+
 .mainContainer {
    
     border-radius: 30%;
@@ -47,6 +49,8 @@ li{
 }
 
 
+
+/*
 .contact-btn {
     
       border: 1px solid #0000001a;
@@ -60,37 +64,63 @@ li{
 
     }
     
-   
+   */
 
 
     @media only screen and (max-width: 800px) {
         
-
-        .mainInfo {
+     .mainInfo {
           
-            width: 260px;
-            height: 240px;       
-        
+            width: 360px;
+            height: 140px;   
+        display: flex;
+        flex-direction: row;
         }
 
+.personalImage  {
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+
+.text li   {
+   
+font-size: 15px;
+line-height: 25px;
+text-align: left;
+
+}
+
+
+ul {
+    padding-top: 32px;  
+}
+
+    }
+    
+/*
         .personalImage{
           display: none;
         }
+        
         .mobileApp {
-            display: flex;
+          display: flex;
+
         }
      
       .contact-btn {
           display: none;
          
+    
       }
 
       .hiddenforMobile{
 display: none;
 
       }
+*/
+     
 
-      .name {
-          font-size: 20px;
-      }
-    }
+    
+  

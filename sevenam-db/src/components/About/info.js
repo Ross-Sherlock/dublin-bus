@@ -6,7 +6,7 @@ import github from "../About/github.png";
 
 const Info = (props) => {
 
-    const [showInfo, setShowinfo] = useState(false);
+  /*  const [showInfo, setShowinfo] = useState(false);
     
     const handleShowOn = () => {
         setShowinfo(true);
@@ -15,14 +15,16 @@ const Info = (props) => {
 
       const handleShowOff = () => {
         setShowinfo(false);
-      };
+      }; */
     
 
 return (
     <div className="mainContainer">
 <div className="mainInfo"> 
-<div className="personalImage">
-<img src={props.photo} width={"150px"} height={"150px"} style={{display: "block", margin: "auto", padding:"10px"}}/> </div>
+
+<img className= "personalImage" src={props.photo} width={"150px"} height={"150px"}/> 
+
+
 <ul className="text"> 
     <li className="name"> 
         {props.name}
@@ -30,27 +32,36 @@ return (
     <li className="title">
     {props.title}
     </li>
+ {/* 
 <button className="contact-btn" onMouseOver={handleShowOn} onClick={handleShowOff}>
     Contact Information
-</button>
+ </button> 
+ 
+ </ul>
+
 
 <div className="mobileApp"> 
+<div className="mobileImage">  <img src={props.photo} width={"100px"} height={"100px"}/> </div>
 <ul>
-           <li className="email">
+*/
+}
+<li className="email">
            {props.email}
     </li>
-    <li>
+        
+    <li className="links">
         <a href={props.link} target="_blank"> <img src={link} width="10%" height={"10%"} /></a>
         <a href={props.github} target="_blank"> <img src={github} width="10%" height={"10%"} /></a>
     </li>
+ 
 
           </ul>
 
-</div>
-
-</ul>
 
 
+
+
+{/*
 {showInfo && (
         
          <ul className="hiddenforMobile">
@@ -64,10 +75,11 @@ return (
 
           </ul>
 
-        )}
+)} */}
 
 </div>
 </div>
+
 );
 
 }

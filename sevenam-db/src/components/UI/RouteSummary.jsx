@@ -32,7 +32,7 @@ const RouteSummary = (props) => {
     setSteps(data);
   }, [steps, data]);
 
-  let icons = steps?.map(function (item, index, array) {
+  let icons = steps.map(function (item, index, array) {
     let arrow = (
       <KeyboardArrowRightIcon className="arrow"></KeyboardArrowRightIcon>
     );

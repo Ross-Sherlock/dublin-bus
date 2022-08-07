@@ -65,6 +65,7 @@ const About = () => {
 
 
 return (
+    <body>
 <div className="mainAbout">
 
 <div className="intoduction">
@@ -77,7 +78,7 @@ return (
 {PersonInfo}
 </div>
 </div>
-
+</body>
 
 ) ;
 
