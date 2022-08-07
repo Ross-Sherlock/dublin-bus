@@ -123,7 +123,7 @@ const Sidebar = (props) => {
           <div className="icon">{route.icon}</div>
           <AnimatePresence>
             {isOpen && (
-              <motion.div className="link_text">{"TEST ALL ROUTES"}</motion.div>
+              <motion.div className="link_text">{route.name}</motion.div>
             )}
           </AnimatePresence>
         </NavLink>
@@ -139,7 +139,7 @@ const Sidebar = (props) => {
           <div className="icon">{route.icon}</div>
           <AnimatePresence>
             {isOpen && (
-              <motion.div className="link_text">{"TEST ALL ROUTES"}</motion.div>
+              <motion.div className="link_text">{route.name}</motion.div>
             )}
           </AnimatePresence>
         </NavLink>
