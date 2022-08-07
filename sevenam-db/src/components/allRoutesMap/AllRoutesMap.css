@@ -1,3 +1,10 @@
+.submit-button  button {
+  background-color: #388697;
+display:block;
+margin: auto;
+}
+
+
 /* .allroutesmap-container {
   display: flex;
   width: 100%;

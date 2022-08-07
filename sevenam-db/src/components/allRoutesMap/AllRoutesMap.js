@@ -159,7 +159,7 @@ const AllRoutesMap = () => {
               </FormControl>
             </div>
             <div className="submit-button">
-              <Button variant="contained" onClick={handleSubmit}>
+              <Button variant="contained" onClick={handleSubmit} > 
                 Search
               </Button>
             </div>

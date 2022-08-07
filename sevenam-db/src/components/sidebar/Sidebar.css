@@ -38,9 +38,10 @@
 }
 
 .link:hover {
-  border-right: 4px solid rgb(243, 120, 120);
+  border-right: 4px solid #FA8334;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  background: rgb(234, 246, 246);
+  background: #B8ABA5;
+color:aliceblue;
 }
 
 a {
