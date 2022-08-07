@@ -13,3 +13,4 @@ class StaticStops(models.Model):
     class Meta:
         managed = False
         db_table = 'static_stops'
+        ordering = ("route_name",)
