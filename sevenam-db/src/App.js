@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import JourneyPlanner from "./components/JourneyPlanner";
 import HomePage from "./components/HomePage";
 import AllRoutes from "./components/AllRoutes";
-import News from "./components/News";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
 import About from "./components/About/About";
 import Map from "./components/map/Map";
+import NewsTwitter from "./components/news/NewsTwitter";
 import FavouritesPage from "./components/floatingWindow/FavouritesPage";
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
               }
             />
             <Route path="/AllRoutes" element={<AllRoutes />} />
-            <Route path="/News" element={<News />} />
+            <Route path="/News" element={<NewsTwitter/>} />
             <Route path="/Favourites" element={<FavouritesPage/>} />
             <Route path="/About" element={<About />} />
           </Routes>

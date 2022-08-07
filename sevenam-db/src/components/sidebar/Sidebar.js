@@ -52,7 +52,8 @@ const Sidebar = (props) => {
 
   const setJPlan = () => {
     setJourneyPlan(true);
-    setMarkers([])
+    setDirectionsResponse(null);
+    setMarkers([]);
   };
 
   // const [isExtended, setIsExtended] = useState(false);
