@@ -12,7 +12,8 @@
   flex-direction: column;
   background-color: white;
   padding-bottom: 10%;
-  overflow: auto;
+
+
 }
 
 @media only screen and (max-width: 800px) {
@@ -20,6 +21,11 @@
     display: flex;
     flex-direction: column;
   }
+/*
+ body {
+   overflow-y: scroll;
+ }
+ */
 
 
   

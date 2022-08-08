@@ -68,15 +68,15 @@ li{
         
      .mainInfo {
           
-            width: 360px;
+            width: 320px;
             height: 140px;   
         display: flex;
         flex-direction: row;
         }
 
 .personalImage  {
-    width: 100px;
-    height: 100px;
+    width: 88px;
+    height: 90px;
     float: right;
     padding-left: 10px;
 }
@@ -84,14 +84,14 @@ li{
 
 .text li   {
    
-font-size: 15px;
+font-size: 14px;
 line-height: 25px;
 
 }
 
 
 .text {
-    margin-top: 25px;
+    margin-top: 22px;
 }
 
     }

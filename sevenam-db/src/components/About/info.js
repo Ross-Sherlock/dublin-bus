@@ -22,7 +22,7 @@ return (
     <div className="mainContainer">
 <div className="mainInfo"> 
 
-<img className= "personalImage" src={props.photo} width={"150px"} height={"150px"}/> 
+<img className= "personalImage" src={props.photo} width={"140px"} height={"150px"}/> 
 
 
 <ul className="text"> 

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Weather.css";
 import Axios from "axios";
 import { WiDaySunny, WiDayCloudy, WiCloudy, WiCloud , WiHail, WiDayRainMix, WiDayStormShowers, WiDaySnowWind, WiFog} from "react-icons/wi";
-
+import Icon from "./Icon";
 
 const Weather = () => {
   
@@ -23,21 +23,24 @@ const Weather = () => {
         })
       } 
 
-      
-
-let icon = `http://openweathermap.org/img/wn/${weatherData.icon}.png`; 
+ 
+  let icon = weatherData.icon; 
 
 if (ready) {
   return (
     <div className="weather-card">
       <div className="weather-icon"> 
-      <img src={icon}/>
+        <Icon oldimg={icon} />
       </div>
       <div className="weather-text">
         <div className="temperature-container">{Math.round(weatherData.temparature)+ "°C"}</div>
         <div className="weather-desc">{weatherData.description}</div>
+
+       
       </div> 
     </div>
+
+
   );
   } else {
 
