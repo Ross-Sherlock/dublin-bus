@@ -27,7 +27,9 @@ def handleRequest(request):
     print("START STOPID:", start_stopid, "\nEND STOPID:", end_stopid)
 
 
-    def get_stop_code(lat, lng, **kwargs):
+    def get_stop_code(lat, lng, partial_lineid, **kwargs):
+      lat = round(float(lat),4)
+      lng = round(float(lng),3)
       """
         A function that will use lat,lng to query the 'stops' database to get a stop code
         Or if the query from frontend contains exact stop code, return it
@@ -40,22 +42,16 @@ def handleRequest(request):
           print("end_stopid PROVIDED!", kwargs["end_stopid"])
           return kwargs["end_stopid"]
         else:
+
           query = """
-            SELECT 
-            *, 
-            (
-              3959 *
-              acos(cos(radians({lat})) * 
-              cos(radians(LAT)) * 
-              cos(radians(LNG) - 
-              radians({lng})) + 
-              sin(radians({lat})) * 
-              sin(radians(LAT)))
-            ) AS distance 
-            FROM dublinbus.stops
-            HAVING distance < 28 
-            ORDER BY distance LIMIT 1;
-          """.format(lat=lat, lng=lng)
+          SELECT * FROM dublinbus.proportions_august 
+          join dublinbus.stops ON stops.CODE=proportions_august.STOPPOINTID 
+          where LINEID like "{lineid}\_%%" and 
+          ABS(LAT - {lat})<0.0001 and ABS(LNG-{lng})<0.001
+          """.format(lat=lat, lng=lng, lineid=partial_lineid)
+          print("Using query2 to obtain stop number")
+          # If no stop found, stop code = -1
+          stop_code = -1
           for result in Stops.objects.raw(query):
             stop_code = result.code
           print("FROM get_stop_code METHOD:", stop_code)
@@ -117,8 +113,8 @@ def handleRequest(request):
         Return the correct route & direction by matching results of start stop and end stop
       """
       final_result = {}
-      start = get_route_and_prop(stop_code=get_stop_code(start_lat, start_lng, start_stopid=start_stopid), route_number=route_number, month=month)
-      end = get_route_and_prop(stop_code=get_stop_code(end_lat, end_lng, end_stopid=end_stopid), route_number=route_number, month=month)
+      start = get_route_and_prop(stop_code=get_stop_code(start_lat, start_lng, route_number, start_stopid=start_stopid), route_number=route_number, month=month)
+      end = get_route_and_prop(stop_code=get_stop_code(end_lat, end_lng, route_number, end_stopid=end_stopid), route_number=route_number, month=month)
 
       if len(start) == 1 and len(end) == 1 and start[0]["route"] == end[0]["route"]:
         final_result["route"] = start[0]["route"]
