@@ -6,7 +6,7 @@ from prediction_test.models import *
 from prediction_test.logic_test import Predict
 
 @csrf_exempt
-def test(request):
+def handleRequest(request):
   """
     This function read the query string from frontend
     And return prediction value to the frontend

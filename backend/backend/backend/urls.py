@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('weather/', weather_views.current_weather_api),
     path('static_stops/', static_stops_views.static_stops_api),
-    path('test/', test.test)
+    path('predict/', test.handleRequest)
 ]
