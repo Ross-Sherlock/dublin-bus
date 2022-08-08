@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./About.css";
 import estelle from "../About/estelle.png";
 import ross from "../About/ross.png";
@@ -65,7 +65,7 @@ const About = () => {
 
 
 return (
-    <body>
+
 <div className="mainAbout">
 
 <div className="intoduction">
@@ -80,7 +80,7 @@ return (
 </div>
 
 </div>
-</body>
+
 
 ) ;
 

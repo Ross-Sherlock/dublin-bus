@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./info.css";
 import link from "../About/link.png";
 import github from "../About/github.png";

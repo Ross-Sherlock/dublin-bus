@@ -1,9 +1,7 @@
 import "./App.css";
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import JourneyPlanner from "./components/JourneyPlanner";
-import HomePage from "./components/HomePage";
-import AllRoutes from "./components/AllRoutes";
+import HomePage from "./components/Home/HomePage";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
 import About from "./components/About/About";
@@ -43,7 +41,7 @@ function App() {
                 />
               }
             />
-            <Route path="/AllRoutes" element={<AllRoutes />} />
+    
             <Route path="/News" element={<NewsTwitter/>} />
             <Route path="/Favourites" element={<FavouritesPage/>} />
             <Route path="/About" element={<About />} />

@@ -4,18 +4,19 @@ import {
   DirectionsRenderer,
   Marker
 } from "@react-google-maps/api";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 import ToggleVisability from "../UI/ToggleVisibility"
 import RouteContainer from "../UI/RouteContainer";
+/*
 import axios from "axios";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import { FormControl, MenuItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
-import { StaticStops } from "../map/StaticStops";
+import { StaticStops } from "../map/StaticStops"; */
 import AllRoutes from "../floatingWindow/AllRoutes";
 
 

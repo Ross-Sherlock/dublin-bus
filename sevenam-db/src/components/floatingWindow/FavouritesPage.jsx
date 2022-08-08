@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Favourite from "./Favourite";
 import "./FavouritesPage.css";
 import { IoHeartSharp } from "react-icons/io5";

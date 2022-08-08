@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import Axios from "axios";
-import { WiDaySunny, WiDayCloudy, WiCloudy, WiCloud , WiHail, WiDayRainMix, WiDayStormShowers, WiDaySnowWind, WiFog} from "react-icons/wi";
 import Icon from "./Icon";
 
 const Weather = () => {

@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import { icons } from "react-icons/lib";
+import React from "react";
 import { WiDaySunny, WiDayCloudy, WiCloudy, WiCloud , WiDayShowers, WiDayRain, WiDayThunderstorm , WiDaySnow , WiDust} from "react-icons/wi";
 
 
