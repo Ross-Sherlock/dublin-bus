@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',  #added for corsheader
     'weather.apps.WeatherConfig',   #added for weather app
     'static_stops.apps.StaticStopsConfig',  #added for static_stops app
-    'prediction_test.apps.PredictionTestConfig', #added for prediction_test app
+    'prediction.apps.PredictionTestConfig', #added for prediction_test app
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True  #added for CORS
