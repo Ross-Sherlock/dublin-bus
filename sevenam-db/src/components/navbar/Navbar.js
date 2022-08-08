@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
-    <nav className="nav" id="navbar">
+    <nav className="navbar" id="navbar">
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"

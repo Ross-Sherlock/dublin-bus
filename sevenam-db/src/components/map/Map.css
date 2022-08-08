@@ -11,7 +11,7 @@
   height:100%;
   display:flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items:center;
   border-right: groove;
   padding:10px;
 }
