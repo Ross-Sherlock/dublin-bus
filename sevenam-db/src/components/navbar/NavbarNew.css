@@ -1,25 +1,22 @@
-nav {
-  margin-bottom: 2px;
+#navbar {
   height: 80px;
   display: flex;
   justify-content: space-between;
-  align-content: space-between;
   align-items: center;
   background-color: #FFE882;
   border-bottom-color: white;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  padding: 0 10px 0 10px;
 }
 
 .weather {
   display: flex;
   align-items: center;
   justify-content: center;
+  height:100%;
 }
 
 .sevenAm h1 {
   color: #271033;
-  align-items: center;
-  padding-top: 8%;
-  padding-left: 2%;
 }
