@@ -20,15 +20,14 @@
   .info {
     display: flex;
     flex-direction: column;
+  
   }
+
 /*
  body {
    overflow-y: scroll;
  }
- */
-
-
-  
+   */
 }
 
 .info {

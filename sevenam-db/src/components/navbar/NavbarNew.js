@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavbarNew.css";
 import Weather from "./Weather";
-import Icon from "./icon";
+
 
 const NavbarNew = () => {
   const logo = require("./logo.png");

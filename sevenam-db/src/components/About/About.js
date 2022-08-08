@@ -74,9 +74,11 @@ return (
  who have created a Dublin Bus web application. This application allows users 
  to plan and organise a journey at any time and date and will give the user an approximate time estimation of the journey </p>
 </div>
+
 <div className="info"> 
 {PersonInfo}
 </div>
+
 </div>
 </body>
 

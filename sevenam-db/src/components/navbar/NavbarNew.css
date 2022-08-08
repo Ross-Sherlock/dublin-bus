@@ -1,6 +1,6 @@
 nav {
   margin-bottom: 2px;
-  height: 65px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-content: space-between;
@@ -19,5 +19,7 @@ nav {
 
 .sevenAm h1 {
   color: #271033;
-  padding: 2%;
+  align-items: center;
+  padding-top: 8%;
+  padding-left: 2%;
 }
