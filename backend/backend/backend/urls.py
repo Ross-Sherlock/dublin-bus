@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from weather import views as weather_views
 from static_stops import views as static_stops_views
-from prediction_test import views as test
+from prediction import views as test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
