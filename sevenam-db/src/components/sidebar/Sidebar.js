@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./Sidebar.css";
 import { GiNewspaper } from "react-icons/gi";
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { FaRoute, FaHeart, FaInfo, FaBars, FaBus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const routes = [
   {
     path: "/News",
     name: "News",
-    icon: <GiNewspaper />,
+    icon: <NewspaperIcon style={{fontSize:"18px"}} />,
   },
   {
     path: "/Favourites",
