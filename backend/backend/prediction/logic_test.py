@@ -32,7 +32,8 @@ class Predict:
     rfr = pickle.load(open(filename, 'rb'))
     
     print("len of dict:", len(self.df_dict), "\ndict by default:", self.df_dict)
-
+    if None in (self.month, self.day, self.hour):
+      return "ERR"
     self.df_dict[f"MONTH_{self.month}"] = [1]
     self.df_dict[f"DAY_{self.day}"] = [1]
     self.df_dict[f"HOUR_{self.hour}.0"] = [1]
@@ -40,6 +41,9 @@ class Predict:
     print("dict after altering", self.df_dict)
 
     df = pd.DataFrame.from_dict(self.df_dict)
+    if len(df.columns) != rfr.n_features_:
+      return "ERR"
+    
     total = rfr.predict(df)
 
     prediction = abs(self.arrival_prop - self.depart_prop)*total

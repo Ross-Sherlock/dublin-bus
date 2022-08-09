@@ -63,7 +63,12 @@ def handleRequest(request):
         query database 'proportions'
         finally find the correct proportion&route with direction
       """
+      months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
       results = []
+      if(stop_code is None or route_number is None or month is None 
+        or month.lower() not in months):
+        return results
+      
       query = """
       SELECT * FROM dublinbus.proportions_{month}
       where STOPPOINTID={stop_code} AND LINEID LIKE '{route_number}\_%%';	
@@ -181,7 +186,10 @@ def handleRequest(request):
         arrival_prop = params["arrival_prop"]
         predict = Predict(month, day, hour, route, depart_prop, arrival_prop)
         predict_result = predict.get_prediction()
-        predict_result=int(predict_result)
+        try:
+          predict_result=int(predict_result)
+        except:
+          print("Not an int")
       return predict_result
      
     if isinstance(predict(), str):
