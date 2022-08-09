@@ -1,9 +1,9 @@
 import React from "react";
 import "./About.css";
-import estelle from "../About/estelle.png";
-import ross from "../About/ross.png";
-import yuan from "../About/yuan.png";
-import zeyu from "../About/zeyu.png";
+import estelle from "../Images/estelle.png";
+import ross from "../Images/ross.png";
+import yuan from "../Images/yuan.png";
+import zeyu from "../Images/zeyu.png";
 import Info from "./info";
 
 

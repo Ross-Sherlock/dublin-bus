@@ -3,7 +3,7 @@ import Favourite from "./Favourite";
 import "./FavouritesPage.css";
 import { IoHeartSharp } from "react-icons/io5";
 import Button from "@mui/material/Button";
-import NotFound from './notfound.png';
+import NotFound from '../Images/notfound.png';
 
 const FavouritesPage = () => {
   let favouritesObj = [];
