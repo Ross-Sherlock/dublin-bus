@@ -1,7 +1,5 @@
-from typing import final
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
-from numpy import number
 from prediction.models import *
 from prediction.logic_test import Predict
 
