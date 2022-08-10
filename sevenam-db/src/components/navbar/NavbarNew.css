@@ -17,6 +17,9 @@
   height:100%;
 }
 
-.sevenAm h1 {
-  color: #271033;
+
+.site-title {
+  color: black;
+  font-size: 40px;
 }
+
