@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import { FormControl, MenuItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
-import ToggleVisibility from "../UI/ToggleVisibility";
+/*import ToggleVisibility from "../UI/ToggleVisibility"; */
 
 const AllRoutes = (props) => {
   const setMarkers = props.setMarkers;

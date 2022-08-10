@@ -1,7 +1,7 @@
 import React from "react";
 import "./info.css";
-import link from "../About/link.png";
-import github from "../About/github.png";
+import link from "../Images/link.png";
+import github from "../Images/github.png";
 
 
 const Info = (props) => {

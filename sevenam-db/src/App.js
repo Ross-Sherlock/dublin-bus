@@ -1,12 +1,12 @@
 import "./App.css";
 import React, { useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./components/Home/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import Sidebar from "./components/sidebar/Sidebar";
 import NavbarNew from "./components/navbar/NavbarNew";
-import About from "./components/About/About";
+import About from "./components/AboutPage/About";
 import Map from "./components/map/Map";
-import NewsTwitter from "./components/news/NewsTwitter";
+import NewsTwitter from "./components/NewsPage/NewsTwitter";
 import FavouritesPage from "./components/floatingWindow/FavouritesPage";
 
 function App() {
