@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n2#-(i^nm29m0@e1getv*ki6vz!$e=4(^=m#!3-4zm#5ci+zyy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',  #added for corsheader
     'weather.apps.WeatherConfig',   #added for weather app
     'static_stops.apps.StaticStopsConfig',  #added for static_stops app
-    'prediction.apps.PredictionTestConfig', #added for prediction_test app
+    'prediction.apps.PredictionConfig', #added for prediction app
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True  #added for CORS
