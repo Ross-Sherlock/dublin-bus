@@ -16,7 +16,7 @@
 
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
   .info {
     display: flex;
     flex-direction: column;
