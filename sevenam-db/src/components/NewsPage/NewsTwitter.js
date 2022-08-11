@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const NewsTwitter = () => {
 
 //Directly return fetch results from taggbox service
-  const src="https://widget.taggbox.com/102061";
+  const src="https://widget.taggbox.com/104332";
   const title="Dublin Bus Twitter"
   const [loading,setLoading] = useState(true);
 

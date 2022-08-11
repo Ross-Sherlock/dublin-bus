@@ -28,7 +28,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'weather.apps.WeatherConfig',   #added for weather app
     'static_stops.apps.StaticStopsConfig',  #added for static_stops app
     'prediction.apps.PredictionConfig', #added for prediction app
+    'weather_forecast.apps.WeatherForecastConfig', #added for weather_forecast app
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True  #added for CORS
@@ -50,7 +50,6 @@ CORS_ORIGIN_ALLOW_ALL = True  #added for CORS
 CORS_ORIGIN_WHITELIST = (
 	'http://localhost:3000',
 )
-
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', #added for CORS

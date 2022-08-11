@@ -18,10 +18,12 @@ from django.urls import path
 from weather import views as weather_views
 from static_stops import views as static_stops_views
 from prediction import views as test
+from weather_forecast import views as weather_forecast_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('weather/', weather_views.current_weather_api),
     path('static_stops/', static_stops_views.static_stops_api),
-    path('predict/', test.handleRequest)
+    path('predict/', test.handleRequest),
+    path('weather_forecast/', weather_forecast_views.forecast_weather_api)
 ]
