@@ -11,17 +11,17 @@ services:
     build:
       context: ./sevenam-db
     volumes: 
-      - react_build: /sevenam-db/build
+      - react_build:/sevenam-db/build
   nginx:
     image: nginx:latest
     ports:
       - 80:8080
     volumes:
-      - ./nginx/nginx-setup.config:/etc/nginx/conf.d/default.conf:ro
-      - react_build: /var/www/react
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - react_build:/var/www/react
     depends_on:
       - backend
       - frontend
 
 volumes:
-  react_build
+  react_build:

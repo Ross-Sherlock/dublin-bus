@@ -86,12 +86,12 @@ const RouteSummary = (props) => {
     start_stopid,
     end_stopid
   ) {
-    let url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
+    let url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
     if (start_stopid !== null && typeof start_stopid !== "undefined") {
-      url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
+      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
     }
     if (end_stopid !== null && typeof end_stopid !== "undefined") {
-      url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
+      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
     }
     try {
       await axios.get(url).then((response) => {

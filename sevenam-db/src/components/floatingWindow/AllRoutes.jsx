@@ -15,11 +15,10 @@ const AllRoutes = (props) => {
 
   /*=====================Get marker list part=====================*/
   //get all data through API call
-  const api_url = process.env.REACT_APP_DJANGO_API;
   const [staticStopData, setStaticStopData] = useState([]);
   useEffect(() => {
     axios
-      .get(api_url + "/static_stops/")
+      .get("http://127.0.0.1/static_stops/")
       .then((response) => setStaticStopData(response.data))
       .catch((err) => console.log(err));
   }, []);
