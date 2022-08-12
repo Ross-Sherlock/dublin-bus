@@ -11,7 +11,7 @@ const NavbarNew = () => {
     return (
       <nav className="nav" id="navbar">
        <div className= "sevenAm"> 
-         <Link class="site-title" to='/'>SevenAm</Link>
+         <Link className="site-title" to='/'>SevenAm</Link>
         </div>
         <div className="weather">
           <Weather/>
