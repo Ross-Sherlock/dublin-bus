@@ -2,7 +2,6 @@ export class StaticStops{
     //constructor
     constructor(data){
         this.static_stops = data
-        console.log("FROM CLASS:", this.static_stops)
     };
 
     //method to get a route number array

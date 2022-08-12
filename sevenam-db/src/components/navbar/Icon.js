@@ -54,12 +54,9 @@ let oldimg = props.oldimg
 
 function findIcon () {
 for ( let i in weatherIcons ) {
-    {console.log(i)}
-    {console.log(oldimg)}
     if (oldimg === weatherIcons[i].oldIcon || oldimg === weatherIcons[i].oldIconN) {
         
         let logo =  weatherIcons[i].newIcon;
-        {console.log(logo)}
         return logo;
             
         

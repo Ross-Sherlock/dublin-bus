@@ -95,8 +95,6 @@ const RouteSummary = (props) => {
     }
     try {
       await axios.get(url).then((response) => {
-        console.log("PREDICTION: " + response.data);
-        console.log(url);
         // If new route, just return googles estimate
         if (response.data !== "ERR") {
           step.duration.value = response.data*60;
@@ -104,7 +102,6 @@ const RouteSummary = (props) => {
         }
       });
     } catch (error) {
-      console.log(error);
       return "ERROR";
     }
     setLoading(false);
@@ -115,7 +112,6 @@ const RouteSummary = (props) => {
       let loc_index = name.indexOf(", stop ");
       loc_index = loc_index + 7;
       let code = name.slice(loc_index, name.length);
-      console.log("FOUND STOP CODE PROVIDED:", code);
       return parseInt(code);
     } else {
       return null;

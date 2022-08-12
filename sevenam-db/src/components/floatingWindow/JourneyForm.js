@@ -60,9 +60,7 @@ const JourneyForm = (props) => {
       localStorage.setItem("favourites", JSON.stringify(favouritesObj));
       setFav(favouritesObj);
     } else {
-      console.log("DUPLICATE FOUND");
     }
-    console.log(localStorage.getItem("favourites"));
   }
 
   function duplicateCheck(insert) {
@@ -138,7 +136,6 @@ const JourneyForm = (props) => {
             value={date}
             onChange={(newDate) => {
               setDate(newDate);
-              console.log(date);
             }}
             renderInput={(params) => <TextField {...params} />}
           />
