@@ -40,7 +40,6 @@ button {
 .step-container {
     display: flex;
     width: 100%;
-    /* justify-content: center; */
     padding: 10px;
     align-items: center;
     background-color: rgb(244, 244, 245);

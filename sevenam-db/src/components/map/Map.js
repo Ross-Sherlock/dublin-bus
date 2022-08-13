@@ -9,14 +9,6 @@ import "./Map.css";
 import JourneyForm from "../floatingWindow/JourneyForm";
 import ToggleVisability from "../UI/ToggleVisibility"
 import RouteContainer from "../UI/RouteContainer";
-/*
-import axios from "axios";
-import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
-import { FormControl, MenuItem } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import { StaticStops } from "../map/StaticStops"; */
 import AllRoutes from "../floatingWindow/AllRoutes";
 
 
@@ -28,17 +20,6 @@ const Map = (props) => {
     setIsExtended(!isExtended);
   }
   /*=====================prediction parameters=====================*/
-  // const [month, setMonth] = useState(null);
-  // const [day, setDay] = useState(null);
-  // const [hour, setHour] = useState(null);
-  // const [start_lat, setStart_lat] = useState(null);
-  // const [start_lng, setStart_lng] = useState(null);
-  // const [end_lat, setEnd_lat] = useState(null);
-  // const [end_lng, setEnd_lng] = useState(null);
-  // const [route_numner, setRoute_number] = useState(null);
-  // const [start_stopid, setStart_stopid] = useState(null);
-  // const [end_stopid, setEnd_stopid] = useState(null);
-  // const [n_stops, setN_stops] = useState(null);
   let month;
   let day;
   let hour;
@@ -53,12 +34,9 @@ const Map = (props) => {
   const [routeIndex, setRouteIndex] = useState(0);
 
 
-  // const [journeyPlan, setJourneyPlan] = useState(true)
 const journeyPlan = props.journeyPlan;
-  // const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const map = props.map;
   const setMap = props.setMap;
-  // const [markers, setMarkers] = useState([]);
   const markers = props.markers;
   const setMarkers = props.setMarkers;
   const [libraries] = useState(["places"]);
@@ -70,7 +48,6 @@ const journeyPlan = props.journeyPlan;
   const [date, setDate] = useState(new Date());
 
   // Render directions
-  // const [directionsResponse, setDirectionsResponse] = useState(null);
   const directionsResponse = props.directionsResponse;
   const setDirectionsResponse = props.setDirectionsResponse;
 

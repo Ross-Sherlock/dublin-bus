@@ -1,7 +1,6 @@
 import React, { useState} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./Sidebar.css";
-import { GiNewspaper } from "react-icons/gi";
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { FaRoute, FaHeart, FaInfo, FaBars, FaBus } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -57,29 +56,6 @@ const Sidebar = (props) => {
     setMarkers([]);
   };
 
-  // const [isExtended, setIsExtended] = useState(false);
-
-  // function setExtend() {
-  //   setIsExtended(!isExtended)
-  // }
-
-  // function getStyle() {
-  //   let css;
-  //   if (isExtended) {
-  //     css = `
-  // .side-panel {
-  //   display:block !important;
-  // }
-  // `;
-  //   } else {
-  //     css = `
-  // .side-panel {
-  //   display:none !important;
-  // }
-  // `;
-  //   }
-  //   return css;
-  // }
 
   const allRoutesBtn = (
     <NavLink
@@ -99,18 +75,6 @@ const Sidebar = (props) => {
     </NavLink>
   );
 
-  //  const routePathBtns = (
-  //   routes.map((route) => (
-  //     <NavLink to={route.path} key={route.name} className="link">
-  //       <div className="icon">{route.icon}</div>
-  //       <AnimatePresence>
-  //         {isOpen && (
-  //           <motion.div className="link_text">{route.name}</motion.div>
-  //         )}
-  //       </AnimatePresence>
-  //     </NavLink>
-  //   ))
-  //  )
 
   const routePathBtns = routes.map(function (route) {
     let navlink;

@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Accordion, AccordionSummary } from "@mui/material";
 import { AccordionDetails } from "@mui/material";
 import { FaBus, FaWalking } from "react-icons/fa";
-/*import { IconContext } from "react-icons"; 
-import { arrayIncludes } from "@mui/x-date-pickers/internals/utils/utils";
-*/
 import "./RouteSummary.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -14,8 +11,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const RouteSummary = (props) => {
   const route = props.route;
-  //   const steps = route.legs[0].steps;
-  //   const [stepState, setStepState] = useState(steps)
   const [steps, setSteps] = useState(props.route.legs[0].steps);
   const [loading, setLoading] = useState(true);
   const index = props.index;
@@ -61,7 +56,6 @@ const RouteSummary = (props) => {
     }
   });
 
-//   const time = route.legs[0].duration.text;
 
   const setRoute = () => {
     setRouteIndex(index);
@@ -86,15 +80,15 @@ const RouteSummary = (props) => {
     start_stopid,
     end_stopid
   ) {
-    let url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
+    let url = `/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
     if (start_stopid !== null && typeof start_stopid !== "undefined") {
-      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
+      url = `/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
     }
     if (end_stopid !== null && typeof end_stopid !== "undefined") {
-      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
+      url = `/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
     }
     try {
-      await axios.get(url).then((response) => {
+      await axios.get(process.env.REACT_APP_API+url).then((response) => {
         // If new route, just return googles estimate
         if (response.data !== "ERR") {
           step.duration.value = response.data*60;

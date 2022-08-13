@@ -19,7 +19,7 @@ const AllRoutesMap = () => {
   };
   /*=====================Get marker list part=====================*/
   //get all data through API call
-  const api_url = process.env.REACT_APP_DJANGO_API;
+  const api_url = process.env.REACT_APP_API;
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
@@ -98,7 +98,7 @@ const AllRoutesMap = () => {
 
   return (
     <div className="allroutesmap-container">
-      {/* <style>{getStyle()}</style> */}
+ 
       <ToggleVisibility content="side-panel">
         <div id="side">
           <div className="side-panel">
@@ -159,9 +159,7 @@ const AllRoutesMap = () => {
         </div>
       </ToggleVisibility>
 
-      {/* <button className="side-panel-toggle" id="side-panel-trigger" type="button" onClick={setExtend}>
-        <span className={changeArrow()[0]}>{changeArrow()[1]}</span>
-      </button> */}
+  
 
       <GoogleMap
         center={centre}

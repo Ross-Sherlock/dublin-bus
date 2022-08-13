@@ -5,15 +5,15 @@
 }
 
 .favourite-card {
-    /* box-shadow: 0 0 3px #000; */
+
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-width: 0.5px;
     border-color: black;
     margin: 10px;
-    /* border-style: solid; */
+
     border-radius: 3px;
     padding: 5px;
-    /* font-size: 20px; */
+
     font-size: 14px;
     display: flex;
     justify-content: center;

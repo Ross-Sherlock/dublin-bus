@@ -6,17 +6,6 @@ import github from "../Images/github.png";
 
 const Info = (props) => {
 
-  /*  const [showInfo, setShowinfo] = useState(false);
-    
-    const handleShowOn = () => {
-        setShowinfo(true);
-      };
-    
-
-      const handleShowOff = () => {
-        setShowinfo(false);
-      }; */
-    
 
 return (
     <div className="mainContainer">
@@ -32,19 +21,7 @@ return (
     <li className="title">
     {props.title}
     </li>
- {/* 
-<button className="contact-btn" onMouseOver={handleShowOn} onClick={handleShowOff}>
-    Contact Information
- </button> 
- 
- </ul>
 
-
-<div className="mobileApp"> 
-<div className="mobileImage">  <img src={props.photo} width={"100px"} height={"100px"}/> </div>
-<ul>
-*/
-}
 <li className="email">
            {props.email}
     </li>
@@ -58,24 +35,6 @@ return (
           </ul>
 
 
-
-
-
-{/*
-{showInfo && (
-        
-         <ul className="hiddenforMobile">
-           <li className="email">
-           {props.email}
-    </li>
-    <li>
-        <a href={props.link} target="_blank"> <img src={link} width="15%" height={"15%"} /></a>
-        <a href={props.github} target="_blank"> <img src={github} width="15%" height={"15%"} /></a>
-    </li>
-
-          </ul>
-
-)} */}
 
 </div>
 </div>

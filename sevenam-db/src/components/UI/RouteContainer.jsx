@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-/*
-import { AccordionDetails } from "@mui/material";
-import { FaBus, FaWalking } from "react-icons/fa";
-import { IconContext } from "react-icons"; */
 import RouteSummary from "./RouteSummary";
 import "./RouteContainer.css";
 import { Fragment } from "react";

@@ -1,9 +1,6 @@
 import React from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import DeleteIcon from '@mui/icons-material/Delete';
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./Favourite.css";
-import Typography from "@mui/material/Typography";
 import DirectionsIcon from "@mui/icons-material/Directions";
 
 const Favourite = (props) => {

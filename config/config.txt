@@ -1,7 +1,7 @@
 openweather_apikey = 
 
-URL = dublinbus.crvrpxe5erne.us-east-1.rds.amazonaws.com
-PORT = 3306
+URL = 
+PORT = 
 DB = dublinbus
 USER = admin
 PASSWORD = 
