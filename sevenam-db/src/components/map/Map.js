@@ -81,7 +81,6 @@ const journeyPlan = props.journeyPlan;
     // Filter routes to only include Dublin Bus
     results.routes = results.routes.filter(checkRoute);
     // testingRef.current.value = results;
-    console.log(results);
     setResponseJSON(results);
     setDirectionsResponse(results);
 
@@ -102,16 +101,13 @@ const journeyPlan = props.journeyPlan;
     function getMDH(departure_time) {
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       month = months[departure_time.getMonth()];
-      console.log("MONTH:", month)
       // setMonth(month);
 
       const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       day = days[departure_time.getDay()];
-      console.log("DAY", day)
       // setDay(day);
 
       hour = departure_time.getHours();
-      console.log("HOUR:", hour)
       // setHour(hour);
     }
     let departure_time = results.request.transitOptions.departureTime;
@@ -124,29 +120,16 @@ const journeyPlan = props.journeyPlan;
       let line = transit.line;
       start_lat = (departure_stop.location.lat)();
       n_stops = transit.num_stops;
-      console.log("START_LAT:", start_lat);
-      // setStart_lat(start_lat());
       start_lng = (departure_stop.location.lng)();
-      console.log("START_LNG:", start_lng);
-      // setStart_lng(start_lng());
       end_lat = (arrival_stop.location.lat)();
-      console.log("END_LAT:", end_lat);
-      // setEnd_lat(end_lat());
       end_lng = (arrival_stop.location.lng)();
-      console.log("END_LNG:", end_lng);
-      // setEnd_lng(end_lng());
       let route_number = line.short_name;
-      console.log("ROUTE NUMBER:", route_number);
-      // setRoute_number(route_number);
-      console.log("NUMBER OF STOPS", n_stops)
-      // setN_stops(n_stops)
 
       function check_stop_code(name) {
         if (name.includes(", stop ")) {
           let loc_index = name.indexOf(", stop ");
           loc_index = loc_index + 7;
           let code = name.slice(loc_index, name.length);
-          console.log("FOUND STOP CODE PROVIDED:", code)
           return parseInt(code)
         } else {
           return null;
@@ -167,13 +150,10 @@ const journeyPlan = props.journeyPlan;
           continue;
         }
       }
-      console.log("STEPS LIST:", steps_list);
       return steps_list;
     }
 
-    console.log("ROUTE INDEX:", routeIndex);
     let all_steps = results.routes[routeIndex].legs[0].steps;
-    console.log("ALL STEPS IN A ROUTE:", all_steps);
     getDynamicParams(get_steps_list(all_steps)[0]);
   }
 
@@ -269,7 +249,6 @@ else {
             position={marker.position}
             // onLoad={handleSubmit}
           >
-            {console.log("MARKERS ARE:", markers)}
           </Marker>
         ))}
       </GoogleMap>

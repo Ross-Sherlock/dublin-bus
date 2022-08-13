@@ -80,17 +80,15 @@ const RouteSummary = (props) => {
     start_stopid,
     end_stopid
   ) {
-    let url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
+    let url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&n_stops=${n_stops}`;
     if (start_stopid !== null && typeof start_stopid !== "undefined") {
-      url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
+      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&start_stopid=${start_stopid}&n_stops=${n_stops}`;
     }
     if (end_stopid !== null && typeof end_stopid !== "undefined") {
-      url = `http://137.43.49.23:8000/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
+      url = `http://127.0.0.1/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
     }
     try {
       await axios.get(url).then((response) => {
-        console.log("PREDICTION: " + response.data);
-        console.log(url);
         // If new route, just return googles estimate
         if (response.data !== "ERR") {
           step.duration.value = response.data*60;
@@ -98,7 +96,6 @@ const RouteSummary = (props) => {
         }
       });
     } catch (error) {
-      console.log(error);
       return "ERROR";
     }
     setLoading(false);
@@ -109,7 +106,6 @@ const RouteSummary = (props) => {
       let loc_index = name.indexOf(", stop ");
       loc_index = loc_index + 7;
       let code = name.slice(loc_index, name.length);
-      console.log("FOUND STOP CODE PROVIDED:", code);
       return parseInt(code);
     } else {
       return null;

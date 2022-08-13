@@ -27,7 +27,6 @@ const AllRoutesMap = () => {
       .then((response) => setData(response.data))
       .catch((err) => console.log(err));
   }, []);
-  console.log("DATA IS:", data);
 
   //new a class instance from "StaticStops.js" class
   const staticstops = new StaticStops(data);
@@ -35,7 +34,6 @@ const AllRoutesMap = () => {
   //get route numbers list
   let route_numbers = staticstops.get_route_number();
   route_numbers.splice(0, 0, "------Select------");
-  console.log("ROUTE NUMBERS :", route_numbers);
 
   //get corresponding route description
   let [route_descriptions, setRoute_descriptions] = useState([]);
@@ -43,7 +41,6 @@ const AllRoutesMap = () => {
   //handleSelectChange1 function to get corresponding route description
   function handleSelectChange1(event) {
     let selected_route_number = event.target.value;
-    console.log("SELECTED NUMBER:", selected_route_number);
     setRoute_descriptions(() => {
       let temp_route_description = staticstops.get_route_descriptions(
         selected_route_number
@@ -51,7 +48,6 @@ const AllRoutesMap = () => {
       temp_route_description.splice(0, 0, "------Select------");
       return temp_route_description;
     });
-    console.log("ROUTE DESCRIPTIONS:", route_descriptions);
   }
 
   //get corresponding stops list on the selected route
@@ -60,7 +56,6 @@ const AllRoutesMap = () => {
   //handleSelectChange2 function to get corresponding stops list
   function handleSelectChange2(event) {
     let selected_route_description = event.target.value;
-    console.log("SELECTED ROUTE DESCRIPTION:", selected_route_description);
     setStops_list(() => {
       let temp_stops_list = staticstops.get_stops_list(
         selected_route_description
@@ -73,7 +68,6 @@ const AllRoutesMap = () => {
   let [markers, setMarkers] = useState([]);
 
   function handleSubmit() {
-    console.log("button clicked...");
     let temp_markers = [];
     for (const stop in stops_list) {
       let temp_dict = {};
@@ -87,7 +81,6 @@ const AllRoutesMap = () => {
       };
       temp_markers.push(temp_dict);
     }
-    console.log("TEMP_MARKERS", temp_markers);
     setMarkers(temp_markers);
   }
   /*=====================Google Map part=====================*/
@@ -152,7 +145,6 @@ const AllRoutesMap = () => {
                       divider={true}
                     >
                       {route_description}
-                      {console.log("CORRESPONDING STOPS LIST:", stops_list)}
                     </MenuItem>
                   ))}
                 </Select>
@@ -180,7 +172,6 @@ const AllRoutesMap = () => {
             position={marker.position}
             onLoad={handleSubmit}
           >
-            {console.log("MARKERS ARE:", markers)}
           </Marker>
         ))}
       </GoogleMap>

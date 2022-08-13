@@ -14,7 +14,6 @@ const Favourite = (props) => {
 
   function set() {
     setSearch(origin, dest);
-    console.log(index);
   }
 
   function unfavourite() {
@@ -22,7 +21,6 @@ const Favourite = (props) => {
     current.splice(index, 1);
     localStorage.setItem("favourites", JSON.stringify(current));
     setFav(current);
-    console.log(current);
   }
 
   return (

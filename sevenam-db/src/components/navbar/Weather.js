@@ -8,7 +8,6 @@ const Weather = () => {
   const [ready, setReady] = useState(false);  
   const [weatherData, setWeatherData] = useState({});
     function handleResponse(response){
-  
         setReady(true);
 
         setWeatherData ({
@@ -39,7 +38,7 @@ if (ready) {
   );
   } else {
 
-    let apiUrl = "http://137.43.49.23:8000/weather/"
+    let apiUrl = "http://127.0.0.1/weather/"
     Axios.get(apiUrl).then(handleResponse);
 
     return "Loading..."
