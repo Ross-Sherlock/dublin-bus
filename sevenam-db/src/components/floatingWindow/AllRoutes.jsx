@@ -17,7 +17,7 @@ const AllRoutes = (props) => {
   const [staticStopData, setStaticStopData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://127.0.0.1/static_stops/")
+      .get(process.env.REACT_APP_API + "/static_stops/")
       .then((response) => setStaticStopData(response.data))
       .catch((err) => console.log(err));
   }, []);

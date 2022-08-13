@@ -19,7 +19,7 @@ const AllRoutesMap = () => {
   };
   /*=====================Get marker list part=====================*/
   //get all data through API call
-  const api_url = process.env.REACT_APP_DJANGO_API;
+  const api_url = process.env.REACT_APP_API;
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
