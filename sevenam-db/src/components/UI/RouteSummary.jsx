@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Accordion, AccordionSummary } from "@mui/material";
 import { AccordionDetails } from "@mui/material";
 import { FaBus, FaWalking } from "react-icons/fa";
-/*import { IconContext } from "react-icons"; 
-import { arrayIncludes } from "@mui/x-date-pickers/internals/utils/utils";
-*/
 import "./RouteSummary.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -14,8 +11,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const RouteSummary = (props) => {
   const route = props.route;
-  //   const steps = route.legs[0].steps;
-  //   const [stepState, setStepState] = useState(steps)
   const [steps, setSteps] = useState(props.route.legs[0].steps);
   const [loading, setLoading] = useState(true);
   const index = props.index;
@@ -61,7 +56,6 @@ const RouteSummary = (props) => {
     }
   });
 
-//   const time = route.legs[0].duration.text;
 
   const setRoute = () => {
     setRouteIndex(index);

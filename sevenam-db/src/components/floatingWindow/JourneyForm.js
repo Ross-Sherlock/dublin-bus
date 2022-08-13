@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React, { useState} from "react";
 import "./JourneyForm.css";
 import { Autocomplete } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
@@ -35,10 +34,6 @@ const JourneyForm = (props) => {
   const end_stopid = props.end_stopid;
   const n_stops = props.n_stops;
   const response = props.response;
-
-  // const submitRecentre = () => {
-  //   map.panTo(centre);
-  // };
 
   let favouritesObj = [];
   if (localStorage.getItem("favourites") != null) {
@@ -126,8 +121,6 @@ const JourneyForm = (props) => {
           <input className="des-input" type="text" ref={destinationRef} />
         </Autocomplete>
       </div>
-      {/* <label>Date</label> */}
-      {/* <input type="datetime-local" value={new Date().getDate()} /> */}
       <div className="date-selector">
         <Typography variant="h6" gutterBottom component="div">
           Time

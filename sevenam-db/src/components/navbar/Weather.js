@@ -8,11 +8,7 @@ const Weather = () => {
   const [ready, setReady] = useState(false);  
   const [weatherData, setWeatherData] = useState({});
     function handleResponse(response){
-        console.log(response.data);
-        console.log(response.data[0].temp);
-        console.log(response.data[0].main);
-        console.log(response.data[0].description);
-        console.log(response.data[0].icon)
+  
         setReady(true);
 
         setWeatherData ({

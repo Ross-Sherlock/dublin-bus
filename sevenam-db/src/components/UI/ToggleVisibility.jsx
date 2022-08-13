@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-/*import { FaBorderNone } from "react-icons/fa"; */
 
 export default function ToggleVisibility(props) {
   // React state to manage visibility

@@ -1,4 +1,3 @@
-import { useJsApiLoader, GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useState, useEffect } from "react";
 import { StaticStops } from "../map/StaticStops";
 import axios from "axios";
@@ -8,7 +7,7 @@ import Select from "@mui/material/Select";
 import { FormControl, MenuItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
-/*import ToggleVisibility from "../UI/ToggleVisibility"; */
+
 
 const AllRoutes = (props) => {
   const setMarkers = props.setMarkers;
