@@ -47,22 +47,6 @@ li{
 
 
 
-/*
-.contact-btn {
-    
-      border: 1px solid #0000001a;
-      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-      color: rgba(0, 0, 0, 0.85);
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 10px 20px;
-     background-color: #9D8CA1;
-
-    }
-    
-   */
-
 
     @media only screen and (max-width: 1200px) {
         
@@ -97,27 +81,7 @@ line-height: 25px;
 
     }
     
-/*
-        .personalImage{
-          display: none;
-        }
-        
-        .mobileApp {
-          display: flex;
 
-        }
-     
-      .contact-btn {
-          display: none;
-         
-    
-      }
-
-      .hiddenforMobile{
-display: none;
-
-      }
-*/
      
 
     

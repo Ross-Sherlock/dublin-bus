@@ -38,7 +38,7 @@ if (ready) {
   );
   } else {
 
-    let apiUrl = "http://127.0.0.1/weather/"
+    let apiUrl = process.env.REACT_APP_API + "/weather/"
     Axios.get(apiUrl).then(handleResponse);
 
     return "Loading..."

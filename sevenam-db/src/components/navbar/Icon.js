@@ -70,36 +70,6 @@ return (
 </div>
 );
 
-/*
-const swappedIcons = weatherIcons.map (icons => {
-    if (iconImage == icons.oldIcon) {
-        return (
-        <div>
-        <icons.newIcon />
-            worked
-        </div> 
-            ) ; 
-    }
-    
-   else {
-        return (
-            <div> 
-        hello
-            </div>
-        )  
-    } 
-    
-}) 
-
-
-return (
-    <div> 
-           
- {swappedIcons}
- </div>
-);
-
-*/
 
 
 }
