@@ -69,7 +69,10 @@ button:hover, button:focus {
 
 .side-panel-hide {
   width: 0px;
-  margin-top: 32%;
+}
+
+.side-panel-toggle.hide {
+  top:30%;
 }
 
 .side-panel-show {
