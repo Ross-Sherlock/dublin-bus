@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import axios from "axios";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 const RouteSummary = (props) => {
   const route = props.route;
@@ -22,11 +22,15 @@ const RouteSummary = (props) => {
   const hour = props.hour;
   let data;
   let time = 0;
+  let transit_steps_predicted = [];
+  let transit_steps = 0;
+  let [stepsUpdated, setStepsUpdated] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     data = getStepData();
-    setSteps(data);
+    setLoading(false)
+    setSteps(steps)
   }, [steps, data]);
 
   let icons = steps.map(function (item, index, array) {
@@ -55,7 +59,6 @@ const RouteSummary = (props) => {
       );
     }
   });
-
 
   const setRoute = () => {
     setRouteIndex(index);
@@ -88,17 +91,23 @@ const RouteSummary = (props) => {
       url = `/predict/?month=${month}&day=${day}&hour=${hour}&start_lat=${start_lat}&start_lng=${start_lng}&end_lat=${end_lat}&end_lng=${end_lng}&route_number=${route_number}&end_stopid=${end_stopid}&n_stops=${n_stops}`;
     }
     try {
-      await axios.get(process.env.REACT_APP_API+url).then((response) => {
+      await axios.get(process.env.REACT_APP_API + url).then((response) => {
         // If new route, just return googles estimate
         if (response.data !== "ERR") {
-          step.duration.value = response.data*60;
-          step.duration.text = response.data + " mins"
+          step.duration.value = response.data * 60;
+          step.duration.text = response.data + " mins";
         }
       });
     } catch (error) {
       return "ERROR";
     }
-    setLoading(false);
+    transit_steps_predicted.push(step)
+    console.log("TRANSIT STEPS PREDICTED", transit_steps_predicted.length)
+    console.log("TRANSIT STEPS", transit_steps)
+    if (transit_steps_predicted.length == transit_steps) {
+      setLoading(false);
+      setStepsUpdated(steps);
+    }
   }
 
   function check_stop_code(name) {
@@ -113,7 +122,12 @@ const RouteSummary = (props) => {
   }
 
   async function getNewSteps() {
-    for (const step of steps) {
+    for(const step of steps) {
+      if (step.travel_mode === "TRANSIT") {
+        transit_steps += 1;
+      }
+    }
+    for (const [index, step] of steps.entries()) {
       if (step.travel_mode === "TRANSIT") {
         let transit = step.transit;
         let start_lat = transit.departure_stop.location.lat;
@@ -166,7 +180,7 @@ const RouteSummary = (props) => {
     }
     if (step.travel_mode == "WALKING") return <FaWalking />;
     else if (step.travel_mode == "TRANSIT") {
-        let busTime = step.transit.departure_time.text;
+      let busTime = step.transit.departure_time.text;
       return (
         <span>
           <FaBus />
@@ -179,20 +193,25 @@ const RouteSummary = (props) => {
 
   let stepsMap;
 
-  if (steps !== undefined) {
+  if (stepsUpdated !== null & !loading) {
+    time = 0;
     // Update total trip duration
-    for(const step of steps) {
-      time+=Math.round(step.duration.value/60)
+    for (const step of stepsUpdated) {
+      time += Math.round(step.duration.value / 60);
+    }
+    stepsMap = stepsUpdated.map(function (step) {
+      return [
+        <div className="step-container">
+          <span className="step-icon">{iconSelect(step)}</span>
+          <span className="step-instruct">{step.instructions}</span>
+          <span className="step-dur">{step.duration.text}</span>
+        </div>,
+      ];
+    });
   }
-    stepsMap = steps.map(function(step) { 
-        return [
-      <div className="step-container">
-        <span className="step-icon">{iconSelect(step)}</span>
-        <span className="step-instruct">{step.instructions}</span>
-        <span className="step-dur">{step.duration.text}</span>
-      </div>,
-    ]});
-    
+
+  if(stepsUpdated === null) {
+    time = <CircularProgress size="1.4rem"/>
   }
 
   return (
@@ -209,12 +228,16 @@ const RouteSummary = (props) => {
           justifyContent: "center",
         }}
       >
-        {route && steps && (
+        {route && steps && !loading && (
           <span className="icon-container">
             <span className="icons">{icons}</span>
             <span className="time">
               {!loading && <div>{time} mins</div>}
-              {loading && <div><CircularProgress size="1.4rem"/></div>}
+              {loading && (
+                <div>
+                  <CircularProgress size="1.4rem" />
+                </div>
+              )}
             </span>
           </span>
         )}
